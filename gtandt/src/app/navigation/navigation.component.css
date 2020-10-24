@@ -1,0 +1,189 @@
+.navbar{
+    width: 6rem;
+    height: 100vh;
+    position: fixed;
+    background-color: var(--bg-secondary);
+    transition: width var(--transition-speed) ease;
+}
+
+.link-text{
+    margin-left: 1rem;
+    color: var(--text-primary);
+    font-family: 'Montserrat';
+    size: 100px;
+}
+
+.navbar-nav{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+
+.nav-item {
+    width: 100%;
+}
+
+.nav-item:hover .link-text{
+    color: var(--text-secondary);
+}
+
+.nav-item:last-child{
+    margin-top: auto;
+}
+
+.nav-item:first-child{
+    margin-bottom: 100px;
+}
+
+.nav-link{
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    filter: opacity(0.7);
+    transition: var(--transition-speed);
+}
+
+.link-text {
+    display: none;
+    margin-left: 1rem;
+    color: var(--text-primary);
+}
+
+.nav-link mat-icon{
+    width: 2rem;
+    min-width: 2rem;
+    margin: 0 1rem;
+    
+}
+
+.nav-link:hover {
+    filter: opacity(1);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+}
+  
+.navbar:hover {
+    width: 16rem;
+}
+
+.navbar:hover .link-text {
+display: inline;    
+}
+
+.navbar:hover .logo-text
+{
+    left: 0px;
+}
+
+.logo-text
+{
+  display: inline;
+  position: absolute;
+  left: -990px;
+  transition: var(--transition-speed);
+  margin-left: 5rem;   
+}
+
+mat-divider{
+    border-color: #00CA80;
+    border-width: 3px;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 1.4rem; 
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    text-align: center;
+    letter-spacing: 0.5ch;
+    width: 100%;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+}
+
+.logo mat-icon{
+    color: #00CA80;
+    transform: rotate(-45deg);
+    transition: transform var(--transition-speed);
+    transform-origin: bottom;
+}
+mat-icon {
+    width: 32px !important;
+    height: 32px !important;
+}
+.navbar:hover .logo mat-icon{
+    transform: rotate(-315deg);
+    transform-origin: right;
+    margin-left: 11rem;
+}
+
+/* Small screens */
+
+  /* Still needs work on the mobile navbar */
+
+@media only screen and (max-width: 600px) {
+    .navbar {
+      bottom: 0;
+      width: 100vw;
+      height: 6rem;
+      align-items: center;
+    }
+
+    mat-divider{
+        display: none
+    }
+    
+  
+    .logo {
+      display: none;
+    }
+  
+    .navbar-nav {
+      flex-direction: row;
+      align-items: center;
+    }
+  
+    .nav-link {
+      justify-content: center;
+    }
+  
+    main {
+      margin: 0;
+    }
+  }
+  
+  /* Large screens */
+  /* @media only screen and (min-width: 600px) {
+    .navbar {
+      top: 0;
+      width: 6rem;
+      height: 100vh;
+    }
+   
+    .navbar:hover {
+      width: 16rem;
+    }
+  
+    .navbar:hover .link-text {
+      display: inline;
+    }
+  
+    .navbar:hover .logo mat-icon
+    {
+      margin-left: 11rem;
+    }
+  
+    .navbar:hover .logo-text
+    {
+      left: 0px;
+    }
+  } */
+  
+
