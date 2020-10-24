@@ -1,4 +1,58 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style file`s */
+
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@font-face{
+    font-family: "Montserrat";
+    src: url(./assets/fonts/Montserrat/Montserrat-ExtraBold.ttf) format("truetype");
+    font-weight: 800;
+    font-style: italic;
+}
+@font-face{
+    font-family: "Montserrat";
+    src: url(./assets/fonts/Montserrat/Montserrat-SemiBoldItalic.ttf) format("truetype");
+    font-weight: 600;
+    font-style: italic;
+}
+@font-face{
+    font-family: "Montserrat";
+    src: url(./assets/fonts/Montserrat/Montserrat-ExtraBold.ttf) format("truetype");
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face{
+    font-family: "Montserrat";
+    src: url(./assets/fonts/Montserrat/Montserrat-SemiBold.ttf) format("truetype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+
+
+:root {
+    font-size: 16px;
+    --bg-secondary: #0C4BCC;
+    --bg-primary: #ffffff;
+    --text-primary: #ffffff;
+    --text-secondary:#00CA80;
+    --transition-speed: 600ms;
+}
+
+body{
+    background-color: #F7F8FC !important;
+}
+
+body::-webkit-scrollbar-track{
+    background-color: var(--bg-primary);
+}
+
+body::-webkit-scrollbar-thumb{
+     background-color: #0C4BCC;
+}
+
+body::-webkit-scrollbar{
+     width: 0.30rem;
+}
