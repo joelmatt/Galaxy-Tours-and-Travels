@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./candidates.component.css']
 })
 export class CandidatesComponent implements OnInit {
-
+  currentDate: string;
   constructor() { }
 
   ngOnInit(): void {
+    this.currentDate = Date();
+    console.log(this.currentDate);
   }
-
+  
 }

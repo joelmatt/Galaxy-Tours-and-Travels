@@ -3,6 +3,7 @@
     height: 100vh;
     position: fixed;
     background-color: var(--bg-secondary);
+    z-index: 1; 
     transition: width var(--transition-speed) ease;
 }
 
