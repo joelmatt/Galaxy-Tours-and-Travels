@@ -106,7 +106,7 @@ mat-divider{
     letter-spacing: 0.5ch;
     width: 100%;
     color: var(--text-secondary);
-    background: var(--bg-secondary);
+ 
 }
 
 .logo mat-icon{

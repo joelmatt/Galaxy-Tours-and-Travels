@@ -14,6 +14,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import{CandidateListComponent} from './candidates/candidate-list/candidate-list.component';
 
 @NgModule({
   declarations: [
