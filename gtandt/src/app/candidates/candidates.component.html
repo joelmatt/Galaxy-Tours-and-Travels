@@ -1,1 +1,66 @@
-<p>candidates works!</p>
+
+<mat-card class="mat-elevation-z3 mainCard">
+    <div class="row">
+        <div class="col">
+            <mat-card-title class="mainCardTitle">
+            List of Candidates
+            </mat-card-title>
+        </div>
+
+        <div class="col">
+            <div class="btn-group" style="position:absolute; ">
+                <button type="button" class="btn btn-primary btn-lg topNavBtn">Left</button>
+                <button type="button" class="btn btn-danger btn-lg topNavBtn" style="margin-right: 50px">Right</button>
+            </div>
+        </div>    
+    </div>
+    <mat-divider></mat-divider>
+    <br>
+    <div class="container p-0">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <span class="fa fa-search form-control-icon"></span>
+                    <input type="text" class="form-control" placeholder="Search">
+                  </div> 
+            </div>
+            <div class="col-sm-4">
+                <div class="row float-right">
+                    <div class="dropdown float-left">
+                        <button class="btn dropdown-toggle searchDropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                        Search By
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </div>
+                  <div class="dropdown" style="margin-left: 20px;">
+                    <button class="btn dropdown-toggle searchDropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                      Order By
+                    </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>    
+    <div class="container">
+        
+    </div>
+<mat-card-content>
+
+
+
+
+<button mat-raised-button id="newCandidateButton" class="addCandidateButton">
+    <mat-icon>add</mat-icon>
+    Add Candidate
+</button>
