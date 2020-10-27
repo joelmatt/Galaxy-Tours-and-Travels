@@ -7,7 +7,7 @@
     transition: width var(--transition-speed) ease;
 }
 
-.link-text{
+.link-text{ 
     margin-left: 1rem;
     color: var(--text-primary);
     font-family: 'Montserrat';
