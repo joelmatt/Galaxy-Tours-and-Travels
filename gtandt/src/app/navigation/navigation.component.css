@@ -1,77 +1,82 @@
+
+/* Navbar css present in style.css */
+
 .navbar{
-    width: 6rem;
-    height: 100vh;
-    position: fixed;
-    background-color: var(--bg-secondary);
-    z-index: 1; 
-    transition: width var(--transition-speed) ease;
+  display: inline-block;
+  width: 6rem;
+  height: 100vh;
+  position: fixed;
+  background-color: var(--bg-secondary);
+  transition: width var(--transition-speed) ease;
+  z-index: 2;
 }
 
-.link-text{ 
-    margin-left: 1rem;
-    color: var(--text-primary);
-    font-family: 'Montserrat';
-    size: 100px;
+.link-text{
+  margin-left: 1rem;
+  color: var(--text-primary);
+  font-family: 'Montserrat';
+  font-size: 18px;
 }
 
 .navbar-nav{
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex; 
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
 }
 
-
 .nav-item {
-    width: 100%;
+  width: 100%;
 }
 
 .nav-item:hover .link-text{
-    color: var(--text-secondary);
+  color: var(--text-secondary);
 }
 
 .nav-item:last-child{
-    margin-top: auto;
+  margin-top: auto;
 }
 
 .nav-item:first-child{
-    margin-bottom: 100px;
+  margin-right: 0px;
+  margin-left: 0px;
+  margin-bottom: 50px;
 }
 
 .nav-link{
-    display: flex;
-    align-items: center;
-    height: 5rem;
-    color: var(--text-primary);
-    text-decoration: none;
-    filter: opacity(0.7);
-    transition: var(--transition-speed);
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  filter: opacity(0.7);
+  transition: var(--transition-speed);
 }
 
 .link-text {
-    display: none;
-    margin-left: 1rem;
-    color: var(--text-primary);
+  display: none;
+  margin-left: 1rem;
+  color: var(--text-primary);
 }
 
 .nav-link mat-icon{
-    width: 2rem;
-    min-width: 2rem;
-    margin: 0 1rem;
-    
+  width: 2rem;
+  min-width: 2rem;
+  margin: 0 1rem;
+  
 }
 
 .nav-link:hover {
-    filter: opacity(1);
-    background: var(--bg-secondary);
-    color: var(--text-secondary);
+  filter: opacity(1);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
 }
-  
+
 .navbar:hover {
-    width: 16rem;
+  width: 16.3rem;
 }
 
 .navbar:hover .link-text {
@@ -80,21 +85,21 @@ display: inline;
 
 .navbar:hover .logo-text
 {
-    left: 0px;
+  left: -3px;
 }
 
 .logo-text
-{
-  display: inline;
-  position: absolute;
-  left: -990px;
-  transition: var(--transition-speed);
-  margin-left: 5rem;   
-}
+{   
+font-size: 25px;
+font-weight: 900;
+color: var(--text-secondary);
+display: inline;
+position: absolute;
+left: -990px;
+transition: var(--transition-speed);
+margin-left: 5rem;   
+text-transform: uppercase;
 
-mat-divider{
-    border-color: #00CA80;
-    border-width: 3px;
 }
 
 .logo {
@@ -110,26 +115,36 @@ mat-divider{
 }
 
 .logo mat-icon{
-    color: #00CA80;
-    transform: rotate(-45deg);
-    transition: transform var(--transition-speed);
-    transform-origin: bottom;
+  margin-left: 25px;
+  color: #00CA80;
+  transform: rotate(-45deg);
+  transition: transform var(--transition-speed);
+  transform-origin: bottom;
+  width: 40px !important;
+  height: 40px !important;
 }
+
 mat-icon {
-    width: 32px !important;
-    height: 32px !important;
+  width: 34px !important;
+  height: 34px !important;
 }
+
 .navbar:hover .logo mat-icon{
-    transform: rotate(-315deg);
-    transform-origin: right;
-    margin-left: 11rem;
+  transform: rotate(-315deg);
+  transform-origin: right;
+  margin-left: 11rem;
 }
 
-/* Small screens */
 
+
+.mat-divider{
+  border-color: #00CA80;
+  border-width: 3px;
+}
+
+/*===== Small screens =====*/
   /* Still needs work on the mobile navbar */
-
-@media only screen and (max-width: 600px) {
+/* @media only screen and (max-width: 600px) {
     .navbar {
       bottom: 0;
       width: 100vw;
@@ -158,33 +173,4 @@ mat-icon {
     main {
       margin: 0;
     }
-  }
-  
-  /* Large screens */
-  /* @media only screen and (min-width: 600px) {
-    .navbar {
-      top: 0;
-      width: 6rem;
-      height: 100vh;
-    }
-   
-    .navbar:hover {
-      width: 16rem;
-    }
-  
-    .navbar:hover .link-text {
-      display: inline;
-    }
-  
-    .navbar:hover .logo mat-icon
-    {
-      margin-left: 11rem;
-    }
-  
-    .navbar:hover .logo-text
-    {
-      left: 0px;
-    }
   } */
-  
-
