@@ -1,4 +1,5 @@
 # database_name: galaxytnt
+
 use galaxytnt;
 # candidate information: This table consists of all the primary information regarding the candidates
 CREATE TABLE IF NOT EXISTS candidate_info(
