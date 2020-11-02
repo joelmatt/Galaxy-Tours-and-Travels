@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ServiceService} from '../shared/service.service';
+import {CandidateService} from '../shared/candidate.service';
 
 @Component({
   selector: 'app-candidates',
@@ -8,12 +8,10 @@ import {ServiceService} from '../shared/service.service';
 })
 export class CandidatesComponent implements OnInit {
   currentDate: string;
-  constructor(private candidateFetchService: ServiceService) { }
+  constructor(private candidateService: CandidateService) { }
 
   ngOnInit(): void {
     this.currentDate = Date();
-    console.log(this.currentDate);
-    this.candidateFetchService.fetchAllCandidates();
   }
   
 }

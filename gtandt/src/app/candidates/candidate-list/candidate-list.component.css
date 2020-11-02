@@ -1,0 +1,43 @@
+
+/* css for the loading spinner */
+.uploader-status ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: var(--bg-secondary);
+}
+
+/* css for the table */
+.mat-row:nth-child(even){
+    background-color:#F7F8FC;
+}
+
+.mat-row:nth-child(odd){
+    background-color:#FFFFFF;
+}
+
+.mat-row {
+    border: none;
+    height: 6rem; /* Height of each row */
+}
+
+.mat-elevation-z0{
+    padding-left: 80px;
+    padding-right:80px;
+}
+
+.mat-header-cell{
+    font-family: Montserrat;
+    font-weight: bold;
+    font-size: 16px;
+    color:  #aaa;
+}
+.mat-header-row{
+    border-color: var(--bg-secondary);
+    border-width: 3px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+.mat-cell{
+    font-family: Montserrat;
+    font-weight: bold;
+    font-size: 14px;
+}
