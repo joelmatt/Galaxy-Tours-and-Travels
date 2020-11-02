@@ -11,7 +11,11 @@ export class CandidateListComponent implements OnInit {
 
   candidateRecordAvailabe: boolean = false;
   tableData: MatTableDataSource<any>;
-  displayColumns: string[] = ['first_name', 'last_name'];
+  
+  // ALSO CHANGE THIS BELOW ORDER OF ARRAY TO CHANGE THE ORDER OF TABLE
+  displayColumns: string[] = ['first_name', 'state', 'contact_no', 'email', 'gender', 'pincode', 'status', 'actions'];
+  // here first_name includes both the first_name and the last_name
+
   constructor(private candidateService: CandidateService) { }
 
   //Variables for the component
@@ -27,6 +31,7 @@ export class CandidateListComponent implements OnInit {
     if(this.candidateService.candidateRecords == null) {
       await this.candidateService.fetchAllCandidates().subscribe(
         (recordData: []) => {  
+          console.log(recordData)
           this.candidateService.candidateRecords = recordData;
           this.putCandidateRecords();
         }, 

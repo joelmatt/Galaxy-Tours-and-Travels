@@ -1,13 +1,53 @@
     <div class="mat-elevation-z0 container-fluid" *ngIf="this.candidateRecordAvailabe">
         <mat-table [dataSource]="tableData">
             <ng-container matColumnDef="first_name">
-                <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>  
+                <mat-header-cell *matHeaderCellDef>Candidate Name</mat-header-cell>  
                 <mat-cell *matCellDef="let element">{{ element.first_name}} {{element.last_name}}</mat-cell>
             </ng-container>
-            <ng-container matColumnDef="last_name">
-                <mat-header-cell *matHeaderCellDef>Last Name</mat-header-cell>  
-                <mat-cell *matCellDef="let element">{{ element.last_name }}</mat-cell>
+
+            <ng-container matColumnDef="contact_no">
+                <mat-header-cell *matHeaderCellDef>Contact No</mat-header-cell>  
+                <mat-cell *matCellDef="let element">{{ element.contact_no }}</mat-cell>
             </ng-container>
+
+            <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef>E-mail</mat-header-cell>  
+                <mat-cell *matCellDef="let element">{{ element.email }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="state">
+                <mat-header-cell *matHeaderCellDef>State</mat-header-cell>  
+                <mat-cell *matCellDef="let element">{{ element.state }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="gender">
+                <mat-header-cell *matHeaderCellDef>Gender</mat-header-cell>  
+                <mat-cell *matCellDef="let element">{{ element.gender }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="pincode">
+                <mat-header-cell *matHeaderCellDef>Pincode</mat-header-cell>  
+                <mat-cell *matCellDef="let element">{{ element.pincode }}</mat-cell>
+            </ng-container> 
+
+            <ng-container matColumnDef="status">
+                <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>  
+                <mat-cell *matCellDef="let element" [ngStyle]="{'color': element.status === 'A' ? 'var(--text-secondary)' : '#C82333' }">{{ element.status }}</mat-cell>
+            </ng-container>
+
+            <!-- CSS for the action button are present with the HTML itself -->
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>  
+                <mat-cell *matCellDef="let element">
+                        <button mat-button class="editAndDelete" [ngStyle]="{'background-color': '#216BFE', 'outline': 'none'}">
+                            <mat-icon [ngStyle]="{'color': 'var(--text-primary)', 'font-size': '20px'}">edit</mat-icon>
+                          </button>
+                          <button mat-raised-button class="editAndDelete"[ngStyle]="{'background-color': '#C82333', 'margin-left':'8px', 'outline': 'none'}">
+                            <mat-icon [ngStyle]="{'color': 'var(--text-primary)', 'font-size': '20px'}">delete</mat-icon>
+                          </button>
+                </mat-cell>
+            </ng-container>
+
             <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayColumns;"></mat-row>
         </mat-table>
