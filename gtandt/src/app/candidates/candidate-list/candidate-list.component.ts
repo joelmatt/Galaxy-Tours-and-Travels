@@ -19,7 +19,6 @@ export class CandidateListComponent implements OnInit {
 
   ngOnInit() {
     this.fetchCandidateRecords();
-    
   }  
 
   /* fetch candidates from the candidates service and retrying till aws aurora server starts */
