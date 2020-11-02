@@ -10,9 +10,10 @@ import { SponsorsComponent } from './sponsors/sponsors.component';
 import { RecruitmentsComponent } from './recruitments/recruitments.component';
 import { RequirementsComponent } from './requirements/requirements.component';
 import{CandidateListComponent} from './candidates/candidate-list/candidate-list.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MaterialModule} from '../material/material.module';
-import { fromEventPattern } from 'rxjs';
+import { CdkColumnDef } from '@angular/cdk/table';
+import { InterceptorService } from './shared/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,10 @@ import { fromEventPattern } from 'rxjs';
     HttpClientModule, 
     MaterialModule
   ],
-  providers: [],
+  providers: [CdkColumnDef,
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+}
