@@ -55,34 +55,3 @@ mat-divider{
     font-style: bold;
 }
 
-
-/* Css for search bar on top */
-.form-group .form-control {
-    padding-left: 2.375rem;
-    font-family: Montserrat;
-    background-color: #F7F8FC;
-    width: 100%;
-    border-color: transparent;
-}
-
-.form-group .form-control-icon {
-    position: absolute;
-    z-index: 1;
-    display: block;
-    width: 2.375rem;
-    height: 2.375rem;
-    line-height: 2.375rem;
-    text-align: center;
-    pointer-events: none;
-    color: #aaa;
-}
-/* end of css for the search bar on top */
-
-.searchDropdown{
-    font-family: Montserrat;
-    color :#6C757D;
-    border-color: transparent;
-    background-color:  #F7F8FC;
-}
-
-/* margin for the searchby and orderby buttons are already placed in the div classes itself */
