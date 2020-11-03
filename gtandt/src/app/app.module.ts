@@ -14,6 +14,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MaterialModule} from '../material/material.module';
 import { CdkColumnDef } from '@angular/cdk/table';
 import { InterceptorService } from './shared/interceptor.service';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { InterceptorService } from './shared/interceptor.service';
     BrowserAnimationsModule,
     MatIconModule,
     HttpClientModule, 
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
   providers: [CdkColumnDef,
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
