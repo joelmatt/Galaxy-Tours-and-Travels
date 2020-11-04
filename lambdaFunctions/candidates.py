@@ -1,7 +1,7 @@
 # This file consists of all the lambda function that helps interact with the Aurora serverless MySql database
 # and gathers and manipulates data for the candidate component.
 
-
+#UPDATE:  currently this file is not under use
 import pymysql
 import json
 import boto3
@@ -17,9 +17,9 @@ def execute_statement(sql):
 
     rds_client = boto3.client('rds-data')
     response = rds_client.execute_statement(
-        secretArn="arn:aws:secretsmanager:ap-south-1:632525348667:secret:rds-db-credentials/cluster-FPODZNUEKADY5L7GV4MFN3B5PM/joyc-6HiTQ8",
-        database="galaxytnt",
-        resourceArn="arn:aws:rds:ap-south-1:632525348667:cluster:galaxytnt",
+        secretArn="i_aint_gonna_give_you_the_key",
+        database="o_o",
+        resourceArn="Damn",
         sql=sql
 	)
     print(response)
