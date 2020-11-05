@@ -8,6 +8,7 @@ import {CandidateService} from '../shared/candidate.service';
 })
 export class CandidatesComponent implements OnInit {
   currentDate: string;
+  cardTitle: string = "Candidate Entry Portal";
   constructor(private candidateService: CandidateService) { }
 
   ngOnInit(): void {

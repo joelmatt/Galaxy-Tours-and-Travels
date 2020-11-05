@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col">
             <mat-card-title class="mainCardTitle">
-            List of Candidates
+            {{cardTitle}}
             </mat-card-title>
         </div>
 
@@ -17,14 +17,11 @@
     <mat-divider></mat-divider>
     <br>
     
-    <app-candidate-list></app-candidate-list>
+    <app-candidate-form></app-candidate-form>
+    <!-- <app-candidate-list></app-candidate-list> -->
 
 <mat-card-content>
 
 
 
 
-<button mat-raised-button id="newCandidateButton" class="addCandidateButton">
-    <mat-icon>add</mat-icon>
-    Add Candidate
-</button>
