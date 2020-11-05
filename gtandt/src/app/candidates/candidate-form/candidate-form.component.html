@@ -1,0 +1,80 @@
+<div class="mat-elevation-z0 container-fluid">
+    <mat-tab-group  animationDuration="500ms" mat-align-tabs="start">
+        <mat-tab label="Candidate Details" >
+            <div class="container p-5">
+                <form action="">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label name="first_name" >First Name</label>
+                                <input type="text" name="first_name" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label name="last_name" >Last Name</label>
+                                <input type="text" name="last_name" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label name="contact_no">Contact Number</label>
+                                <input type="text" name="contact_no" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label name="email">Email ID</label>
+                                <input type="text" name="email" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label name="DOB">Date of Birth</label>
+                                <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" name="DOB" class="form-control">
+                                <owl-date-time #dt1 [pickerType]="'calendar'" [pickerMode]="'popup'" ></owl-date-time>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label name="DOB">Date of Birth</label>
+                                <input [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" name="DOB" class="form-control">
+                                <owl-date-time #dt2 [pickerType]="'calendar'" [pickerMode]="'popup'" ></owl-date-time>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label name="DOB">Date of Birth</label>
+                                <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" name="DOB" class="form-control">
+                                <owl-date-time #dt1 [pickerType]="'calendar'" [pickerMode]="'popup'" ></owl-date-time>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+        </mat-tab>
+        <mat-tab label="Visa Details"></mat-tab>
+        <mat-tab label="Candidate Resume"></mat-tab>
+        <mat-tab label="Candidate Proof"></mat-tab>
+    </mat-tab-group>
+</div>

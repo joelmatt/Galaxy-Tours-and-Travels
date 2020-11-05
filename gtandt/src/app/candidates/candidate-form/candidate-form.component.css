@@ -1,0 +1,47 @@
+/* Tab CSS */
+.mat-tab-label {
+    position:relative;
+    font-family: 'Montserrat';
+    color: #6C757D;
+    font-weight: bolder;
+    font-size: medium;
+    margin-left: 20px;
+}
+.mat-tab-label.mat-tab-label-active {
+    background-color: transparent;
+    color: #246DFE;
+    font-weight: bold;
+    font-family: 'Montserrat';
+    font-size: medium;
+}
+.mat-tab-header, .mat-tab-label-container{
+    overflow: inherit !important;
+}
+.mat-ink-bar:after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    width: 0;
+    height: 0;
+    border-top: solid 10px #246DFE;
+    border-left: solid 15px transparent;
+    border-right: solid 15px transparent;
+}
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: #246DFE;
+    height: 6px;
+    border-radius: 8px;
+}
+
+/* Form CSS */
+.owl-dt-calendar-table .owl-dt-calendar-cell-selected {
+    color: rgba(255, 255, 255, .85);
+    background-color: #246DFE;
+}
+
+.owl-dt-container-buttons {
+  color: red;
+}
