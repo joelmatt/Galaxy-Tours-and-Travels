@@ -15,6 +15,9 @@ import {MaterialModule} from '../material/material.module';
 import { CdkColumnDef } from '@angular/cdk/table';
 import { InterceptorService } from './shared/interceptor.service';
 import { FormsModule } from '@angular/forms';
+import { CandidateFormComponent } from './candidates/candidate-form/candidate-form.component';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+
 
 
 @NgModule({
@@ -26,6 +29,7 @@ import { FormsModule } from '@angular/forms';
     RecruitmentsComponent,
     RequirementsComponent,
     CandidateListComponent,
+    CandidateFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +38,9 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     HttpClientModule, 
     MaterialModule,
-    FormsModule
+    FormsModule,
+    OwlDateTimeModule, 
+    OwlNativeDateTimeModule,
   ],
   providers: [CdkColumnDef,
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}

@@ -8,6 +8,7 @@ import { NgModule } from '@angular/core';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {MatSortModule} from '@angular/material/sort';
         MatTableModule,
         MatProgressSpinnerModule,
         MatPaginatorModule,
-        MatSortModule
+        MatSortModule,
+        MatTabsModule
     ],
     imports: [],
 })
