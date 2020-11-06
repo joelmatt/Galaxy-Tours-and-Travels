@@ -17,7 +17,7 @@ import { InterceptorService } from './shared/interceptor.service';
 import { FormsModule } from '@angular/forms';
 import { CandidateFormComponent } from './candidates/candidate-form/candidate-form.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -41,6 +41,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     FormsModule,
     OwlDateTimeModule, 
     OwlNativeDateTimeModule,
+    ReactiveFormsModule
   ],
   providers: [CdkColumnDef,
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}

@@ -2,63 +2,113 @@
     <mat-tab-group  animationDuration="500ms" mat-align-tabs="start">
         <mat-tab label="Candidate Details" >
             <div class="container p-5">
-                <form action="">
-                    <div class="row">
+                <form action="" [formGroup]="candidateInfoForm">
+                    <div class="row mb-3">
                         <div class="col">
-                            <div class="form-group">
+                            <div class="form-group inputWithIcon">
                                 <label name="first_name" >First Name</label>
+                                <mat-icon class="matIcon">person_add</mat-icon>
                                 <input type="text" name="first_name" class="form-control">
                             </div>
                         </div>
                         <div class="col">
-                            <div class="form-group">
+                            <div class="form-group inputWithIcon">
                                 <label name="last_name" >Last Name</label>
+                                <mat-icon class="matIcon">person_add_alt_1</mat-icon>
                                 <input type="text" name="last_name" class="form-control">
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mb-3">
                         <div class="col">
-                            <div class="form-group">
+                            <div class="form-group inputWithIcon">
                                 <label name="contact_no">Contact Number</label>
+                                <mat-icon class="matIcon">phone</mat-icon>
                                 <input type="text" name="contact_no" class="form-control">
                             </div>
                         </div>
                         <div class="col">
-                            <div class="form-group">
+                            <div class="form-group inputWithIcon">
                                 <label name="email">Email ID</label>
+                                <mat-icon class="matIcon">mail</mat-icon>
                                 <input type="text" name="email" class="form-control">
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mb-3">
                         <div class="col">
-                            <div class="form-group">
-                                <label name="DOB">Date of Birth</label>
-                                <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" name="DOB" class="form-control">
-                                <owl-date-time #dt1 [pickerType]="'calendar'" [pickerMode]="'popup'" ></owl-date-time>
+                            <div class="form-group inputWithIcon">
+                                <label name="gender">Gender</label>
+                                <mat-icon class="matIcon">wc</mat-icon>
+                                <select class="form-control selectBox" name='gender'>
+                                    <option>Others</option>
+                                    <option>Female</option>
+                                    <option>Male</option>
+                                  </select>
                             </div>
                         </div>
                         <div class="col">
-                            <div class="form-group">
+                            <div class="form-group inputWithIcon">
                                 <label name="DOB">Date of Birth</label>
-                                <input [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" name="DOB" class="form-control">
+                                <mat-icon class="matIcon">calendar_today</mat-icon>
+                                <input [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" name="DOB" class="form-control" type="text">
                                 <owl-date-time #dt2 [pickerType]="'calendar'" [pickerMode]="'popup'" ></owl-date-time>
                             </div>
                         </div>
                         <div class="col">
-                            <div class="form-group">
-                                <label name="DOB">Date of Birth</label>
-                                <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" name="DOB" class="form-control">
-                                <owl-date-time #dt1 [pickerType]="'calendar'" [pickerMode]="'popup'" ></owl-date-time>
+                            <div class="form-group inputWithIcon">
+                                <label name="email">Country</label>
+                                <mat-icon class="matIcon">public</mat-icon>
+                                <input type="text" name="email" class="form-control">
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            
+                    <div class="row mb-3">
+                        <div class="col-7">
+                            <div class="form-group inputWithIcon">
+                                <label name="address">Address</label>
+                                <mat-icon class="matIcon">location_on</mat-icon>
+                                <input type="text" name="address" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group inputWithIcon">
+                                <label name="state">State</label>
+                                <mat-icon class="matIcon">markunread_mailbox</mat-icon>
+                                <input name="state" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="form-group inputWithIcon">
+                                <label name="pincode">Pincode</label>
+                                <mat-icon class="matIcon">push_pin</mat-icon>
+                                <input type="text" name="pincode" class="form-control">
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="row justify-content-center mb-3">
+                        <div class="col-3">
+                            <div class="form-group inputWithIcon">
+                                <label name="origin">Origin</label>
+                                <mat-icon class="matIcon">trip_origin</mat-icon>
+                                <select class="form-control selectBox" name='origin'>
+                                    <option>Offline</option>
+                                    <option>Online</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group inputWithIcon">
+                                <label name="status">Status</label>
+                                <mat-icon class="matIcon">accessibility</mat-icon>
+                                <select class="form-control selectBox" name='status'>
+                                    <option>Avaliable</option>
+                                    <option>Not Available</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
+                    <mat-divider></mat-divider>
                 </form>
             </div>
 

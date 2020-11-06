@@ -36,7 +36,8 @@
     border-radius: 8px;
 }
 
-/* Form CSS */
+                                    /* Form CSS */
+
 .owl-dt-calendar-table .owl-dt-calendar-cell-selected {
     color: rgba(255, 255, 255, .85);
     background-color: #246DFE;
@@ -45,3 +46,66 @@
 .owl-dt-container-buttons {
   color: red;
 }
+
+/* remove the original arrow */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    /* no standardized syntax available, no ie-friendly solution available */
+}
+  
+ /* remove the original arrow */
+select.input-lg {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    /* no standardized syntax available, no ie-friendly solution available */
+}
+input[type="text"], .selectBox {
+    width: 100%;
+    border-radius: 6px;
+    margin: 8px 0;
+    padding: 8px;
+    border: none;
+    background-color : #F1F2F5; 
+    font-family: 'Montserrat';   
+}
+
+  
+  input[type="text"]:focus, .selectBox:focus{
+    border: 5px;
+    border-color: #031a47;
+    box-shadow: 0 0 8px 0 #246DFE;
+  }
+
+  .inputWithIcon input[type="text"] {
+    padding-left: 40px;
+  }
+
+  .inputWithIcon .selectBox {
+    padding-left: 40px;
+  }
+  
+  .inputWithIcon {
+    position: relative;
+  }
+
+  .inputWithIcon .matIcon{
+    position: absolute;
+    left: 0;
+    top: 30px;
+    padding: 9px 10px;
+    color: #246DFE;
+    transition: 0.3s;
+  }
+
+label{
+    font-family: 'Montserrat';
+    font-weight: bold;
+    margin-bottom: -15px;
+}
+  
+  
+
+  
