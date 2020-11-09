@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { CandidateService} from '../../shared/candidate.service';
 import { MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-candidate-list',
@@ -26,7 +27,7 @@ export class CandidateListComponent implements OnInit {
 
   /* order of both the above two arrays MUST BE the same */
 
-  constructor(public candidateService: CandidateService) { }
+  constructor(public candidateService: CandidateService, private router: Router, private route: ActivatedRoute) { }
 
 
   ngOnInit() {
@@ -77,6 +78,7 @@ export class CandidateListComponent implements OnInit {
     this.searchByValue = this.dropdownColumns[val];
    
   }
+
   // not using setup filter when there is searchby value is again set to default i.e. no column value is selected
   setupFilter(){
     if (this.val != -1){ //default value of val is -1
@@ -84,6 +86,19 @@ export class CandidateListComponent implements OnInit {
         const textToSearch = d[this.displayColumns[this.val]] && d[this.displayColumns[this.val]].trim().toLowerCase() || '';
         return textToSearch.indexOf(filter) !== -1;
       };
+    }
+  }
+
+  addCandidate(){
+    this.router.navigate(['../newCandidate'], {relativeTo: this.route});
+  }
+
+  editOrDelete(id: number, candidateId: string){  //id=1 => Edit; id=0 => Delete 
+    if (id){//edit
+      this.router.navigate(['../', candidateId, 'editCandidate'], {relativeTo: this.route})      
+    }
+    else{//delete
+      console.log("Delete Candidate" + candidateId);
     }
   }
 }

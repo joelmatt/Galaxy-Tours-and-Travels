@@ -247,6 +247,7 @@ table-layout: fixed;
   font-family: Montserrat;
   background-color:  #F7F8FC;
   color: #aaa;
+  cursor: pointer;
 }
 
 /* margin for the searchby and orderby buttons are already placed in the div classes itself */

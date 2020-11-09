@@ -1,21 +1,22 @@
-<div class="mat-elevation-z0 container-fluid">
+<mat-spinner   *ngIf="!(editMode === candidateInfoLoaded)"></mat-spinner>
+<div class="mat-elevation-z0 container-fluid"*ngIf="(editMode === candidateInfoLoaded)">
     <mat-tab-group  animationDuration="500ms" mat-align-tabs="start">
         <mat-tab label="Candidate Details" >
-            <div class="container p-5">
-                <form action="" [formGroup]="candidateInfoForm">
+            <div class="container p-5" >
+                <form action="" [formGroup]="candidateInfoForm" (ngSubmit)="onCandidateDetailsSubmit()">
                     <div class="row mb-3">
                         <div class="col">
                             <div class="form-group inputWithIcon">
                                 <label name="first_name" >First Name</label>
                                 <mat-icon class="matIcon">person_add</mat-icon>
-                                <input type="text" name="first_name" class="form-control">
+                                <input type="text" name="first_name" class="form-control" formControlName="first_name">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group inputWithIcon">
                                 <label name="last_name" >Last Name</label>
                                 <mat-icon class="matIcon">person_add_alt_1</mat-icon>
-                                <input type="text" name="last_name" class="form-control">
+                                <input type="text" name="last_name" class="form-control" formControlName="last_name">
                             </div>
                         </div>
                     </div>
@@ -24,14 +25,14 @@
                             <div class="form-group inputWithIcon">
                                 <label name="contact_no">Contact Number</label>
                                 <mat-icon class="matIcon">phone</mat-icon>
-                                <input type="text" name="contact_no" class="form-control">
+                                <input type="text" name="contact_no" class="form-control" formControlName="contact_no">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group inputWithIcon">
                                 <label name="email">Email ID</label>
                                 <mat-icon class="matIcon">mail</mat-icon>
-                                <input type="text" name="email" class="form-control">
+                                <input type="text" name="email" class="form-control" formControlName="email">
                             </div>
                         </div>
                     </div>
@@ -40,7 +41,7 @@
                             <div class="form-group inputWithIcon">
                                 <label name="gender">Gender</label>
                                 <mat-icon class="matIcon">wc</mat-icon>
-                                <select class="form-control selectBox" name='gender'>
+                                <select class="form-control selectBox" name='gender'  formControlName="gender">
                                     <option>Others</option>
                                     <option>Female</option>
                                     <option>Male</option>
@@ -51,7 +52,7 @@
                             <div class="form-group inputWithIcon">
                                 <label name="DOB">Date of Birth</label>
                                 <mat-icon class="matIcon">calendar_today</mat-icon>
-                                <input [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" name="DOB" class="form-control" type="text">
+                                <input [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" name="DOB" class="form-control" type="text"  formControlName="DOB">
                                 <owl-date-time #dt2 [pickerType]="'calendar'" [pickerMode]="'popup'" ></owl-date-time>
                             </div>
                         </div>
@@ -59,7 +60,7 @@
                             <div class="form-group inputWithIcon">
                                 <label name="email">Country</label>
                                 <mat-icon class="matIcon">public</mat-icon>
-                                <input type="text" name="email" class="form-control">
+                                <input type="text" name="email" class="form-control"  formControlName="country">
                             </div>
                         </div>
                     </div>
@@ -68,21 +69,21 @@
                             <div class="form-group inputWithIcon">
                                 <label name="address">Address</label>
                                 <mat-icon class="matIcon">location_on</mat-icon>
-                                <input type="text" name="address" class="form-control">
+                                <input type="text" name="address" class="form-control"  formControlName="address">
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group inputWithIcon">
                                 <label name="state">State</label>
                                 <mat-icon class="matIcon">markunread_mailbox</mat-icon>
-                                <input name="state" class="form-control" type="text">
+                                <input name="state" class="form-control" type="text"  formControlName="state">
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group inputWithIcon">
                                 <label name="pincode">Pincode</label>
                                 <mat-icon class="matIcon">push_pin</mat-icon>
-                                <input type="text" name="pincode" class="form-control">
+                                <input type="text" name="pincode" class="form-control"  formControlName="pincode">
                             </div>
                         </div>  
                     </div>
@@ -91,9 +92,9 @@
                             <div class="form-group inputWithIcon">
                                 <label name="origin">Origin</label>
                                 <mat-icon class="matIcon">trip_origin</mat-icon>
-                                <select class="form-control selectBox" name='origin'>
-                                    <option>Offline</option>
-                                    <option>Online</option>
+                                <select class="form-control selectBox" name='origin'  formControlName="origin">
+                                    <option>offline</option>
+                                    <option>online</option>
                                 </select>
                             </div>
                         </div>
@@ -101,30 +102,40 @@
                             <div class="form-group inputWithIcon">
                                 <label name="status">Status</label>
                                 <mat-icon class="matIcon">accessibility</mat-icon>
-                                <select class="form-control selectBox" name='status'>
-                                    <option>Avaliable</option>
+                                <select class="form-control selectBox" name='status'  formControlName="status">
+                                    <option>Available</option>
                                     <option>Not Available</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <mat-divider></mat-divider>
+                    <div class="spec-container" style="margin-top: 50px"  *ngIf="this.candidateService.specRecords">
+                        <div class="row justify-content-center mb-3">
+                            <div class="col-6">
+                                <div class="form-group inputWithIcon">
+                                    <label name="origin">Specialization</label>
+                                    <mat-icon class="matIcon">construction</mat-icon>
+                                    <input type="text" list="spec" class="form-control">
+                                    <datalist id="spec">
+                                        <option *ngFor="let spec of this.candidateService.specRecords">{{ spec }}</option>
+                                    </datalist>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="spec-container" style="margin-top: 50px"  *ngIf="!this.candidateService.specRecords">
+                        <mat-spinner></mat-spinner>
+                    </div>
                 </form>
             </div>
 
 
 
 
-
-
-
-
-
-
-
         </mat-tab>
-        <mat-tab label="Visa Details"></mat-tab>
-        <mat-tab label="Candidate Resume"></mat-tab>
-        <mat-tab label="Candidate Proof"></mat-tab>
+        <mat-tab label="Visa Details" [disabled]="!editMode"></mat-tab>
+        <mat-tab label="Candidate Resume" [disabled]="!editMode"></mat-tab>
+        <mat-tab label="Candidate Proof" [disabled]="!editMode"></mat-tab>
     </mat-tab-group>
 </div>
