@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS candidate_info(
 	last_name VARCHAR(50) NOT NULL,
 	contact_no VARCHAR(20) NOT NULL,
 	gender ENUM('Male', 'Female', 'Others') NOT NULL,
+	DOB DATE NOT NULL,
 	address  VARCHAR(100) NOT NULL,
 	state VARCHAR(20) NOT NULL,
 	country VARCHAR(20) NOT NULL, 
@@ -122,3 +123,7 @@ CREATE TABLE IF NOT EXISTS recruitment_content(
 	FOREIGN KEY(recruitment_id) REFERENCES recruitment_list(recruitment_id),
 	FOREIGN KEY(candidate_id) REFERENCES candidate_info(candidate_id)
 );
+
+-- Had not added DOB in candidate_info table, so below query was used 
+alter table candidate_info add column DOB Date not null default '2009-01-01'; --can't use curdate as only constant values can be used
+-- exclude the default value if table is empty. If not use the above code write a script that changes each entry individually
