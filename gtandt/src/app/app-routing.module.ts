@@ -1,10 +1,21 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, Router } from '@angular/router';
+import { CandidatesComponent} from './candidates/candidates.component';
+import { CandidateListComponent } from './candidates/candidate-list/candidate-list.component';
+import { CandidateFormComponent } from './candidates/candidate-form/candidate-form.component';
 
-const routes: Routes = [];
-
+// Remember that heirarchy matters over here.
+const appRoutes: Routes = [
+    {path: 'candidates', component: CandidatesComponent, children:[
+        {path: 'candidateList', component: CandidateListComponent},
+        {path: 'newCandidate', component: CandidateFormComponent},
+        {path: ':candidateId/editCandidate', component: CandidateFormComponent}
+    ]}
+];
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports:[
+        RouterModule.forRoot(appRoutes)
+    ],
+    exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule{}
