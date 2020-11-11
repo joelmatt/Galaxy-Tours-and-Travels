@@ -41,7 +41,7 @@
 
             <ng-container matColumnDef="first_name">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Candidate Name</mat-header-cell>  
-                <mat-cell *matCellDef="let element">{{ element.first_name}}</mat-cell>
+                <mat-cell *matCellDef="let element;">{{ element.candidate_id }}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="contact_no">
@@ -78,10 +78,10 @@
             <ng-container matColumnDef="actions">
                 <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>  
                 <mat-cell *matCellDef="let element">
-                        <button mat-button class="editAndDelete" [ngStyle]="{'background-color': '#216BFE', 'outline': 'none'}" (click)="editOrDelete(1, element.candidate_id)">
+                        <button mat-button class="editAndDelete" [ngStyle]="{'background-color': '#216BFE', 'outline': 'none'}" (click)="editOrDelete(1, this.candidateService.candidateRecords['records'].indexOf(element))">
                             <mat-icon [ngStyle]="{'color': 'var(--text-primary)', 'font-size': '25px', 'padding-top': '2px'}">edit</mat-icon>
                           </button>
-                          <button mat-button class="editAndDelete"[ngStyle]="{'background-color': '#C82333', 'margin-left':'8px', 'outline': 'none'}" (click)="editOrDelete(0, element.candidate_id)">
+                          <button mat-button class="editAndDelete"[ngStyle]="{'background-color': '#C82333', 'margin-left':'8px', 'outline': 'none'}" (click)="editOrDelete(0, this.candidateService.candidateRecords['records'].indexOf(element))">
                             <mat-icon [ngStyle]="{'color': 'var(--text-primary)', 'font-size': '25px', 'padding-top': '2px'}">delete</mat-icon>
                           </button>
                 </mat-cell>

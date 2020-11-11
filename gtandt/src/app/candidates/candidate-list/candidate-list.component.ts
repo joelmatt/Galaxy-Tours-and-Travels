@@ -93,12 +93,13 @@ export class CandidateListComponent implements OnInit {
     this.router.navigate(['../newCandidate'], {relativeTo: this.route});
   }
 
-  editOrDelete(id: number, candidateId: string){  //id=1 => Edit; id=0 => Delete 
-    if (id){//edit
-      this.router.navigate(['../', candidateId, 'editCandidate'], {relativeTo: this.route})      
+  editOrDelete(eOrD: number, id: any){  //id=1 => Edit; id=0 => Delete
+    console.log(id);
+    if (eOrD){//edit
+      this.router.navigate(['../', id, 'editCandidate'], {relativeTo: this.route})      
     }
     else{//delete
-      console.log("Delete Candidate" + candidateId);
+      console.log("Delete Candidate" + id);
     }
   }
 }
