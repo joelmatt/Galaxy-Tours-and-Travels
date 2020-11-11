@@ -9,7 +9,7 @@ const appRoutes: Routes = [
     {path: 'candidates', component: CandidatesComponent, children:[
         {path: 'candidateList', component: CandidateListComponent},
         {path: 'newCandidate', component: CandidateFormComponent},
-        {path: ':candidateId/editCandidate', component: CandidateFormComponent}
+        {path: ':id/editCandidate', component: CandidateFormComponent}
     ]}
 ];
 @NgModule({
