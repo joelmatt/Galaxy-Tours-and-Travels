@@ -63,5 +63,17 @@ export class CandidateService {
       )
     );
   }
+  fetchIndividualSpecialization(candidateId: string){
+    let queryParams = new HttpParams();
+    queryParams = queryParams.set('funcName', 'selectIndividualSpec').set('candidateId', candidateId);
+    return this.http.get('https://uvcnd6vene.execute-api.ap-south-1.amazonaws.com/testt/test', {params: queryParams})
+      .pipe(
+        retryAfterDelay(this.delayDuration),
+        catchError(errorResponse => {
+          return throwError(errorResponse);
+        }
+      )
+    );
+  }
 
 }
