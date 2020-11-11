@@ -1,5 +1,5 @@
-<mat-spinner   *ngIf="!(editMode === candidateInfoLoaded)"></mat-spinner>
-<div class="mat-elevation-z0 container-fluid"*ngIf="(editMode === candidateInfoLoaded)">
+
+<div class="mat-elevation-z0 container-fluid">
     <mat-tab-group  animationDuration="500ms" mat-align-tabs="start">
         <mat-tab label="Candidate Details" >
             <div class="container p-5" >
@@ -109,24 +109,54 @@
                             </div>
                         </div>
                     </div>
+
                     <mat-divider></mat-divider>
-                    <div class="spec-container" style="margin-top: 50px"  *ngIf="this.candidateService.specRecords">
-                        <div class="row justify-content-center mb-3">
-                            <div class="col-6">
-                                <div class="form-group inputWithIcon">
-                                    <label name="origin">Specialization</label>
-                                    <mat-icon class="matIcon">construction</mat-icon>
-                                    <input type="text" list="spec" class="form-control">
-                                    <datalist id="spec">
-                                        <option *ngFor="let spec of this.candidateService.specRecords">{{ spec }}</option>
-                                    </datalist>
+
+                    <div formArrayName="specializations" >
+                        <div class="spec-container" style="margin-top: 50px"  *ngIf="(editMode == candidateSpecGathered)">
+                            <div class="row justify-content-center mb-3"
+                            *ngFor = "let specCtrl of controls; let i = index"
+                            [formGroupName]="i">
+                                <div class="col-5">
+                                    <div class="form-group inputWithIcon">
+                                        <label name="specialization">Specialization</label>
+                                        <mat-icon class="matIcon">construction</mat-icon>
+                                        <input type="text" list="spec" class="form-control" name="specialization" formControlName="specialization">
+                                        <datalist id="spec">
+                                            <option *ngFor="let spec of this.candidateService.specRecords">{{ spec }}</option>
+                                        </datalist>
+                                    </div>
+                                </div>
+                                <div class="col-1">
+                                    <div class="form-group inputWithIcon ">
+                                        <div class="form-group inputWithIcon">
+                                            <label name="experience">Exp</label>
+                                            <input type="number" class="form-control " name="experience" formControlName = "experience">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-1">
+                                    <div class="inputWithIcon">
+                                        <div class="form-group" style="margin-top: 30px">   
+                                            <button mat-mini-fab class="mat-elevation-z0" 
+                                                style="outline: none; background-color: #C82333; border-radius: 5px;"
+                                                (click)="removeSpecialization(i)">
+                                                <mat-icon style="font-weight: bolder; font-size: 23px">close</mat-icon>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="row justify-content-center">
+                                <button mat-button class="addSpecButton" (click)="addSpecialization()">Add Specialization</button>
+                            </div>
+                        </div>
+                        <div class="row uploader-status justify-content-center" *ngIf="!(editMode == candidateSpecGathered)">
+                            <mat-spinner strokeWidth="25" [diameter]="180" title="Server Starting" ></mat-spinner>
                         </div>
                     </div>
-                    <div class="spec-container" style="margin-top: 50px"  *ngIf="!this.candidateService.specRecords">
-                        <mat-spinner></mat-spinner>
-                    </div>
+                    
                 </form>
             </div>
 

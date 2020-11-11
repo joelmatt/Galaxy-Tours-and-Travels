@@ -12,10 +12,11 @@ import { Router, ActivatedRoute, Params} from '@angular/router';
 export class CandidateFormComponent implements OnInit {
   
   candidateInfoForm: FormGroup;
-  specList = new FormArray([]);
+  candidateSpec= new FormArray([]);
   editMode: boolean = false;
-  candidateInfoLoaded: boolean = false;
-  candidateId: string;
+  candidateSpecGathered: boolean = false;
+  id: string;           // index of candidateRecord selected from the list which denotes the candidate that is selected to be edited
+  candidateId: string;  // for when in edit mode we need the candidateID
 
   // values to enter in the form
   first_name: string = '';
@@ -37,53 +38,39 @@ export class CandidateFormComponent implements OnInit {
   ngOnInit(): void {
     // lets check to see if the route is for candidate edit or new
     this.route.params.subscribe( (params: Params)=>{
-      this.candidateId = params['candidateId']
-      this.editMode = params['candidateId'] != null;
+      this.id = params['id']
+      this.editMode = params['id'] != null;
     });
 
-    //gather all the specilizations
-    if (this.candidateService.specRecords === null){
-      this.candidateService.fetchAllSpec().subscribe(
-        (recordData: []) => {  
-          this.candidateService.specRecords = recordData;
-        }, 
-        (error) => {
-          console.error(error);
+    if (this.editMode){
+      this.candidateId = this.candidateService.candidateRecords['records'][this.id]['candidate_id'];
+      this.candidateService.fetchIndividualSpecialization(this.candidateId).subscribe(
+        (recordData: []) => {
+          console.log(recordData['records']);
+          if(recordData['records'].length > 0){
+            for(let spec of recordData['records']){
+              this.candidateSpec.push(
+                new FormGroup({'specialization': new FormControl(spec.specialization), 'experience': new FormControl(+spec.experience)})
+              );
+            }
+          }
+          this.candidateSpecGathered = true;
         }
       );
+      this.first_name = this.candidateService.candidateRecords['records'][this.id]['first_name'];
+      this.contact_no = this.candidateService.candidateRecords['records'][this.id]['contact_no'];
+      this.last_name = this.candidateService.candidateRecords['records'][this.id]['last_name'];
+      this.DOB = this.candidateService.candidateRecords['records'][this.id]['DOB'];
+      this.address = this.candidateService.candidateRecords['records'][this.id]['address'];
+      this.email = this.candidateService.candidateRecords['records'][this.id]['email'];
+      this.country = this.candidateService.candidateRecords['records'][this.id]['country'];
+      this.state = this.candidateService.candidateRecords['records'][this.id]['state'];
+      this.pincode = this.candidateService.candidateRecords['records'][this.id]['pincode'];
+      this.gender = this.candidateService.candidateRecords['records'][this.id]['gender'];  
+      this.origin = this.candidateService.candidateRecords['records'][this.id]['origin'];
+      this.status = this.candidateService.candidateRecords['records'][this.id]['status'] == 'A' ? 'Available' : 'Not Available';
     }
-
-    if (this.editMode){
-      this.candidateService.fetchIndividualCandidate(this.candidateId).subscribe(
-        (recordData: []) => {  
-          console.log(recordData);
-          this.first_name = recordData['records'][0]['first_name'];
-          this.contact_no = recordData['records'][0]['contact_no'];
-          this.last_name = recordData['records'][0]['last_name'];
-          this.DOB = recordData['records'][0]['DOB'];
-          this.address = recordData['records'][0]['address'];
-          this.email = recordData['records'][0]['email'];
-          this.country = recordData['records'][0]['country'];
-          this.state = recordData['records'][0]['state'];
-          this.pincode = recordData['records'][0]['pincode'];
-          this.gender = recordData['records'][0]['gender'];  
-          this.origin = recordData['records'][0]['origin'];
-          this.status = recordData['records'][0]['status'] == 'A' ? 'Available' : 'Not Available';
-          this.candidateInfoLoaded = true;
-          this.populateForm();
-          this.candidateInfoLoaded = this.editMode ? true: false;
-        }, 
-      (error) => {
-        console.error(error);
-      });
-    }
-    this.populateForm();
-    
-  }
-
-  onCandidateDetailsSubmit(){}
-
-  populateForm(){
+    // initializing the form
     this.candidateInfoForm = new FormGroup({
       'first_name': new FormControl(this.first_name),
       'last_name': new FormControl(this.last_name),
@@ -97,8 +84,39 @@ export class CandidateFormComponent implements OnInit {
       'pincode': new FormControl(this.pincode), 
       'origin': new FormControl(this.origin),
       'status': new FormControl(this.status),
-      'specializations': new FormControl()
+      'specializations': this.candidateSpec
     });
-    console.log(this.candidateInfoLoaded, this.editMode);
+
+     //gather all the specilizations
+    if (this.candidateService.specRecords === null){
+      this.candidateService.fetchAllSpec().subscribe(
+        (recordData: []) => {  
+          this.candidateService.specRecords = recordData;
+        }, 
+        (error) => {
+          console.error(error);
+        }
+      );
+    }
+  }
+
+  onCandidateDetailsSubmit(){}
+
+  get controls() { // a getter for the Specialization Form Array
+    return (<FormArray>this.candidateInfoForm.get('specializations')).controls;
+  }
+
+  addSpecialization(){
+    (<FormArray>this.candidateInfoForm.get('specializations')).push(
+      new FormGroup({
+        'specialization': new FormControl(),
+        'experience': new FormControl()
+      }
+    ));
+  }
+  removeSpecialization(index: number){
+    (<FormArray>this.candidateInfoForm.get('specializations')).removeAt(index);
   }
 }
+
+
