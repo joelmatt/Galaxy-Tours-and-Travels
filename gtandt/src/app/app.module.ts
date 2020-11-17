@@ -18,6 +18,8 @@ import { CandidateFormComponent } from './candidates/candidate-form/candidate-fo
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { OnSubmitPopupComponent } from './candidates/on-submit-popup/on-submit-popup.component';
+import { MatDialogConfig } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { AppRoutingModule } from './app-routing.module';
     RequirementsComponent,
     CandidateListComponent,
     CandidateFormComponent,
+    OnSubmitPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,8 @@ import { AppRoutingModule } from './app-routing.module';
   providers: [CdkColumnDef,
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[OnSubmitPopupComponent]
 })
 export class AppModule { 
 }

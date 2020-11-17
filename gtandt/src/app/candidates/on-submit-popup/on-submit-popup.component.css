@@ -1,0 +1,8 @@
+.content-span{
+    font-family: 'Montserrat';
+    font-weight: bold;
+    color: #17225B;
+}
+.uploader-status ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: var(--text-secondary);
+}
