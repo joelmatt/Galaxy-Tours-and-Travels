@@ -1,6 +1,6 @@
 
 /* css for the loading spinner */
-.uploader-status ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+.uploader-status ::ng-deep  circle, .mat-spinner circle {
     stroke: var(--bg-secondary);
 }
 
@@ -83,8 +83,8 @@
 .mat-column-email {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 15% !important;
-  width: 15% !important;
+  flex: 0 0 17% !important;
+  width: 17% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
 
@@ -101,8 +101,8 @@
 .mat-column-contact_no {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 17% !important;
-  width: 17% !important;
+  flex: 0 0 15% !important;
+  width: 15% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
 
@@ -119,8 +119,8 @@
 .mat-column-actions {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 20% !important;
-  width: 20% !important;
+  flex: 0 0 17% !important;
+  width: 17% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
 
@@ -170,8 +170,8 @@
 .mat-column-status {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 6% !important;
-  width: 6% !important;
+  flex: 0 0 8% !important;
+  width: 8% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
 

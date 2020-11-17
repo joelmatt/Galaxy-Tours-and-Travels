@@ -52,6 +52,7 @@
                             <div class="form-group inputWithIcon">
                                 <label name="DOB">Date of Birth</label>
                                 <mat-icon class="matIcon">calendar_today</mat-icon>
+                                <!-- <input name="DOB" class="form-control DOB" type="text" onfocus="(this.type='date')" onfocusout="(this.type='text')"  formControlName="DOB"> -->
                                 <input [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" name="DOB" class="form-control" type="text"  formControlName="DOB">
                                 <owl-date-time #dt2 [pickerType]="'calendar'" [pickerMode]="'popup'" ></owl-date-time>
                             </div>
@@ -110,10 +111,10 @@
                         </div>
                     </div>
 
-                    <mat-divider></mat-divider>
+                    <mat-divider class="candFormDivider"></mat-divider>
 
                     <div formArrayName="specializations" >
-                        <div class="spec-container" style="margin-top: 50px"  *ngIf="(editMode == candidateSpecGathered)">
+                        <div class="spec-container" style="margin-top: 50px" *ngIf="(editMode == candidateSpecGathered)">
                             <div class="row justify-content-center mb-3"
                             *ngFor = "let specCtrl of controls; let i = index"
                             [formGroupName]="i">
@@ -123,11 +124,11 @@
                                         <mat-icon class="matIcon">construction</mat-icon>
                                         <input type="text" list="spec" class="form-control" name="specialization" formControlName="specialization">
                                         <datalist id="spec">
-                                            <option *ngFor="let spec of this.candidateService.specRecords">{{ spec }}</option>
+                                            <option *ngFor="let spec of specList">{{ spec }}</option>
                                         </datalist>
                                     </div>
                                 </div>
-                                <div class="col-1">
+                                <div class="col-2">
                                     <div class="form-group inputWithIcon ">
                                         <div class="form-group inputWithIcon">
                                             <label name="experience">Exp</label>
@@ -148,20 +149,28 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row justify-content-center">
-                                <button mat-button class="addSpecButton" (click)="addSpecialization()">Add Specialization</button>
+                            <div class="row justify-content-center mb-5" *ngIf="(editMode == candidateSpecGathered)">
+                                <button mat-button class="addSpecButton" (click)="addSpecialization()" type="button">Add Specialization</button>
                             </div>
                         </div>
-                        <div class="row uploader-status justify-content-center" *ngIf="!(editMode == candidateSpecGathered)">
-                            <mat-spinner strokeWidth="25" [diameter]="180" title="Server Starting" ></mat-spinner>
+
+                        <div class="row justify-content-center mt-5 mb-5" *ngIf="!(editMode == candidateSpecGathered)">
+                            <mat-spinner strokeWidth="20" [diameter]="100" title="Server Starting" ></mat-spinner>
                         </div>
+
                     </div>
+
+                    <mat-divider class="candFormDivider"></mat-divider>
                     
+                    <div class="row justify-content-center">
+                        <button mat-raised-button id="submitButton" class="submitButton mt-5" [disabled]="!candidateInfoForm.valid"  type="submit">
+                            <mat-icon>done_all</mat-icon>
+                            {{ submitButtonText }}
+                        </button>
+                    </div>
+
                 </form>
             </div>
-
-
-
 
         </mat-tab>
         <mat-tab label="Visa Details" [disabled]="!editMode"></mat-tab>

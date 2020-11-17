@@ -9,6 +9,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -22,7 +24,10 @@ import {MatTabsModule} from '@angular/material/tabs';
         MatProgressSpinnerModule,
         MatPaginatorModule,
         MatSortModule,
-        MatTabsModule
+        MatTabsModule,
+        MatDialogModule, 
+        MatSnackBarModule
+        
     ],
     imports: [],
 })

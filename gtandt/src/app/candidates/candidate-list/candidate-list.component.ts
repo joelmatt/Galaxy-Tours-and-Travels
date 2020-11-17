@@ -1,15 +1,16 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CandidateService} from '../../shared/candidate.service';
 import { MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-candidate-list',
   templateUrl: './candidate-list.component.html',
   styleUrls: ['./candidate-list.component.css']
 })
-export class CandidateListComponent implements OnInit {
+export class CandidateListComponent implements OnInit, OnDestroy {
 
     //Variables for the component
   candidateRecordAvailabe: boolean = false;
@@ -18,6 +19,7 @@ export class CandidateListComponent implements OnInit {
   searchKey: string;
   val: number = -1;
   searchByValue: string = "Search By"
+   candidateRecordsCallSub: Subscription;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   
   // ALSO CHANGE THIS BELOW ORDER OF ARRAY TO CHANGE THE ORDER OF TABLE
@@ -34,11 +36,16 @@ export class CandidateListComponent implements OnInit {
     this.fetchCandidateRecords();
   }  
 
+  ngOnDestroy(){
+    if(this.candidateRecordsCallSub)
+      this.candidateRecordsCallSub.unsubscribe();
+  }
+
   /* fetch candidates from the candidates service and retrying till aws aurora server starts */
   fetchCandidateRecords(){
     //check if candidate list already exists in the candidate.service
     if(this.candidateService.candidateRecords == null) {
-       this.candidateService.fetchAllCandidates().subscribe(
+      this.candidateRecordsCallSub = this.candidateRecordsCallSub =  this.candidateService.fetchAllCandidates().subscribe(
         (recordData: []) => {  
           console.log(recordData)
           this.candidateService.candidateRecords = recordData;

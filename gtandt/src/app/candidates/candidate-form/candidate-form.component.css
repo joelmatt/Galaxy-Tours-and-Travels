@@ -1,3 +1,13 @@
+/* IMPORTANT NOTE: Since View Encapsulation is set to None, css mentioned with any class and object together is prone to leakage
+
+  Handle with care. 
+  
+*/
+
+.uploader-status ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+  stroke: var(--text-secondary);
+}
+
 /* Tab CSS */
 .mat-tab-label {
     position:relative;
@@ -62,7 +72,7 @@ select.input-lg {
     -o-appearance: none;
     /* no standardized syntax available, no ie-friendly solution available */
 }
-input[type="text"], .selectBox, input[type="number"] {
+input[type="text"], .selectBox, input[type="number"], input[type="date"] {
     width: 100%;
     border-radius: 6px;
     margin: 8px 0;
@@ -71,9 +81,8 @@ input[type="text"], .selectBox, input[type="number"] {
     background-color : #F1F2F5; 
     font-family: 'Montserrat';   
 }
-
   
-  input[type="text"]:focus, .selectBox:focus, input[type="number"]:focus{
+  input[type="text"]:focus, .selectBox:focus, input[type="number"]:focus, input[type="date"]{
     border: 5px;
     border-color: #031a47;
     box-shadow: 0 0 8px 0 #246DFE;
@@ -83,7 +92,7 @@ input[type="text"], .selectBox, input[type="number"] {
     padding-left: 40px;
   }
 
-  input[type="number"]{
+  input[type="number"], input[type="date"]{
     text-align: center;
   }
 
@@ -104,6 +113,7 @@ input[type="text"], .selectBox, input[type="number"] {
     transition: 0.3s;
   }
 
+ 
 label{
     font-family: 'Montserrat';
     font-weight: bold;
@@ -111,12 +121,8 @@ label{
 }
   
 
-.mat-divider{
+.candFormDivider{
   border-width: 3px;
-}
-
-.uploader-status ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
-  stroke: var(--bg-secondary);
 }
 
 .addSpecButton{
@@ -130,3 +136,34 @@ label{
   border: none;
   outline: none !important;
 }
+
+/* Css for the submit button */
+.submitButton {
+  font-family: Montserrat;
+  font-weight: bold;    
+}
+.submitButton{
+  background-color: var(--text-secondary);
+  padding: 0.6em 5em;
+  /* border-radius: 50px; */
+  border-color: var(--text-secondary) !important;
+  color: var(--text-primary);
+  font-size: 1.2em;
+  border: 0;
+  cursor: pointer;
+  outline: none !important;
+  letter-spacing: 5px;
+}
+
+.submitButton .mat-icon{
+  font-size: 30px;
+  font-weight: bolder;
+  margin-right: 5px;
+  margin-bottom: 8px;
+}
+
+
+input.ng-invalid.ng-touched, select.ng-invalid.ng-touched{
+  border: 2px solid red;
+}
+
