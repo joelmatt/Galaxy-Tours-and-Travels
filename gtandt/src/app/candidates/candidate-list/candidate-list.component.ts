@@ -39,15 +39,16 @@ export class CandidateListComponent implements OnInit, OnDestroy {
   ngOnDestroy(){
     if(this.candidateRecordsCallSub)
       this.candidateRecordsCallSub.unsubscribe();
+    this.tableData.disconnect();
   }
 
   /* fetch candidates from the candidates service and retrying till aws aurora server starts */
   fetchCandidateRecords(){
     //check if candidate list already exists in the candidate.service
     if(this.candidateService.candidateRecords == null) {
-      this.candidateRecordsCallSub = this.candidateRecordsCallSub =  this.candidateService.fetchAllCandidates().subscribe(
+      this.candidateRecordsCallSub = this.candidateService.fetchAllCandidates().subscribe(
         (recordData: []) => {  
-          console.log(recordData)
+          console.log(recordData);
           this.candidateService.candidateRecords = recordData;
           this.putCandidateRecords();
         }, 
@@ -107,6 +108,26 @@ export class CandidateListComponent implements OnInit, OnDestroy {
     }
     else{//delete
       console.log("Delete Candidate" + id);
+      this.candidateService.openDeleteDialog("Are you sure to delete this record ?", "delete").afterClosed().subscribe(
+        async res => {
+          console.log(res);
+          if(res){
+            let candidateId = this.candidateService.candidateRecords['records'][id]['candidate_id'];
+            this.candidateService.openSubmitDialog("Please wait while Candidate is deleted", "edit");
+            await this.candidateService.deleteCandidate(candidateId).then(
+              (recordData) => {
+                console.log(recordData);
+              }, 
+              (error) => {
+                console.error(error);
+              }
+            );
+            this.candidateService.deleteFromCandidateRecord(id);
+            this.candidateService.closeSubmitDialog();
+            this.putCandidateRecords();
+          }
+        }
+      );
     }
   }
 }

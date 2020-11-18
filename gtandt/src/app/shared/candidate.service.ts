@@ -12,7 +12,7 @@ import { OnSubmitPopupComponent } from '../candidates/on-submit-popup/on-submit-
 export class CandidateService {
   constructor(private http:HttpClient, private dialog: MatDialog) { }
 
-  candidateRecords: [] = null;   // Stores the records of all the candidates from fetch candidates
+  candidateRecords: any[] = null;   // Stores the records of all the candidates from fetch candidates
   specRecords: [] = null;  // Stores the records of all the specializations present in the database
   delayDuration: number = 20000;  //20 seconds of delay
 
@@ -37,6 +37,19 @@ export class CandidateService {
       )
     );
   } 
+
+  // fetchAllCandidatesForForm(){
+  //   let queryParams = new HttpParams();
+  //   queryParams = queryParams.set('funcName', 'selectAllCandidates');
+  //   return this.http.get('https://uvcnd6vene.execute-api.ap-south-1.amazonaws.com/testt/test', {params: queryParams})
+  //     .pipe(
+  //       retryAfterDelay(this.delayDuration),
+  //       catchError(errorResponse => {
+  //         return throwError(errorResponse);
+  //       }
+  //     )
+  //   ).toPromise() ;
+  // } 
 
   // get all the specializations from the spec_list table
   fetchAllSpec(){
@@ -131,21 +144,95 @@ export class CandidateService {
     ).toPromise();
   }
 
+  updateCandidateInfo(parameters, candidateId){
+    let queryParams = new HttpParams();
+    queryParams = queryParams.set('funcName', 'updateCandidate').set('candidateId', candidateId)
+    .set('first_name', parameters.first_name).set('last_name', parameters.last_name)
+      .set('contact_no', parameters.contact_no).set('gender', parameters.gender).set('address', parameters.address)
+      .set('state', parameters.state).set('country', parameters.country).set('pincode', parameters.pincode)
+      .set('email', parameters.email).set('origin', parameters.origin).set('DOB', this.changeDateFormat(parameters.DOB))
+      .set('status', parameters.status === 'Available'?'A':'NA');
+    return this.http.delete('https://uvcnd6vene.execute-api.ap-south-1.amazonaws.com/testt/test', {params: queryParams})
+    .pipe(
+      retryAfterDelay(this.delayDuration),
+      catchError(errorResponse => {
+        return throwError(errorResponse);
+      })
+    ).toPromise();
+  }
+
+  deleteCandidateSpecialization(candidateId){
+    let queryParams = new HttpParams();
+    queryParams = queryParams.set('funcName', 'deleteCandidateSpecialization').set('candidateId', candidateId);
+    return this.http.delete('https://uvcnd6vene.execute-api.ap-south-1.amazonaws.com/testt/test', {params: queryParams})
+    .pipe(
+      retryAfterDelay(this.delayDuration),
+      catchError(errorResponse => {
+        return throwError(errorResponse);
+      })
+    ).toPromise();
+  }
+
+  deleteCandidate(candidateId){
+    let queryParams = new HttpParams();
+    queryParams = queryParams.set('funcName', 'deleteCandidate').set('candidateId', candidateId);
+    return this.http.delete('https://uvcnd6vene.execute-api.ap-south-1.amazonaws.com/testt/test', {params: queryParams})
+      .pipe(
+        retryAfterDelay(this.delayDuration),
+        catchError(errorResponse => {
+          return throwError(errorResponse);
+        }
+      )
+    ).toPromise();
+  }
+
   // This function just make the date string from the input into the right format for mysql
   changeDateFormat(val: string){
     let val1 = new Date(val);
     return val1.getFullYear()+"/"+(val1.getMonth()+1)+"/"+val1.getDate(); // YYYY/MM/DD
   }
 
-  openSubmitDialog(){
+  openSubmitDialog(msg: string, mode){
     this.dialog.open(OnSubmitPopupComponent, {
       disableClose: true,
       hasBackdrop: true,
-    })  
+      panelClass: 'confirm-dialog-container',
+      data: {message:  msg, mode: mode}
+    });  
+  }
+
+  openDeleteDialog(msg: string, mode){
+    return this.dialog.open(OnSubmitPopupComponent, {
+      disableClose: true,
+      panelClass: 'confirm-dialog-container',
+      data: {message:  msg, mode: mode}
+    });  
   }
   
   closeSubmitDialog(){
     this.dialog.closeAll();
+  }
+
+  addToCandidateRecord(params: any, candidate_id: string){
+    this.candidateRecords['records'].push( {
+      candidate_id: candidate_id,
+      DOB: params.DOB,
+      address: params.address,
+      status: params.status=='Available'?'A':'NA',
+      origin: params.origin,
+      first_name : params.first_name,
+      last_name: params.last_name,
+      country: params.country, 
+      state: params.state,
+      pincode: params.pincode,
+      gender: params.gender,
+      contact_no: params.contact_no,
+      biodate: null,
+      email: params.email
+    });
+  }
+  deleteFromCandidateRecord(id){
+    this.candidateRecords['records'].splice(id, 1);
   }
 
 }
