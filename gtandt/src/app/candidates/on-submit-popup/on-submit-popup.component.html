@@ -1,12 +1,21 @@
-<div class="content-container">
+<div *ngIf="data.mode == 'edit'" class="container mt-3">
     <div class="row">
-        <div class="col-2 justify-content-center">
+        <div class="col-2">
             <div class="uploader-status">
                 <mat-spinner strokeWidth="10" [diameter]="50" title="Server Starting" ></mat-spinner>
             </div>
         </div>
         <div class="col-10 justify-content-center mt-2">
-            <span class="content-span full-width">Please Wait While Candidate is Added</span>
+            <span class="editMessage">{{data.message}}</span>
         </div>
     </div>
+</div>
+  
+<div *ngIf="data.mode == 'delete'">
+    <div class="content-container">
+      <mat-icon id="close-icon" (click)="closeDialog()">close</mat-icon>
+      <span class="content-span full-width">{{data.message}}</span>
+    </div>
+    <button mat-flat-button id="no-button" [mat-dialog-close]="false">NO</button>
+    <button mat-flat-button id="yes-button" [mat-dialog-close]="true">YES</button>
 </div>
