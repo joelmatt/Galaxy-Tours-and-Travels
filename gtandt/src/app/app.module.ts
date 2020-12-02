@@ -19,7 +19,8 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { OnSubmitPopupComponent } from './candidates/on-submit-popup/on-submit-popup.component';
-import { MatDialogConfig } from '@angular/material/dialog';
+import { AuthComponent } from './auth/auth.component';
+import { AuthInterceptorService } from './shared/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MatDialogConfig } from '@angular/material/dialog';
     RequirementsComponent,
     CandidateListComponent,
     CandidateFormComponent,
-    OnSubmitPopupComponent
+    OnSubmitPopupComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,8 @@ import { MatDialogConfig } from '@angular/material/dialog';
     AppRoutingModule
   ],
   providers: [CdkColumnDef,
-    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
   ],
   bootstrap: [AppComponent],
   entryComponents:[OnSubmitPopupComponent]

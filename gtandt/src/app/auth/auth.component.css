@@ -1,0 +1,82 @@
+label, .alert-danger{
+    font-family: 'Montserrat';
+    font-weight: bold;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    border-radius: 6px;
+    margin: 8px 0;
+    padding: 8px;
+    border: none;
+    background-color : #F1F2F5; 
+    font-family: 'Montserrat';   
+    font-weight: 600;
+}
+
+input[type="password"] {
+    font-family: 'Montserrat';
+    font-weight: 800;
+}
+
+
+.mainCard {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+}
+
+.mainCardTitle{
+    font-family: Montserrat;
+    font-weight: bold;
+    font-size: 35px;
+    color: #17225B;
+    letter-spacing: 3px;
+}
+
+.btn{
+  background-color: var(--text-secondary);
+  padding:0.4em 2.3em;
+  border-color: var(--text-secondary) !important;
+  color:var(--text-primary);
+  font-size:1.3em;
+  cursor:pointer;
+  outline: none !important;
+  font-family: Montserrat;
+  font-weight: bold;
+  margin-top: 4vh;  
+}
+
+.vertical-center {
+    min-height: 85vh; /* These two lines are counted as one :-)       */
+    align-items: center;
+}
+
+mat-divider{
+    border-color: var(--bg-secondary);
+    border-width: 4px;
+
+}
+
+.inputWithIcon input{
+    padding-left: 40px;
+}
+.inputWithIcon {
+    position: relative;
+}
+.inputWithIcon .matIcon{
+    position: absolute;
+    left: 0;
+    top: 32px;
+    padding:15px 10px;
+    color: #246DFE;
+}
+
+form{
+    padding: 0px 100px;
+}
+
+.uploader-status ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: var(--text-secondary);
+  }
