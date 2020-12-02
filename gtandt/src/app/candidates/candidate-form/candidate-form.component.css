@@ -82,42 +82,42 @@ input[type="text"], .selectBox, input[type="number"], input[type="date"] {
     font-family: 'Montserrat';   
 }
   
-  input[type="text"]:focus, .selectBox:focus, input[type="number"]:focus, input[type="date"]{
-    border: 5px;
-    border-color: #031a47;
-    box-shadow: 0 0 8px 0 #246DFE;
-  }
+input[type="text"]:focus, .selectBox:focus, input[type="number"]:focus, input[type="date"]{
+  border: 5px;
+  border-color: #031a47;
+  box-shadow: 0 0 8px 0 #246DFE;
+}
 
-  .inputWithIcon input[type="text"] {
-    padding-left: 40px;
-  }
+.inputWithIcon input[type="text"] {
+  padding-left: 40px;
+}
 
-  input[type="number"], input[type="date"]{
-    text-align: center;
-  }
+input[type="number"], input[type="date"]{
+  text-align: center;
+}
 
-  .inputWithIcon .selectBox {
-    padding-left: 40px;
-  }
-  
-  .inputWithIcon {
-    position: relative;
-  }
+.inputWithIcon .selectBox {
+  padding-left: 40px;
+}
 
-  .inputWithIcon .matIcon{
-    position: absolute;
-    left: 0;
-    top: 30px;
-    padding: 9px 10px;
-    color: #246DFE;
-    transition: 0.3s;
-  }
+.inputWithIcon {
+  position: relative;
+}
 
- 
+.inputWithIcon .matIcon{
+  position: absolute;
+  left: 0;
+  top: 30px;
+  padding: 9px 10px;
+  color: #246DFE;
+  transition: 0.3s;
+}
+
+
 label{
-    font-family: 'Montserrat';
-    font-weight: bold;
-    margin-bottom: -15px;
+  font-family: 'Montserrat';
+  font-weight: bold;
+  margin-bottom: -15px;
 }
   
 

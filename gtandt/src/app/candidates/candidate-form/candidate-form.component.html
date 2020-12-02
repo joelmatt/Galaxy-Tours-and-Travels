@@ -8,14 +8,14 @@
                         <div class="col">
                             <div class="form-group inputWithIcon">
                                 <label name="first_name" >First Name</label>
-                                <mat-icon class="matIcon">person_add</mat-icon>
+                                <i class="material-icons matIcon">person_add</i>
                                 <input type="text" name="first_name" class="form-control" formControlName="first_name">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group inputWithIcon">
-                                <label name="last_name" >Last Name</label>
-                                <mat-icon class="matIcon">person_add_alt_1</mat-icon>
+                                <label name="last_name">Last Name</label>
+                                <i class="material-icons matIcon">person_add_alt_1</i>
                                 <input type="text" name="last_name" class="form-control" formControlName="last_name">
                             </div>
                         </div>
@@ -24,14 +24,14 @@
                         <div class="col">
                             <div class="form-group inputWithIcon">
                                 <label name="contact_no">Contact Number</label>
-                                <mat-icon class="matIcon">phone</mat-icon>
+                                <i class="material-icons matIcon">phone</i>
                                 <input type="text" name="contact_no" class="form-control" formControlName="contact_no">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group inputWithIcon">
                                 <label name="email">Email ID</label>
-                                <mat-icon class="matIcon">mail</mat-icon>
+                                <i class="material-icons matIcon">mail</i>
                                 <input type="text" name="email" class="form-control" formControlName="email">
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                         <div class="col">
                             <div class="form-group inputWithIcon">
                                 <label name="gender">Gender</label>
-                                <mat-icon class="matIcon">wc</mat-icon>
+                                <i class="material-icons matIcon">wc</i>
                                 <select class="form-control selectBox" name='gender'  formControlName="gender">
                                     <option>Others</option>
                                     <option>Female</option>
@@ -51,7 +51,7 @@
                         <div class="col">
                             <div class="form-group inputWithIcon">
                                 <label name="DOB">Date of Birth</label>
-                                <mat-icon class="matIcon">calendar_today</mat-icon>
+                                <i class="material-icons matIcon">calendar_today</i>
                                 <!-- <input name="DOB" class="form-control DOB" type="text" onfocus="(this.type='date')" onfocusout="(this.type='text')"  formControlName="DOB"> -->
                                 <input [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" name="DOB" class="form-control" type="text"  formControlName="DOB">
                                 <owl-date-time #dt2 [pickerType]="'calendar'" [pickerMode]="'popup'" ></owl-date-time>
@@ -60,7 +60,7 @@
                         <div class="col">
                             <div class="form-group inputWithIcon">
                                 <label name="email">Country</label>
-                                <mat-icon class="matIcon">public</mat-icon>
+                                <i class="material-icons matIcon">public</i>
                                 <input type="text" name="email" class="form-control"  formControlName="country">
                             </div>
                         </div>
@@ -69,20 +69,21 @@
                         <div class="col-7">
                             <div class="form-group inputWithIcon">
                                 <label name="address">Address</label>
-                                <mat-icon class="matIcon">location_on</mat-icon>
-                                <input type="text" name="address" class="form-control"  formControlName="address">
+                                <i class="material-icons matIcon">location_on</i>
+                                <input type="text" name="address" class="form-control" formControlName="address">
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group inputWithIcon">
                                 <label name="state">State</label>
-                                <mat-icon class="matIcon">markunread_mailbox</mat-icon>
+                                <i class="material-icons matIcon">markunread_mailbox</i>
                                 <input name="state" class="form-control" type="text"  formControlName="state">
                             </div>
                         </div>
                         <div class="col-2">
                             <div class="form-group inputWithIcon">
                                 <label name="pincode">Pincode</label>
+                                <i class="material-icons matIcon">push_pin</i>
                                 <mat-icon class="matIcon">push_pin</mat-icon>
                                 <input type="text" name="pincode" class="form-control"  formControlName="pincode">
                             </div>
@@ -92,7 +93,7 @@
                         <div class="col-3">
                             <div class="form-group inputWithIcon">
                                 <label name="origin">Origin</label>
-                                <mat-icon class="matIcon">trip_origin</mat-icon>
+                                <i class="material-icons matIcon">trip_origin</i>
                                 <select class="form-control selectBox" name='origin'  formControlName="origin">
                                     <option>offline</option>
                                     <option>online</option>
@@ -102,7 +103,7 @@
                         <div class="col-3">
                             <div class="form-group inputWithIcon">
                                 <label name="status">Status</label>
-                                <mat-icon class="matIcon">accessibility</mat-icon>
+                                <i class="material-icons matIcon">accessibility</i>
                                 <select class="form-control selectBox" name='status'  formControlName="status">
                                     <option>Available</option>
                                     <option>Not Available</option>
@@ -121,7 +122,7 @@
                                 <div class="col-5">
                                     <div class="form-group inputWithIcon">
                                         <label name="specialization">Specialization</label>
-                                        <mat-icon class="matIcon">construction</mat-icon>
+                                        <i class="material-icons matIcon">construction</i>
                                         <input type="text" list="spec" class="form-control" name="specialization" formControlName="specialization">
                                         <datalist id="spec">
                                             <option *ngFor="let spec of specList">{{ spec }}</option>
@@ -143,7 +144,7 @@
                                             <button mat-mini-fab class="mat-elevation-z0" 
                                                 style="outline: none; background-color: #C82333; border-radius: 5px;"
                                                 (click)="removeSpecialization(i)">
-                                                <mat-icon style="font-weight: bolder; font-size: 23px">close</mat-icon>
+                                                <i class="material-icons md-light" style="font-weight: bolder; font-size: 23px">close</i>
                                             </button>
                                         </div>
                                     </div>
@@ -164,7 +165,7 @@
                     
                     <div class="row justify-content-center">
                         <button mat-raised-button id="submitButton" class="submitButton mt-5" [disabled]="!candidateInfoForm.valid"  type="submit">
-                            <mat-icon>done_all</mat-icon>
+                            <i class="material-icons md-36">done_all</i>
                             {{ submitButtonText }}
                         </button>
                     </div>
@@ -174,6 +175,7 @@
 
         </mat-tab>
         <mat-tab label="Visa Details" [disabled]="!editMode"></mat-tab>
+        <mat-tab label="Passport Info" [disabled]="!editMode"></mat-tab>
         <mat-tab label="Candidate Resume" [disabled]="!editMode"></mat-tab>
         <mat-tab label="Candidate Proof" [disabled]="!editMode"></mat-tab>
     </mat-tab-group>

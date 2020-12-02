@@ -259,7 +259,7 @@ table-layout: fixed;
   bottom: 50px;
   right: 80px; 
   font-family: Montserrat;
-  font-weight: bold;    ;
+  font-weight: bold;
 }
 .mat-raised-button{
   background-color: var(--text-secondary);
