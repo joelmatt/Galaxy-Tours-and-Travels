@@ -39,7 +39,6 @@ export class CandidateListComponent implements OnInit, OnDestroy {
   ngOnDestroy(){
     if(this.candidateRecordsCallSub)
       this.candidateRecordsCallSub.unsubscribe();
-    this.tableData.disconnect();
   }
 
   /* fetch candidates from the candidates service and retrying till aws aurora server starts */
@@ -98,13 +97,14 @@ export class CandidateListComponent implements OnInit, OnDestroy {
   }
 
   addCandidate(){
-    this.router.navigate(['../newCandidate'], {relativeTo: this.route});
+    console.log(this.route);
+    this.router.navigate(['newCandidate'], {relativeTo: this.route});
   }
 
   editOrDelete(eOrD: number, id: any){  //id=1 => Edit; id=0 => Delete
     console.log(id);
     if (eOrD){//edit
-      this.router.navigate(['../', id, 'editCandidate'], {relativeTo: this.route})      
+      this.router.navigate([id, 'editCandidate'], {relativeTo: this.route})      
     }
     else{//delete
       console.log("Delete Candidate" + id);

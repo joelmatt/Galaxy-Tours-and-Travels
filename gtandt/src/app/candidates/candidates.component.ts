@@ -14,7 +14,6 @@ export class CandidatesComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentDate = Date();
-    this.router.navigate(['candidateList'], {relativeTo: this.route});
   }
   
 }

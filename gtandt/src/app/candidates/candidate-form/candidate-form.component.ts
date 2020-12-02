@@ -225,7 +225,7 @@ export class CandidateFormComponent implements OnInit, OnDestroy {
       this.candidateService.deleteFromCandidateRecord(this.id);
       this.candidateService.addToCandidateRecord(this.candidateInfoForm.value, this.candidateId);
        this.candidateService.closeSubmitDialog();
-       this.router.navigate(['../../', 'candidateList'], {relativeTo: this.route})
+       this.router.navigate(['candidates'])
     }
     else{
       this.candidateService.openSubmitDialog("Please Wait While Candidate is Added", "edit");
@@ -263,7 +263,7 @@ export class CandidateFormComponent implements OnInit, OnDestroy {
       this.candidateService.addToCandidateRecord(this.candidateInfoForm.value, newCandidateId);
 
       this.candidateService.closeSubmitDialog();
-      this.router.navigate(['../','candidateList'], {relativeTo: this.route})
+      this.router.navigate(['candidates']);
     }  
   }
   

@@ -5,6 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { retryAfterDelay } from './custom.delay';
 import { MatDialog } from '@angular/material/dialog';
 import { OnSubmitPopupComponent } from '../candidates/on-submit-popup/on-submit-popup.component';
+import { AppConstants } from '../shared/imp-data';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,7 @@ export class CandidateService {
   fetchAllCandidates(): Observable<Object>{
     let queryParams = new HttpParams();
     queryParams = queryParams.set('funcName', 'selectAllCandidates');
-    return this.http.get('https://uvcnd6vene.execute-api.ap-south-1.amazonaws.com/testt/test', {params: queryParams})
+    return this.http.get(AppConstants._API_END_URL, {params: queryParams})
       .pipe(
         retryAfterDelay(this.delayDuration),
         catchError(errorResponse => {
@@ -41,7 +42,7 @@ export class CandidateService {
   // fetchAllCandidatesForForm(){
   //   let queryParams = new HttpParams();
   //   queryParams = queryParams.set('funcName', 'selectAllCandidates');
-  //   return this.http.get('https://uvcnd6vene.execute-api.ap-south-1.amazonaws.com/testt/test', {params: queryParams})
+  //   return this.http.get(AppConstants._API_END_URL, {params: queryParams})
   //     .pipe(
   //       retryAfterDelay(this.delayDuration),
   //       catchError(errorResponse => {
@@ -55,7 +56,7 @@ export class CandidateService {
   fetchAllSpec(){
     let queryParams = new HttpParams();
     queryParams = queryParams.set('funcName', 'selectAllSpec');
-    return this.http.get('https://uvcnd6vene.execute-api.ap-south-1.amazonaws.com/testt/test', {params: queryParams})
+    return this.http.get(AppConstants._API_END_URL, {params: queryParams})
       .pipe(
         map( (response) =>{
            let temp: any[] = []
@@ -78,7 +79,7 @@ export class CandidateService {
   fetchIndividualCandidate(candidateId: string){
     let queryParams = new HttpParams();
     queryParams = queryParams.set('funcName', 'selectIndividualCandidate').set('candidateId', candidateId);
-    return this.http.get('https://uvcnd6vene.execute-api.ap-south-1.amazonaws.com/testt/test', {params: queryParams})
+    return this.http.get(AppConstants._API_END_URL, {params: queryParams})
       .pipe(
         retryAfterDelay(this.delayDuration),
         catchError(errorResponse => {
@@ -90,7 +91,7 @@ export class CandidateService {
   fetchIndividualSpecialization(candidateId: string){
     let queryParams = new HttpParams();
     queryParams = queryParams.set('funcName', 'selectIndividualSpec').set('candidateId', candidateId);
-    return this.http.get('https://uvcnd6vene.execute-api.ap-south-1.amazonaws.com/testt/test', {params: queryParams})
+    return this.http.get(AppConstants._API_END_URL, {params: queryParams})
       .pipe(
         retryAfterDelay(this.delayDuration),
         catchError(errorResponse => {
@@ -108,7 +109,7 @@ export class CandidateService {
       .set('state', parameters.state).set('country', parameters.country).set('pincode', parameters.pincode)
       .set('email', parameters.email).set('origin', parameters.origin).set('DOB', this.changeDateFormat(parameters.DOB))
       .set('status', parameters.status === 'Available'?'A':'NA');
-    return this.http.put('https://uvcnd6vene.execute-api.ap-south-1.amazonaws.com/testt/test', {}, {params: queryParams})
+    return this.http.put(AppConstants._API_END_URL, {}, {params: queryParams})
     .pipe(
       retryAfterDelay(this.delayDuration),
       catchError(errorResponse => {
@@ -121,7 +122,7 @@ export class CandidateService {
     let specListToString: string = specs.join(', ');
     let queryParams = new HttpParams();
     queryParams = queryParams.set('funcName', 'addNewSpecializations').set('specs', specListToString);
-    return this.http.put('https://uvcnd6vene.execute-api.ap-south-1.amazonaws.com/testt/test', {}, {params: queryParams})
+    return this.http.put(AppConstants._API_END_URL, {}, {params: queryParams})
     .pipe(
       retryAfterDelay(this.delayDuration),
       catchError(errorResponse => {
@@ -135,7 +136,7 @@ export class CandidateService {
     let expListToString: string = exp.join(', ');
     let queryParams = new HttpParams();
     queryParams = queryParams.set('funcName', 'addCandidateSpecialization').set('specIds', specIdListToString).set('exp', expListToString).set('candidateId', candidateId);
-    return this.http.put('https://uvcnd6vene.execute-api.ap-south-1.amazonaws.com/testt/test', {}, {params: queryParams})
+    return this.http.put(AppConstants._API_END_URL, {}, {params: queryParams})
     .pipe(
       retryAfterDelay(this.delayDuration),
       catchError(errorResponse => {
@@ -152,7 +153,7 @@ export class CandidateService {
       .set('state', parameters.state).set('country', parameters.country).set('pincode', parameters.pincode)
       .set('email', parameters.email).set('origin', parameters.origin).set('DOB', this.changeDateFormat(parameters.DOB))
       .set('status', parameters.status === 'Available'?'A':'NA');
-    return this.http.delete('https://uvcnd6vene.execute-api.ap-south-1.amazonaws.com/testt/test', {params: queryParams})
+    return this.http.delete(AppConstants._API_END_URL, {params: queryParams})
     .pipe(
       retryAfterDelay(this.delayDuration),
       catchError(errorResponse => {
@@ -164,7 +165,7 @@ export class CandidateService {
   deleteCandidateSpecialization(candidateId){
     let queryParams = new HttpParams();
     queryParams = queryParams.set('funcName', 'deleteCandidateSpecialization').set('candidateId', candidateId);
-    return this.http.delete('https://uvcnd6vene.execute-api.ap-south-1.amazonaws.com/testt/test', {params: queryParams})
+    return this.http.delete(AppConstants._API_END_URL, {params: queryParams})
     .pipe(
       retryAfterDelay(this.delayDuration),
       catchError(errorResponse => {
@@ -176,7 +177,7 @@ export class CandidateService {
   deleteCandidate(candidateId){
     let queryParams = new HttpParams();
     queryParams = queryParams.set('funcName', 'deleteCandidate').set('candidateId', candidateId);
-    return this.http.delete('https://uvcnd6vene.execute-api.ap-south-1.amazonaws.com/testt/test', {params: queryParams})
+    return this.http.delete(AppConstants._API_END_URL, {params: queryParams})
       .pipe(
         retryAfterDelay(this.delayDuration),
         catchError(errorResponse => {
