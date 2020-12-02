@@ -57,6 +57,8 @@
  */
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 
+(window as any).global = window // added to crub the error made by that stupid aws-amplify shitz
+
 
 /***************************************************************************************************
  * APPLICATION IMPORTS
