@@ -114,6 +114,35 @@ export class CandidateFormComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void{
     this.routeSubscription.unsubscribe();
   }
+  
+  // lazy loading tab 
+  // candidateDetailsTab: boolean = false;
+  visaDetailsTab: boolean = false;
+  passportInfoTab: boolean = false;
+  candidateResumeTab: boolean = false;
+  candidateProofTab: boolean = false;
+
+  tabChange(index: number){
+    console.log(index);
+    switch (index){
+      case 1: {
+        this.visaDetailsTab = true;
+        break;
+      }
+      case 2: {
+        this.passportInfoTab = true;
+        break;
+      }
+      case 3: {
+        this.candidateResumeTab = true;
+        break;
+      }
+      case 4: {
+        this.candidateProofTab = true;
+        break;
+      }
+    }
+  }
 
   get controls() { // a getter for the Specialization Form Array
     return (<FormArray>this.candidateInfoForm.get('specializations')).controls;

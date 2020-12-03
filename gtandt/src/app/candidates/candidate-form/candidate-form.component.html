@@ -1,6 +1,6 @@
 
 <div class="mat-elevation-z0 container-fluid">
-    <mat-tab-group  animationDuration="500ms" mat-align-tabs="start">
+    <mat-tab-group  animationDuration="500ms" mat-align-tabs="center" (selectedIndexChange)="tabChange($event)">
         <mat-tab label="Candidate Details" >
             <div class="container p-5" >
                 <form action="" [formGroup]="candidateInfoForm" (ngSubmit)="onCandidateDetailsSubmit()">
@@ -174,9 +174,23 @@
             </div>
 
         </mat-tab>
-        <mat-tab label="Visa Details" [disabled]="!editMode"></mat-tab>
-        <mat-tab label="Passport Info" [disabled]="!editMode"></mat-tab>
-        <mat-tab label="Candidate Resume" [disabled]="!editMode"></mat-tab>
-        <mat-tab label="Candidate Proof" [disabled]="!editMode"></mat-tab>
+        <mat-tab label="Visa Details" [disabled]="!editMode">
+            <div *ngIf="visaDetailsTab">
+            </div>
+        </mat-tab>
+        <mat-tab label="Passport Info" [disabled]="!editMode">
+            <div *ngIf="passportInfoTab">
+
+            </div>
+        </mat-tab>
+        <mat-tab label="Candidate Resume"> 
+            <div *ngIf="candidateResumeTab">
+                <app-candidate-resume></app-candidate-resume>
+            </div>
+        </mat-tab>
+        <mat-tab label="Candidate Proof" [disabled]="!editMode">
+            <div *ngIf="candidateProofTab">
+            </div>
+        </mat-tab>
     </mat-tab-group>
 </div>
