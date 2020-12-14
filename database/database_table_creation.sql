@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS candidate_info(
 	email VARCHAR(50),
 	origin ENUM('online', 'offline') NOT NULL,
 	status ENUM('A', 'NA') NOT NULL, # status determines whether the person is available or Not Availabe a.k.a.  already hired.
-	biodata VARCHAR(20),
+	biodata VARCHAR(200), -- updated
 	DOE DATE NOT NULL, # Date when the entry was made (use curdate() function)
 	PRIMARY KEY(candidate_id),
 	INDEX(id)
@@ -127,3 +127,7 @@ CREATE TABLE IF NOT EXISTS recruitment_content(
 -- Had not added DOB in candidate_info table, so below query was used 
 alter table candidate_info add column DOB Date not null default '2009-01-01'; --can't use curdate as only constant values can be used
 -- exclude the default value if table is empty. If not use the above code write a script that changes each entry individually
+
+-- Turns out biodata needed more that 20 characters. oops!
+ALTER TABLE candidate_info MODIFY COLUMN biodata VARCHAR(100);
+-- Exclude the above query if you have used the latest database creation query after 10 Dec 2020
