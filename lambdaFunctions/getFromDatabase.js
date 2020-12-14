@@ -1,7 +1,13 @@
+const AWS = require('aws-sdk');
+var credentials = {
+        accessKeyId: process.env.AWS_S3_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_S3_SECRET_ACCESS_KEY
+    };
+AWS.config.update({credentials: credentials, region: process.env.AWS_S3_REGION});
+
 exports.handler = async (event) => {
-    
     var funcName = event['queryStringParameters']['funcName'];
-    console.log(funcName)
+    console.log(funcName);
     if (funcName === "selectAllCandidates")
         var result = await selectAllCandidates(); 
     if (funcName === "selectAllSpec")
@@ -10,6 +16,8 @@ exports.handler = async (event) => {
         var result = await selectIndividualCandidate(event['queryStringParameters']['candidateId']);
     if (funcName === 'selectIndividualSpec')
         var result = await selectIndividualSpec(event['queryStringParameters']['candidateId']);
+    if (funcName === 'getSignedUrlForResume')
+        var result = await getSignedUrlForResume(event['queryStringParameters']['fileName']);
         
      var response = {
         statusCode: 200,
@@ -18,6 +26,8 @@ exports.handler = async (event) => {
         },
         body: JSON.stringify(result)
     };
+    console.log(response);
+    
     return response;
 };
 
@@ -56,12 +66,38 @@ function selectIndividualCandidate(candidateId){
 }
 
 function selectIndividualSpec(candidateId){
+    console.log("inside selectIndividualSpec");
     const data = require('data-api-client')({
         secretArn: process.env.AWS_SECRET_ARN,
         resourceArn: process.env.AWS_RESOURCE_ARN,
         database: 'galaxytnt',
     });
     return new Promise((resolve, reject)=>{
-        resolve(data.query(`SELECT specialization, experience from spec_list, candidate_spec_junc WHERE spec_list.spec_id = candidate_spec_junc.spec_id AND candidate_id = :id`, {id: candidateId}));
+        resolve(data.query(`SELECT specialization, experience FROM spec_list, candidate_spec_junc WHERE spec_list.spec_id = candidate_spec_junc.spec_id AND candidate_id = :id`, {id: candidateId}));
     });
+}
+
+async function getSignedUrlForResume(fileName){
+    
+    const urlExpiryDuration = 5; //minutes
+    console.log("inside get signed Url");
+    const key = "Resume/"+fileName;
+    var response = "";
+    const s3Params ={ 
+      Bucket: process.env.S3_BUCKET_NAME,
+      Key: key,
+      Expires: urlExpiryDuration*60,
+      ACL: 'public-read',
+      ContentType: "application/pdf"
+    };
+    const S3 = new AWS.S3();
+    try {
+      const signedUrl =  await S3.getSignedUrl('putObject', s3Params);
+      const objectUrl = `https://${process.env.S3_BUCKET_NAME}.s3.${process.env.AWS_S3_REGION}.amazonaws.com/${key}`;
+      response = {signedUrl: signedUrl, objectUrl: objectUrl};
+      return response;
+    } catch (error) {
+      response = error;
+      return response;
+    }
 }

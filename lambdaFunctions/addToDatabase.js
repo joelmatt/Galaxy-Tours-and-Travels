@@ -1,8 +1,7 @@
 exports.handler = async (event) => {
     console.log(event);
     var funcName = event['queryStringParameters']['funcName'];
-    console.log("fug You");
-    
+
     if (funcName === "addNewCandidate")
         var result = await addNewCandidate(event['queryStringParameters']); 
         
@@ -10,7 +9,10 @@ exports.handler = async (event) => {
         var result = await addNewSpecializations(event['queryStringParameters']); 
     
     if (funcName === "addCandidateSpecialization")
-        var result = await addCandidateSpecialization(event['queryStringParameteres']);
+        var result = await addCandidateSpecialization(event['queryStringParameters']);
+    
+    if (funcName === "addCandidateResume")
+        var result = await addCandidateResume(event['queryStringParameters']);
         
     var response = {
         statusCode: 200,
@@ -66,15 +68,31 @@ function addCandidateSpecialization(parameters){
         resourceArn: process.env.AWS_RESOURCE_ARN,
         database: 'galaxytnt',
     });
-    let specList = parameters['specs'].split(', ');
-    let expList = parameters['experience'].split(', ');
+    let specList = parameters['specIds'].split(', ');
+    let expList = parameters['exp'].split(', ');
     let listOfSpecsAndExp = [];
     for (let i=0; i<specList.length; i++){
-        listOfSpecsAndExp.push([{spec_id: specList[i], exp: expList[i], candidate_id: parameters['candidate_id']}]);
+        listOfSpecsAndExp.push([{spec_id: specList[i], exp: expList[i], candidate_id: parameters['candidateId']}]);
     }
     return new Promise((resolve, reject)=>{
         resolve(data.query(`INSERT INTO candidate_spec_junc VALUES (:candidate_id, :spec_id, :exp)`, listOfSpecsAndExp));
         }
     );
+}
+
+function addCandidateResume(parameters){
+    console.log("Add Candidate Resume");
+    const data = require('data-api-client')({
+        secretArn: process.env.AWS_SECRET_ARN,
+        resourceArn: process.env.AWS_RESOURCE_ARN,
+        database: 'galaxytnt',
+    });
+    let objectUrl = parameters['objectUrl'];
+    let candidateId = parameters['candidateId'];
+    return new Promise((resolve, reject)=>{
+        resolve(data.query(`UPDATE candidate_info SET biodata = :objectUrl WHERE candidate_id = :candidateId`, {objectUrl: objectUrl, candidateId: candidateId}))
+        }
+    );
+    
 }
 
