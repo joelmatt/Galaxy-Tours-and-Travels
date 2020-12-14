@@ -1,0 +1,105 @@
+  
+.uploadfilecontainer {
+  /* background-image: url("../../assets/cloud-2044823_960_720.png"); */
+  display: flex;
+    align-items: center;
+  justify-content: center;
+  flex-direction: column; 
+  background:#F7F8FC;
+  height: 200px;
+  margin: 50px 200px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  -webkit-box-shadow: inset -5px 7px 41px -1px rgba(0,0,0,0.08);
+  -moz-box-shadow: inset -5px 7px 41px -1px rgba(0,0,0,0.08);
+  box-shadow: inset -5px 7px 41px -1px rgba(0,0,0,0.08);
+    /* https://www.cssmatic.com/box-shadow */
+}
+
+h3.uploadBoxHeader{
+  font-family: 'Montserrat';
+  font-weight: 900;
+}
+
+.submitButton {
+  font-family: Montserrat;
+  font-weight: bold;   
+  background-color: var(--text-secondary);
+  padding: 0.5em 2em;
+  /* border-radius: 50px; */
+  border-color: var(--text-secondary) !important;
+  color: var(--text-primary);
+  font-size: 1.4em;
+  border: 0;
+  cursor: pointer;
+  outline: none !important;
+  letter-spacing: 2px;
+}
+
+.add-button{
+  display: flex;
+  justify-content: center; 
+}
+
+.submitButton .mat-icon{
+  font-size: 38px;
+  font-weight: 900;
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+.pdfViewer{
+  display: flex;
+  justify-content: center; 
+  margin-top: 50px;
+}
+
+.uploader-status ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+  stroke: var(--text-secondary);
+}
+
+#deleteResumeBtn {
+  position: fixed;
+  bottom: 50px;
+  right: 60px; 
+  font-family: Montserrat;
+  font-weight: bold;
+}
+
+.deleteResumeBtn{
+  background-color: #C82333;
+  padding:0.3em 1em;
+  /* border-radius: 50px; */
+  border-color: #C82333!important;
+  color:var(--text-primary);
+  font-size:1.1em;
+  border:0;
+  cursor:pointer;
+  outline: none;
+}
+
+#deleteResumeBtnIcon, #downloadResumeBtnIcon{
+  font-size: 25px;
+  margin-bottom: 5px;
+  margin-right: 3px;
+}
+
+#downloadResumeBtn{
+  position: fixed;
+  bottom: 50px;
+  left: 170px; 
+  font-family: Montserrat;
+  font-weight: bold;
+}
+
+.downloadResumeBtn{
+  background-color: var(--text-secondary);
+  padding:0.3em 1em;
+  /* border-radius: 50px; */
+  border-color: var(--text-secondary) !important;
+  color:var(--text-primary);
+  font-size:1.1em;
+  border:0;
+  cursor:pointer;
+  outline: none;
+}

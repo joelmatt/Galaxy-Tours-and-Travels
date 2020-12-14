@@ -1,0 +1,54 @@
+<div  *ngIf="!biodataPresent">
+    <div class="uploadfilecontainer" 
+    (click)="fileInput.click()" 
+    dropzone (onFileDropped)="uploadFile($event)"
+    [ngStyle]="{'background-color': uploadBoxBackground}"
+    >
+        <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)" accept="application/pdf">
+        <h3 *ngIf="!isLoading"
+        [ngStyle]="{'color': '#17225B'}"
+        class="uploadBoxHeader">{{ header }}</h3>
+        <p *ngIf="!isLoading">{{ subheader }}</p>
+        <div class="row justify-content-center mt-5 mb-5" *ngIf="isLoading">
+            <mat-spinner strokeWidth="20" [diameter]="100" title="Server Starting" ></mat-spinner>
+        </div>
+    </div>
+    <div class="add-button">
+        <button mat-raised-button 
+        id="submitButton" 
+        class="submitButton" 
+        type="submit"
+        (click)="addResume()"
+        [disabled]="fileSpec">
+            <i class="material-icons md-36">attach_file</i>
+            Add Resume
+        </button>
+    </div>
+</div>
+
+<pdf-viewer *ngIf="biodataPresent" style="background-color: #F7F8FC" class="pdfView"
+[src]="candidateBiodataUrl"
+[render-text]="false"
+[show-all]="true"
+[original-size]="false"
+></pdf-viewer>
+
+<!-- <ngx-extended-pdf-viewer  *ngIf="biodataPresent" class = "pdfView"
+[src]="candidateBiodataUrl"
+backgroundColor="#F7F8FC"
+
+>
+</ngx-extended-pdf-viewer> -->
+
+
+<button mat-raised-button id="deleteResumeBtn" class="deleteResumeBtn" (click)="onDeleteResume()" *ngIf="biodataPresent">
+    <i class="material-icons" id="deleteResumeBtnIcon">delete</i>
+    Delete File
+</button>
+<a [download]="candidateBiodataUrl">
+<button mat-raised-button id="downloadResumeBtn" class="downloadResumeBtn" *ngIf="biodataPresent" (click)="downloadResume()">
+    <i class="material-icons" id="downloadResumeBtnIcon">cloud_download</i>
+    Download File
+</button>
+</a>
+    

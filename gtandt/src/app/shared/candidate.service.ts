@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
+import { HttpClient, HttpParams} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { retryAfterDelay } from './custom.delay';
@@ -16,6 +16,7 @@ export class CandidateService {
   candidateRecords: any[] = null;   // Stores the records of all the candidates from fetch candidates
   specRecords: [] = null;  // Stores the records of all the specializations present in the database
   delayDuration: number = 20000;  //20 seconds of delay
+  indexOfCandidate: string = null; // stores the index of candidate during the edit Mode for other tabs to use.
 
     // the below function accepts a string and capitalize the first letter of every word in the string
   letterCapitalize(str) {
@@ -232,8 +233,57 @@ export class CandidateService {
       email: params.email
     });
   }
+
   deleteFromCandidateRecord(id){
     this.candidateRecords['records'].splice(id, 1);
   }
 
-}
+  getSignedUrl(fileName: string){
+    let queryParams = new HttpParams();
+    queryParams = queryParams.set('fileName', fileName).set('funcName', 'getSignedUrlForResume');
+    return this.http.get(AppConstants._API_END_URL, {params: queryParams})
+      .pipe(
+        retryAfterDelay(this.delayDuration),
+        catchError((errorResponse:Error) => {
+          return throwError(errorResponse.message);
+        }
+      )
+    ).toPromise();
+  }
+
+  uploadResume(signedUrl: string, file: File){
+    // Delay not added for upload to s3. since no RDS is used
+    return this.http.put(signedUrl, file).toPromise();
+  }
+  
+  addCandidateResume(objectUrl: string, candidateId: string){
+    let queryParams = new HttpParams();
+    queryParams = queryParams.set('funcName', 'addCandidateResume').set('objectUrl', objectUrl).set('candidateId', candidateId);
+    console.log(queryParams);
+    return this.http.put(AppConstants._API_END_URL, {}, {params: queryParams})
+    .pipe(
+      retryAfterDelay(this.delayDuration),
+      catchError(errorResponse => {
+        return throwError(errorResponse);
+      })
+    ).toPromise();
+  }
+
+  // This function deletes resume from the database and s3.
+  deleteCandidateResume(candidateId: string, objectUrl: string){
+    let queryParams = new HttpParams();
+    queryParams = queryParams.set('funcName', 'deleteCandidateResume')
+    .set('candidateId', candidateId).set('objectUrl', objectUrl);  
+    return this.http.delete(AppConstants._API_END_URL, {params: queryParams})
+    .pipe(
+      retryAfterDelay(this.delayDuration),
+      catchError(errorResponse => {
+        return throwError(errorResponse);
+      })
+    ).toPromise();
+  }
+
+  downloadFileFromS3(url: string){
+    return this.http.get<any>(url, {responseType: 'blob' as 'json'}).toPromise();
+  }
+} 
