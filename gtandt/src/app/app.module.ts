@@ -21,6 +21,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { OnSubmitPopupComponent } from './candidates/on-submit-popup/on-submit-popup.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthInterceptorService } from './shared/auth-interceptor.service';
+import { CandidateResumeComponent } from './candidates/candidate-form/candidate-resume/candidate-resume.component';
+import { DropzoneDirective } from './candidates/candidate-form/candidate-resume/dropzone.directive';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,9 @@ import { AuthInterceptorService } from './shared/auth-interceptor.service';
     CandidateListComponent,
     CandidateFormComponent,
     OnSubmitPopupComponent,
-    AuthComponent
+    AuthComponent,
+    CandidateResumeComponent,
+    DropzoneDirective
   ],
   imports: [
     BrowserModule,
@@ -46,7 +51,8 @@ import { AuthInterceptorService } from './shared/auth-interceptor.service';
     OwlDateTimeModule, 
     OwlNativeDateTimeModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    PdfViewerModule    
   ],
   providers: [CdkColumnDef,
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},

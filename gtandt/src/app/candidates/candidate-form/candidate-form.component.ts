@@ -54,6 +54,7 @@ export class CandidateFormComponent implements OnInit, OnDestroy {
     if (this.editMode){
       this.submitButtonText = "UPDATE";
       this.candidateId = this.candidateService.candidateRecords['records'][this.id]['candidate_id'];
+      this.candidateService.indexOfCandidate = this.id;
       this.candidateService.fetchIndividualSpecialization(this.candidateId).then(
         (recordData: []) => {
           if(recordData['records'].length > 0){
