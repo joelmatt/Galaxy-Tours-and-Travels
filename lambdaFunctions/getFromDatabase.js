@@ -16,8 +16,10 @@ exports.handler = async (event) => {
         var result = await selectIndividualCandidate(event['queryStringParameters']['candidateId']);
     if (funcName === 'selectIndividualSpec')
         var result = await selectIndividualSpec(event['queryStringParameters']['candidateId']);
-    if (funcName === 'getSignedUrlForResume')
-        var result = await getSignedUrlForResume(event['queryStringParameters']['fileName']);
+    if (funcName === 'getSignedUrl')
+        var result = await getSignedUrl(event['queryStringParameters']);
+    if (funcName === 'getCandidatePassportInfo')
+        var result = await getCandidatePassportInfo(event['queryStringParameters']['candidateId']);
         
      var response = {
         statusCode: 200,
@@ -77,11 +79,11 @@ function selectIndividualSpec(candidateId){
     });
 }
 
-async function getSignedUrlForResume(fileName){
+async function getSignedUrl(parameters){
     
     const urlExpiryDuration = 5; //minutes
     console.log("inside get signed Url");
-    const key = "Resume/"+fileName;
+    const key = parameters['signedUrlFor']+"/"+parameters['fileName'];
     var response = "";
     const s3Params ={ 
       Bucket: process.env.S3_BUCKET_NAME,
@@ -100,4 +102,15 @@ async function getSignedUrlForResume(fileName){
       response = error;
       return response;
     }
+}
+
+function getCandidatePassportInfo(candidateId) {
+    const data = require('data-api-client')({
+        secretArn: process.env.AWS_SECRET_ARN,
+        resourceArn: process.env.AWS_RESOURCE_ARN,
+        database: 'galaxytnt',
+    });
+    return new Promise((resolve, reject)=>{
+        resolve(data.query(`SELECT * FROM passport_info WHERE candidate_id = :id`, {id: candidateId}));
+    });
 }

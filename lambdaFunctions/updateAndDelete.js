@@ -15,8 +15,12 @@ exports.handler = async (event) => {
         var result = await deleteCandidateSpecialization(event['queryStringParameters']);
     if(funcName === "deleteCandidate")
         var result = await deleteCandidate(event['queryStringParameters']);
-    if(funcName === 'deleteCandidateResume')
+    if (funcName === 'deleteCandidateResume')
         var result = await deleteCandidateResume(event['queryStringParameters']);
+    if (funcName === 'updateCandidatePassportInfo')
+        var result = await updateCandidatePassportInfo(event['queryStringParameters']);
+    if (funcName === "deleteCandidatePassportCopy")
+        var result = await deleteCandidatePassportCopy(event['queryStringParameters'])
         
      var response = {
         statusCode: 200,
@@ -112,4 +116,35 @@ async function deleteResumeFromS3(objectUrl){
         resp = "File not Found in S3 : " + err.code;
     }
     return resp;
+}
+
+function updateCandidatePassportInfo(parameters){
+    console.log(" Update Candidate Passport Information");
+    const data = require('data-api-client')({
+        secretArn: process.env.AWS_SECRET_ARN,
+        resourceArn: process.env.AWS_RESOURCE_ARN,
+        database: 'galaxytnt',
+    });
+     return new Promise((resolve, reject)=>{
+        resolve(data.query(`UPDATE passport_info SET passport_no = :passport_no, POI = :POI, DOI = :DOI, DOE = :DOE WHERE candidate_id = :candidate_id`, {candidate_id: parameters['candidateId'], passport_no: parameters['passportNo'], POI: parameters['POI'], DOI: parameters['DOI'], DOE: parameters['DOE']}));
+        }
+    );
+}
+
+async function deleteCandidatePassportCopy(parameters){
+    const data = require('data-api-client')({
+        secretArn: process.env.AWS_SECRET_ARN,
+        resourceArn: process.env.AWS_RESOURCE_ARN,
+        database: 'galaxytnt',
+    });
+    let objectUrl = parameters['objectUrl'];
+    var response = {};
+    let candidateId = parameters['candidateId'];
+    response.S3Response = await deleteResumeFromS3(objectUrl);
+    response.RDSResponse = await new Promise((resolve, reject)=>{
+        resolve(data.query(`UPDATE passport_info SET passport_copy = NULL WHERE candidate_id = :candidateId`, {candidateId: candidateId}));
+        }
+    );
+    console.log(response);
+    return response;
 }

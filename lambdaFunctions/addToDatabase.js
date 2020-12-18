@@ -14,6 +14,12 @@ exports.handler = async (event) => {
     if (funcName === "addCandidateResume")
         var result = await addCandidateResume(event['queryStringParameters']);
         
+    if (funcName === "addCandidatePassportInfo")
+        var result = await addCandidatePassportInfo(event['queryStringParameters']);
+        
+    if (funcName === 'addCandidatePassportCopy')
+        var result = await addCandidatePassportCopy(event['queryStringParameters']);
+        
     var response = {
         statusCode: 200,
         headers: {
@@ -90,9 +96,36 @@ function addCandidateResume(parameters){
     let objectUrl = parameters['objectUrl'];
     let candidateId = parameters['candidateId'];
     return new Promise((resolve, reject)=>{
-        resolve(data.query(`UPDATE candidate_info SET biodata = :objectUrl WHERE candidate_id = :candidateId`, {objectUrl: objectUrl, candidateId: candidateId}))
+        resolve(data.query(`UPDATE candidate_info SET biodata = :objectUrl WHERE candidate_id = :candidateId`, {objectUrl: objectUrl, candidateId: candidateId}));
         }
     );
-    
+}
+
+function addCandidatePassportInfo(parameters){
+    console.log("Add Candidate Passport Information");
+    const data = require('data-api-client')({
+        secretArn: process.env.AWS_SECRET_ARN,
+        resourceArn: process.env.AWS_RESOURCE_ARN,
+        database: 'galaxytnt',
+    });
+    return new Promise((resolve, reject)=>{
+        resolve(data.query(`INSERT INTO passport_info (candidate_id, passport_no, POI, DOI, DOE) VALUES (:candidate_id, :passport_no, :POI, :DOI, :DOE)`, {candidate_id: parameters['candidateId'], passport_no: parameters['passportNo'], POI: parameters['POI'], DOI: parameters['DOI'], DOE: parameters['DOE']}));
+        }
+    );
+}
+
+function addCandidatePassportCopy(parameters){
+    console.log("Add Candidate Passport Copy");
+    let objectUrl = parameters['objectUrl'];
+    let candidateId = parameters['candidateId'];
+    const data = require('data-api-client')({
+        secretArn: process.env.AWS_SECRET_ARN,
+        resourceArn: process.env.AWS_RESOURCE_ARN,
+        database: 'galaxytnt',
+    });
+    return new Promise((resolve, reject)=>{
+        resolve(data.query(`UPDATE passport_info SET passport_copy = :objectUrl WHERE candidate_id = :candidateId`, {objectUrl: objectUrl, candidateId: candidateId}));
+        }
+    );
 }
 

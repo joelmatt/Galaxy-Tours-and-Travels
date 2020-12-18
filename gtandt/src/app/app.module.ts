@@ -24,6 +24,7 @@ import { AuthInterceptorService } from './shared/auth-interceptor.service';
 import { CandidateResumeComponent } from './candidates/candidate-form/candidate-resume/candidate-resume.component';
 import { DropzoneDirective } from './candidates/candidate-form/candidate-resume/dropzone.directive';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { CandidatePassportInfoComponent } from './candidates/candidate-form/candidate-passport-info/candidate-passport-info.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     OnSubmitPopupComponent,
     AuthComponent,
     CandidateResumeComponent,
-    DropzoneDirective
+    DropzoneDirective,
+    CandidatePassportInfoComponent
   ],
   imports: [
     BrowserModule,
