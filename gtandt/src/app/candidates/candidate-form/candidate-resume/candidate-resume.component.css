@@ -48,10 +48,11 @@ h3.uploadBoxHeader{
   margin-bottom: 8px;
 }
 
-.pdfViewer{
+.pdfView{
   display: flex;
   justify-content: center; 
-  margin-top: 50px;
+  padding-left: 100px;
+  padding-right: 100px;
 }
 
 .uploader-status ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {

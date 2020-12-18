@@ -1,7 +1,7 @@
 
 /* css for the loading spinner */
 .uploader-status ::ng-deep  circle, .mat-spinner circle {
-    stroke: var(--bg-secondary);
+  stroke: var(--bg-secondary);
 }
 
 /* css for the table */

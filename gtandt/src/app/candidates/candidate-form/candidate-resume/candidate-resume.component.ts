@@ -3,7 +3,7 @@ import { CandidateService } from './../../../shared/candidate.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { saveAs } from 'file-saver/dist/FileSaver';
 import { error } from '@angular/compiler/src/util';
-
+import { PDFDocumentProxy } from 'ng2-pdf-viewer';
 @Component({
   selector: 'app-candidate-resume',
   templateUrl: './candidate-resume.component.html',
@@ -22,8 +22,11 @@ export class CandidateResumeComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
   uploadBoxBackground = "#F7F8FC";
 
+  public loadedPdf: PDFDocumentProxy = null;
+
 
   uploadFile( event: any) {
+    console.log("Inside Upload file");
     if (event[0].type != "application/pdf" || event.length > 1){
       this.header = "Upload Again. Only PDF Permitted";
       this.fileSpec = true;
@@ -42,10 +45,12 @@ export class CandidateResumeComponent implements OnInit, OnDestroy {
     console.log("Candidate Resume component laoded");
     this.candidateBiodataUrl = this.candidateService.candidateRecords['records'][this.candidateService.indexOfCandidate]['biodata'];
     if(this.candidateBiodataUrl){
+      console.log(this.candidateBiodataUrl);
       console.log('There is biodata');
       this.biodataPresent = true;    
     }
     else{
+      
       console.log("there is no Biodata");
       this.biodataPresent = false;
     }
@@ -53,7 +58,13 @@ export class CandidateResumeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){
     console.log("destroyed resume component");
+    if(this.loadedPdf)
+      this.loadedPdf.destroy();
   }
+
+  afterLoadComplete(pdf: PDFDocumentProxy) {
+    this.loadedPdf = pdf;
+  } 
 
   async addResume(){
     this.fileSpec = true;
@@ -65,14 +76,14 @@ export class CandidateResumeComponent implements OnInit, OnDestroy {
     +"_"+this.candidateService.candidateRecords['records'][this.candidateService.indexOfCandidate]['first_name']
     +"_"+this.candidateService.candidateRecords['records'][this.candidateService.indexOfCandidate]['last_name'];
     console.log("File Name: " +fileName);
-    await this.candidateService.getSignedUrl(fileName).then(
+    await this.candidateService.getSignedUrl(fileName, "Resume").then(
       (response: []) => {
         signedUrl = response['signedUrl'];
         objectUrl = response['objectUrl'];
       }
     );
     
-    await this.candidateService.uploadResume(signedUrl, this.file).then
+    await this.candidateService.uploadFile(signedUrl, this.file).then
     (async (data) => {
       console.log("File Uploaded to S3");
       let candidateId = this.candidateService.candidateRecords['records'][this.candidateService.indexOfCandidate]['candidate_id'];
@@ -81,6 +92,7 @@ export class CandidateResumeComponent implements OnInit, OnDestroy {
         (resp => {
           console.log("Object Url added to Database");
           this.candidateService.candidateRecords['records'][this.candidateService.indexOfCandidate]['biodata'] = objectUrl;
+          console.log(objectUrl);
           this.candidateBiodataUrl = objectUrl;
           this.isLoading = false;
           this.biodataPresent = true;
@@ -136,6 +148,7 @@ export class CandidateResumeComponent implements OnInit, OnDestroy {
     this.subheader = "Drag and Drop a File or Click Here";
     this.uploadBoxBackground = "#F7F8FC";
     this.isLoading = false;
+    this.loadedPdf.destroy();
   }
 
   downloadResume(){

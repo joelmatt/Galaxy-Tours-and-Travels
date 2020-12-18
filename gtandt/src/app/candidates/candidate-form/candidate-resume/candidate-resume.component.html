@@ -25,30 +25,23 @@
         </button>
     </div>
 </div>
-
-<pdf-viewer *ngIf="biodataPresent" style="background-color: #F7F8FC" class="pdfView"
-[src]="candidateBiodataUrl"
-[render-text]="false"
-[show-all]="true"
-[original-size]="false"
-></pdf-viewer>
-
-<!-- <ngx-extended-pdf-viewer  *ngIf="biodataPresent" class = "pdfView"
-[src]="candidateBiodataUrl"
-backgroundColor="#F7F8FC"
-
->
-</ngx-extended-pdf-viewer> -->
+<div class="mt-3">
+    <pdf-viewer *ngIf="biodataPresent" style="background-color: #F7F8FC" class="pdfView"
+    [src]="candidateBiodataUrl"
+    [render-text]="false"
+    [show-all]="true"
+    [original-size]="false"
+    (after-load-complete)="afterLoadComplete($event)"
+    ></pdf-viewer>
+</div>
 
 
 <button mat-raised-button id="deleteResumeBtn" class="deleteResumeBtn" (click)="onDeleteResume()" *ngIf="biodataPresent">
     <i class="material-icons" id="deleteResumeBtnIcon">delete</i>
     Delete File
 </button>
-<a [download]="candidateBiodataUrl">
 <button mat-raised-button id="downloadResumeBtn" class="downloadResumeBtn" *ngIf="biodataPresent" (click)="downloadResume()">
     <i class="material-icons" id="downloadResumeBtnIcon">cloud_download</i>
     Download File
 </button>
-</a>
     
