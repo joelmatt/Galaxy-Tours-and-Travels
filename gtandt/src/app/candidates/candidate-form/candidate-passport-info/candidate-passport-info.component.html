@@ -1,0 +1,93 @@
+<div class="container p-5">
+    <form action=""  [formGroup]="candidatePassportInfoForm" (ngSubmit)="onCandidatePassportInfoSubmit()"  *ngIf="!isLoading">
+        <div class="row mb-3">
+            <div class="col">
+                <div class="form-group inputWithIcon">
+                    <label name="passport_no" >Passport Number</label>
+                    <i class="material-icons matIcon">book</i>
+                    <input type="text" name="passport_no" class="form-control" formControlName="passport_no">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group inputWithIcon">
+                    <label name="poi">Place of Issue</label>
+                    <i class="material-icons matIcon">place</i>
+                    <input type="text" name="poi" class="form-control" formControlName="place_of_issue">
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-3">
+            <div class="col-4">
+                <div class="form-group inputWithIcon">
+                    <label name="DOI">Date of Issue</label>
+                    <i class="material-icons matIcon">calendar_today</i>
+                    <!-- <input name="DOB" class="form-control DOB" type="text" onfocus="(this.type='date')" onfocusout="(this.type='text')"  formControlName="DOB"> -->
+                    <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" name="DOI" class="form-control" type="text"  formControlName="DOI">
+                    <owl-date-time #dt1 [pickerType]="'calendar'" [pickerMode]="'popup'" ></owl-date-time>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group inputWithIcon">
+                    <label name="DOE">Date of Expiry</label>
+                    <i class="material-icons matIcon">date_range</i>
+                    <!-- <input name="DOB" class="form-control DOB" type="text" onfocus="(this.type='date')" onfocusout="(this.type='text')"  formControlName="DOB"> -->
+                    <input [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" name="DOE" class="form-control" type="text"  formControlName="DOE">
+                    <owl-date-time #dt2 [pickerType]="'calendar'" [pickerMode]="'popup'" ></owl-date-time>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <mat-divider class="candFormDivider"></mat-divider>
+        </div>
+
+            <div class="uploadfilecontainer" 
+            *ngIf="!passportCopyPresent"
+            (click)="fileInput.click()" 
+            dropzone (onFileDropped)="uploadFile($event)"
+            [ngStyle]="{'background-color': uploadBoxBackground}">
+                <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)" accept="application/pdf">
+                <h3 *ngIf="!isLoading"
+                [ngStyle]="{'color': '#17225B'}"
+                class="uploadBoxHeader">{{ header }}</h3>
+                <p *ngIf="!isLoading">{{ subheader }}</p>
+                <div class="row justify-content-center mt-5 mb-5" *ngIf="isLoading">
+                    <mat-spinner strokeWidth="20" [diameter]="100" title="Server Starting" ></mat-spinner>
+                </div>
+            </div>
+            <div class="row  justify-content-center mt-5" *ngIf="passportCopyPresent">
+                <div class="col-4 text-left">
+                    <button mat-raised-button id="downloadResumeBtn" class="downloadResumeBtn"  (click)="downloadPassportCopy()">
+                        <i class="material-icons" id="downloadResumeBtnIcon">cloud_download</i>
+                        Download File
+                    </button>
+                </div>
+                <div class="col-4 text-right">
+                    <button mat-raised-button id="deleteResumeBtn" class="deleteResumeBtn" (click)="onDeletePassportCopy()" type="button">
+                        <i class="material-icons" id="deleteResumeBtnIcon">delete</i>
+                        Delete File
+                    </button>
+                </div>
+            </div>
+            <pdf-viewer *ngIf="passportCopyPresent" style="background-color: #F7F8FC" class="pdfView"
+                [src]="candidatePassportCopyUrl"
+                [render-text]="false"
+                [show-all]="true"
+                [original-size]="false"
+                (after-load-complete)="afterLoadComplete($event)"
+            ></pdf-viewer>
+
+
+        <mat-divider class="candFormDivider"></mat-divider>
+        <div class="row justify-content-center">
+            <button mat-raised-button id="submitButton" class="submitButton mt-5" [disabled]="!candidatePassportInfoForm.valid"  type="submit">
+                <i class="material-icons md-36">done_all</i>
+                {{ submitButtonText }}
+            </button>
+        </div>
+    </form>
+    
+    <div class="row justify-content-center mb-5 uploader-status" *ngIf="isLoading">
+        <mat-spinner strokeWidth="20" [diameter]="150" title="Server Starting" ></mat-spinner>
+    </div>
+    
+</div>

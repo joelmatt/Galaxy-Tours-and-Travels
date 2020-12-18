@@ -1,0 +1,219 @@
+.uploader-status ::ng-deep  circle, .mat-spinner circle {
+  stroke: var(--bg-secondary);
+}
+
+/* Tab CSS */
+.mat-tab-label {
+  position:relative;
+  font-family: 'Montserrat';
+  color: #6C757D;
+  font-weight: bolder;
+  font-size: medium;
+  margin-left: 20px;
+}
+.mat-tab-label.mat-tab-label-active {
+  background-color: transparent;
+  color: #246DFE;
+  font-weight: bold;
+  font-family: 'Montserrat';
+  font-size: medium;
+}
+.mat-tab-header, .mat-tab-label-container{
+    overflow: inherit !important;
+}
+.mat-ink-bar:after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  width: 0;
+  height: 0;
+  border-top: solid 10px #246DFE;
+  border-left: solid 15px transparent;
+  border-right: solid 15px transparent;
+}
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: #246DFE;
+  height: 6px;
+  border-radius: 8px;
+}
+
+                                    /* Form CSS */
+
+.owl-dt-calendar-table .owl-dt-calendar-cell-selected {
+  color: rgba(255, 255, 255, .85);
+  background-color: #246DFE;
+}
+
+.owl-dt-container-buttons {
+  color: red;
+}
+
+/* remove the original arrow */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  /* no standardized syntax available, no ie-friendly solution available */
+}
+  
+  /* remove the original arrow */
+select.input-lg {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+    /* no standardized syntax available, no ie-friendly solution available */
+}
+input[type="text"], .selectBox, input[type="number"], input[type="date"] {
+    width: 100%;
+    border-radius: 6px;
+    margin: 8px 0;
+    padding: 8px;
+    border: none;
+    background-color : #F1F2F5; 
+    font-family: 'Montserrat';   
+}
+  
+input[type="text"]:focus, .selectBox:focus, input[type="number"]:focus, input[type="date"]{
+  border: 5px;
+  border-color: #031a47;
+  box-shadow: 0 0 8px 0 #246DFE;
+}
+
+.inputWithIcon input[type="text"] {
+  padding-left: 40px;
+}
+
+input[type="number"], input[type="date"]{
+  text-align: center;
+}
+
+.inputWithIcon .selectBox {
+  padding-left: 40px;
+}
+
+.inputWithIcon {
+  position: relative;
+}
+
+.inputWithIcon .matIcon{
+  position: absolute;
+  left: 0;
+  top: 30px;
+  padding: 9px 10px;
+  color: #246DFE;
+  transition: 0.3s;
+}
+
+input.ng-invalid.ng-touched, select.ng-invalid.ng-touched{
+  border: 2px solid red;
+}
+
+
+
+label{
+  font-family: 'Montserrat';
+  font-weight: bold;
+  margin-bottom: -15px;
+}
+  
+.candFormDivider{
+  border-width: 3px;
+}
+
+.submitButton {
+  font-family: Montserrat;
+  font-weight: bold;    
+}
+.submitButton{
+  background-color: var(--text-secondary);
+  padding: 0.4em 3em;
+  /* border-radius: 50px; */
+  border-color: var(--text-secondary) !important;
+  color: var(--text-primary);
+  font-size: 1.2em;
+  border: 0;
+  cursor: pointer;
+  outline: none !important;
+  letter-spacing: 5px;
+}
+
+.submitButton .mat-icon{
+  font-size: 30px;
+  font-weight: bolder;
+  margin-right: 5px;
+  margin-bottom: 8px;
+}
+
+
+.uploadfilecontainer {
+  /* background-image: url("../../assets/cloud-2044823_960_720.png"); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; 
+  background:#F7F8FC;
+  height: 200px;
+  margin: 50px ;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  -webkit-box-shadow: inset -5px 7px 41px -1px rgba(0,0,0,0.08);
+  -moz-box-shadow: inset -5px 7px 41px -1px rgba(0,0,0,0.08);
+  box-shadow: inset -5px 7px 41px -1px rgba(0,0,0,0.08);
+    /* https://www.cssmatic.com/box-shadow */
+}
+
+h3.uploadBoxHeader{
+  font-family: 'Montserrat';
+  font-weight: 900;
+}
+
+.pdfView{
+  display: flex;
+  justify-content: center; 
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+#deleteResumeBtn {
+  
+  font-family: Montserrat;
+  font-weight: bold;
+}
+
+.deleteResumeBtn{
+  background-color: #C82333;
+  padding:0.3em 4em;
+  /* border-radius: 50px; */
+  border-color: #C82333!important;
+  color:var(--text-primary);
+  font-size:1.1em;
+  border:0;
+  cursor:pointer;
+  outline: none;
+}
+
+#deleteResumeBtnIcon, #downloadResumeBtnIcon{
+  font-size: 25px;
+  margin-bottom: 5px;
+  margin-right: 3px;
+}
+
+#downloadResumeBtn{
+  font-family: Montserrat;
+  font-weight: bold;
+}
+
+.downloadResumeBtn{
+  background-color: var(--text-secondary);
+  padding:0.3em 3.5em;
+  /* border-radius: 50px; */
+  border-color: var(--text-secondary) !important;
+  color:var(--text-primary);
+  font-size:1.1em;
+  border:0;
+  cursor:pointer;
+  outline: none;
+}
