@@ -238,9 +238,10 @@ export class CandidateService {
     this.candidateRecords['records'].splice(id, 1);
   }
 
-  getSignedUrl(fileName: string){
+  getSignedUrl(fileName: string, signedUrlFor: string){
+    // signedUrlValues can take: [Resume, Passport]
     let queryParams = new HttpParams();
-    queryParams = queryParams.set('fileName', fileName).set('funcName', 'getSignedUrlForResume');
+    queryParams = queryParams.set('fileName', fileName).set('funcName', 'getSignedUrl').set('signedUrlFor', signedUrlFor);
     return this.http.get(AppConstants._API_END_URL, {params: queryParams})
       .pipe(
         retryAfterDelay(this.delayDuration),
@@ -251,7 +252,7 @@ export class CandidateService {
     ).toPromise();
   }
 
-  uploadResume(signedUrl: string, file: File){
+  uploadFile(signedUrl: string, file: File){
     // Delay not added for upload to s3. since no RDS is used
     return this.http.put(signedUrl, file).toPromise();
   }
@@ -259,7 +260,6 @@ export class CandidateService {
   addCandidateResume(objectUrl: string, candidateId: string){
     let queryParams = new HttpParams();
     queryParams = queryParams.set('funcName', 'addCandidateResume').set('objectUrl', objectUrl).set('candidateId', candidateId);
-    console.log(queryParams);
     return this.http.put(AppConstants._API_END_URL, {}, {params: queryParams})
     .pipe(
       retryAfterDelay(this.delayDuration),
@@ -285,5 +285,69 @@ export class CandidateService {
 
   downloadFileFromS3(url: string){
     return this.http.get<any>(url, {responseType: 'blob' as 'json'}).toPromise();
+  }
+
+  getCandidatePassportInfo(candidateId: string){
+    let queryParams = new HttpParams();
+    queryParams = queryParams.set('funcName', 'getCandidatePassportInfo').set('candidateId', candidateId);
+    return this.http.get(AppConstants._API_END_URL, {params: queryParams})
+      .pipe(
+        retryAfterDelay(this.delayDuration),
+        catchError(errorResponse => {
+          return throwError(errorResponse);
+        }
+      )
+    ).toPromise();
+  }
+
+  addCandidatePassportInfo(candidateId: string, passportNo: string, POI: string, DOI: string, DOE: string){
+    let queryParams = new HttpParams();
+    queryParams = queryParams.set('funcName', 'addCandidatePassportInfo')
+      .set('candidateId', candidateId).set('passportNo', passportNo).set('POI', POI).set('DOI', this.changeDateFormat(DOI)).set('DOE', this.changeDateFormat(DOE));
+      return this.http.put(AppConstants._API_END_URL, {}, {params: queryParams})
+      .pipe(
+        retryAfterDelay(this.delayDuration),
+        catchError(errorResponse => {
+          return throwError(errorResponse);
+        })
+      ).toPromise();
+  }
+
+  updateCandidatePassportInfo(candidateId: string, passportNo: string, POI: string, DOI: string, DOE: string){
+    let queryParams = new HttpParams();
+    queryParams = queryParams.set('funcName', 'updateCandidatePassportInfo')
+      .set('candidateId', candidateId).set('passportNo', passportNo).set('POI', POI).set('DOI', this.changeDateFormat(DOI)).set('DOE', this.changeDateFormat(DOE));
+    return this.http.delete(AppConstants._API_END_URL, {params: queryParams})
+    .pipe(
+      retryAfterDelay(this.delayDuration),
+      catchError(errorResponse => {
+        return throwError(errorResponse);
+      })
+    ).toPromise();
+  }
+
+  addCandidatePassportCopy(objectUrl: string, candidateId: string){
+    let queryParams = new HttpParams();
+    queryParams = queryParams.set('funcName', 'addCandidatePassportCopy').set('objectUrl', objectUrl).set('candidateId', candidateId);
+    return this.http.put(AppConstants._API_END_URL, {}, {params: queryParams})
+    .pipe(
+      retryAfterDelay(this.delayDuration),
+      catchError(errorResponse => {
+        return throwError(errorResponse);
+      })
+    ).toPromise();
+  }
+
+  deleteCandidatePassportCopy(candidateId: string, objectUrl: string){
+    let queryParams = new HttpParams();
+    queryParams = queryParams.set('funcName', 'deleteCandidatePassportCopy')
+    .set('candidateId', candidateId).set('objectUrl', objectUrl);  
+    return this.http.delete(AppConstants._API_END_URL, {params: queryParams})
+    .pipe(
+      retryAfterDelay(this.delayDuration),
+      catchError(errorResponse => {
+        return throwError(errorResponse);
+      })
+    ).toPromise();
   }
 } 
