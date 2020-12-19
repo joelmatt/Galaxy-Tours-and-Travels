@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS recruit_req_junc(
 	FOREIGN KEY(spec_id) REFERENCES spec_list(spec_id) ON DELETE CASCADE
 );
 
-#recruitment_content: consists of the values in the recruitment list
+-- recruitment_content: consists of the values in the recruitment list
 CREATE TABLE IF NOT EXISTS recruitment_content(
 	recruitment_id VARCHAR(36) NOT NULL,
 	candidate_id VARCHAR(36) NOT NULL,
