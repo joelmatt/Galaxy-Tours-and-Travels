@@ -4,17 +4,17 @@
         <li class="logo nav-item">
             <a class="">
                 <span class="link-text logo-text">GT&T</span>
-                <mat-icon svgIcon="menu" (click)="onNavAnimate()"></mat-icon>
+                <mat-icon svgIcon="menu"></mat-icon>
             </a>
        </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a class="nav-link" (click)="routePage('candidates')">
             <mat-icon svgIcon="candidates"></mat-icon>
             <span class="link-text">Candidates</span>
         </a>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">
+        <a class="nav-link" (click)="routePage('sponsors')">
             <mat-icon svgIcon="sponsor"></mat-icon>
             <span class="link-text">Sponsors</span>
         </a>

@@ -10,13 +10,6 @@ import { Router } from '@angular/router';
 })
 export class NavigationComponent implements OnInit {
 
-  navState="normal";
-  linkTextState = "invisible";
-  onNavAnimate(){
-    this.navState == "normal" ? this.navState = 'extended' : this.navState = "normal";
-    this.linkTextState == "invisible" ? this.linkTextState = 'visible' : this.linkTextState = "invisible";
-  }
-  
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
@@ -25,5 +18,11 @@ export class NavigationComponent implements OnInit {
   onLogout(){
     this.authService.logout();
   }
-
+  
+  routePage(where: string){
+    if (where === "candidates")
+       this.router.navigate(['main'])
+    else
+      this.router.navigate(['main',where])
+  }
 }

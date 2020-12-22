@@ -21,9 +21,8 @@ input[type="password"] {
 
 .mainCard {
     box-sizing: border-box;
-    width: 80%;
-    height: 80%;
-    padding: 30px;
+    width: 70%;
+    height: 70%;
 }
 
 .mainCardTitle{

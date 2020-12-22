@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { GlobalService } from './../shared/global.service';
 
 @Component({
   selector: 'app-sponsors',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SponsorsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private globalService: GlobalService) { 
+    this.globalService.updateCardTitle("Sponsor Entry Portal");
+    console.log(this.globalService.cardTitle);
+  }
 
   ngOnInit(): void {
+   
   }
 
 }

@@ -27,7 +27,7 @@ export class AuthComponent{
         this.authService.signIn(username, password).subscribe((data) => {
             this.isLoading = false;
             this.error = null;
-            this.router.navigate(['candidates']);
+            this.router.navigate(['main']);
         }, (errorMessage)=> {
             // error handle karo
             this.error = errorMessage;
