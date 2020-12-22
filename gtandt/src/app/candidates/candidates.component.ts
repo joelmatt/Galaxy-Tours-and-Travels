@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import {CandidateService} from '../shared/candidate.service';
-import { Router, ActivatedRoute} from '@angular/router';
+import { EventEmitter } from 'events';
+import { GlobalService } from './../shared/global.service';
+
 
 @Component({
   selector: 'app-candidates',
@@ -8,12 +10,12 @@ import { Router, ActivatedRoute} from '@angular/router';
   styleUrls: ['./candidates.component.css']
 })
 export class CandidatesComponent implements OnInit {
-  currentDate: string;
-  cardTitle: string = "Candidate Entry Portal";
-  constructor(private candidateService: CandidateService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private candidateService: CandidateService, private globalServive: GlobalService) { 
+    this.globalServive.updateCardTitle("Candidate Entry Portal");
+  }
 
   ngOnInit(): void {
-    this.currentDate = Date();
+   
   }
   
 }

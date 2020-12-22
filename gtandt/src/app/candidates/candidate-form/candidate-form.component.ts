@@ -254,8 +254,7 @@ export class CandidateFormComponent implements OnInit, OnDestroy {
       //instead of recalling this huge ass array, lets just edit the existing array.
       this.candidateService.deleteFromCandidateRecord(this.id);
       this.candidateService.addToCandidateRecord(this.candidateInfoForm.value, this.candidateId);
-       this.candidateService.closeSubmitDialog();
-       this.router.navigate(['candidates'])
+      this.candidateService.closeSubmitDialog();
     }
     else{
       this.candidateService.openSubmitDialog("Please Wait While Candidate is Added", "edit");
@@ -293,8 +292,8 @@ export class CandidateFormComponent implements OnInit, OnDestroy {
       this.candidateService.addToCandidateRecord(this.candidateInfoForm.value, newCandidateId);
 
       this.candidateService.closeSubmitDialog();
-      this.router.navigate(['candidates']);
-    }  
+    } 
+    this.router.navigate(['main']);
   }
   
   async addAndGetSpecs(){
