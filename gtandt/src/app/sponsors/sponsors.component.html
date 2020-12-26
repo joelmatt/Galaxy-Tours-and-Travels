@@ -1,1 +1,33 @@
-<p>sponsors works!</p>
+
+<div class="container p-">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="form-group">
+                <i class="material-icons matIcon form-control-icon">search</i>
+                <button class="search-clear-button" *ngIf="searchKey" (click)="onSearchClear()"><i class="material-icons matIcon">close</i></button>
+                <input [(ngModel)]="searchKey" matInput type="text" class="form-control" placeholder="Search" (keyup)="applySearchFilter()" (focus)="setupFilter()">
+                
+              </div> 
+        </div>
+        <div class="row" style="margin-left: 15px">
+            <div class="dropdown float-left">
+                <button class="btn dropdown-toggle searchDropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                {{ searchByValue }}
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" *ngFor="let columns of dropdownColumns; let i=index" (click)="filterColumnValue(i)">{{ columns }}</a>
+                </div>
+            </div>
+            <div class="dropdown" style="margin-left: 40px;">
+                <button class="btn dropdown-toggle searchDropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                    Order By
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#" >Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
