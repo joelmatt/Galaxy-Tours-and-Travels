@@ -6,41 +6,41 @@
 
 /* css for the table */
 .mat-row:nth-child(even){
-    background-color:#F7F8FC;
+  background-color:#F7F8FC;
 }
 
 .mat-row:nth-child(odd){
-    background-color:#FFFFFF;
+  background-color:#FFFFFF;
 }
 
 .mat-row {
-    border: none;
-    height: 6rem; /* Height of each row */
+  border: none;
+  height: 6rem; /* Height of each row */
 }
 
 .mat-elevation-z0{
-    padding-left: 80px;
-    padding-right:80px;
+  padding-left: 80px;
+  padding-right:80px;
 }
 
 .mat-header-cell{
-    font-family: Montserrat;
-    font-weight: bold;
-    font-size: 14px;
-    color:  #aaa;
+  font-family: Montserrat;
+  font-weight: bold;
+  font-size: 14px;
+  color:  #aaa;
 }
 .mat-header-row{
-    border-color: var(--bg-secondary);
-    border-width: 3px;
-    border-top: none;
-    border-left: none;
-    border-right: none;
+  border-color: var(--bg-secondary);
+  border-width: 3px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
 
 }
 .mat-cell{
-    font-family: Montserrat;
-    font-weight: bold;
-    font-size: 14px;
+  font-family: Montserrat;
+  font-weight: bold;
+  font-size: 14px;
 }
 
 
@@ -202,7 +202,7 @@ table-layout: fixed;
 
 /* Css for search bar on top */
 .form-group .form-control {
-  padding-left: 2.375rem;
+  padding-left: 4rem;
   font-family: Montserrat;
   background-color: #F7F8FC;
   width: 100%;
@@ -219,11 +219,12 @@ table-layout: fixed;
   text-align: center;
   pointer-events: none;
   color: #aaa;
+  margin-left: 20px;
 }
 .search-clear-button{
+  display: block;
   position: absolute;
   z-index: 1;
-  display: inline;
   width: 2.375rem;
   height: 2.375rem;
   line-height: 2.375rem;
@@ -232,10 +233,10 @@ table-layout: fixed;
   border: none;
   outline: none;
   margin-top: 6px;
-  margin-left: 680px;
+  margin-right: 30px;
+  right: 0;
 }
-/* end of css for the search bar on top */
-
+/* margin for the searchby and orderby buttons are already placed in the div classes itself */
 .searchDropdown{
   font-family: Montserrat;
   color :#6C757D;
@@ -249,8 +250,10 @@ table-layout: fixed;
   color: #aaa;
   cursor: pointer;
 }
+/* end of css for the search bar on top */
 
-/* margin for the searchby and orderby buttons are already placed in the div classes itself */
+
+
 
 
 /* CSS FOR THE ADD CANDIDATE BUTTON */
