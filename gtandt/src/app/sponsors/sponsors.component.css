@@ -89,3 +89,153 @@
     font-weight: bold;
     font-size: 14px;
 }
+
+
+/* CSS FOR THE ADD SPONSOR BUTTON */
+#newCandidateButton {
+    position: fixed;
+    bottom: 50px;
+    right: 80px; 
+    font-family: Montserrat;
+    font-weight: bold;
+  }
+  .mat-raised-button{
+    background-color: var(--text-secondary);
+    padding:0.6em 2em;
+    /* border-radius: 50px; */
+    border-color: var(--text-secondary) !important;
+    color:var(--text-primary);
+    font-size:1.2em;
+    border:0;
+    cursor:pointer;
+    outline: none;
+  }
+  .mat-icon{
+    font-size: 30px;
+    font-weight: bolder;
+    margin-bottom: 8px;
+    margin-right: 3px;
+  }
+  
+
+  /* Css for each column in the damn table */
+.mat-column-name {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 17% !important;
+    width: 17% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    justify-content: center;
+  
+  }
+  
+  .mat-column-state {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 10% !important;
+    width: 10% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    justify-content: center;
+  
+  }
+  .mat-column-email {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 17% !important;
+    width: 17% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    justify-content: center;
+  
+  }
+  
+  .mat-column-contact {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 15% !important;
+    width: 15% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    justify-content: center;
+  
+  }
+  
+  .mat-column-actions {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 17% !important;
+    width: 17% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    justify-content: center;
+  
+  }
+  
+  .mat-column-country {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 10% !important;
+    width: 10% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    justify-content: center;
+  
+  }
+  
+  .mat-table {
+  width: 100%;
+  table-layout: fixed;
+  }
+  
+  .mat-footer-row .mat-footer-cell{
+    justify-content: center;
+    font-style: italic;
+    color: #C82333; 
+    font-size: large;
+    margin-top: 20px;
+    font-family: 'Montserrat';
+  }

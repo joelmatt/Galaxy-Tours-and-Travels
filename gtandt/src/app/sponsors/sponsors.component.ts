@@ -1,5 +1,11 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { GlobalService } from './../shared/global.service';
+import { SponsorService } from './../shared/sponsor.service';
+import { Subscription } from 'rxjs';
+import { MatTableDataSource} from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+
+
 
 @Component({
   selector: 'app-sponsors',
@@ -14,13 +20,40 @@ export class SponsorsComponent implements OnInit {
   searchByValue: string = "Search By"
   val: number = -1;
 
-  constructor(private globalService: GlobalService) { 
+  candidateRecordsCallSub: Subscription;
+  tableData: MatTableDataSource<any>;
+  sponsorRecordsAvailable: boolean = false;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
+  noData: boolean = false;
+
+  constructor(private globalService: GlobalService, private sponsorService: SponsorService) { 
     this.globalService.updateCardTitle("Sponsor Entry Portal");
     console.log(this.globalService.cardTitle);
   }
 
-  ngOnInit(): void {
-   
+  async ngOnInit(){
+    await this.fetchAllSponsors();
+  }
+
+  async fetchAllSponsors(){
+    if(this.sponsorService.sponsorRecords == null){
+      this.sponsorService.fetchAllCandidates().then(
+        ((response:[]) => {
+          console.log(response);
+          this.sponsorService.sponsorRecords = response;
+          this.putCandidateRecords();
+        })
+      )
+    }
+  }
+
+  putCandidateRecords(){
+    this.tableData = new MatTableDataSource(this.sponsorService.sponsorRecords['records']);
+    this.sponsorRecordsAvailable = true;
+    this.tableData.sort = this.sort;
+    if (this.sponsorService.sponsorRecords['records'].length === 0){
+      this.noData = true;
+    }
   }
 
   // Searching functions below
@@ -29,15 +62,15 @@ export class SponsorsComponent implements OnInit {
     this.applySearchFilter();
   }
   applySearchFilter(){
-    // this.tableData.filter = this.searchKey.trim().toLowerCase();
+    this.tableData.filter = this.searchKey.trim().toLowerCase();
   }
   setupFilter(){
-    // if (this.val != -1){ //default value of val is -1
-    //   this.tableData.filterPredicate = (d, filter: string) => { //d:TableDataSourceType
-    //     const textToSearch = d[this.displayColumns[this.val]] && d[this.displayColumns[this.val]].trim().toLowerCase() || '';
-    //     return textToSearch.indexOf(filter) !== -1;
-    //   };
-    // }
+    if (this.val != -1){ //default value of val is -1
+      this.tableData.filterPredicate = (d, filter: string) => { //d:TableDataSourceType
+        const textToSearch = d[this.displayColumns[this.val]] && d[this.displayColumns[this.val]].trim().toLowerCase() || '';
+        return textToSearch.indexOf(filter) !== -1;
+      };
+    }
   }
   filterColumnValue(val: any){
     this.val = val;
@@ -46,5 +79,5 @@ export class SponsorsComponent implements OnInit {
    
   }
 
-
+  addSponsor(){}
 }
