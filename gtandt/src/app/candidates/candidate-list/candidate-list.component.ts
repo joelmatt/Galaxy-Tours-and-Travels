@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CandidateService} from '../../shared/candidate.service';
 import { MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -19,7 +19,7 @@ export class CandidateListComponent implements OnInit, OnDestroy {
   searchKey: string;
   val: number = -1;
   searchByValue: string = "Search By"
-   candidateRecordsCallSub: Subscription;
+  candidateRecordsCallSub: Subscription;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   
   // ALSO CHANGE THIS BELOW ORDER OF ARRAY TO CHANGE THE ORDER OF TABLE
