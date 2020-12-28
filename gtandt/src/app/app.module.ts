@@ -26,6 +26,7 @@ import { DropzoneDirective } from './candidates/candidate-form/candidate-resume/
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { CandidatePassportInfoComponent } from './candidates/candidate-form/candidate-passport-info/candidate-passport-info.component';
 import { MainComponent } from './main/main.component';
+import { SponsorFormComponent } from './sponsors/sponsor-form/sponsor-form.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { MainComponent } from './main/main.component';
     CandidateResumeComponent,
     DropzoneDirective,
     CandidatePassportInfoComponent,
-    MainComponent
+    MainComponent,
+    SponsorFormComponent
   ],
   imports: [
     BrowserModule,

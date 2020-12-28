@@ -14,19 +14,19 @@ import { MatSort } from '@angular/material/sort';
 })
 export class SponsorsComponent implements OnInit {
 
-  dropdownColumns: string[] = ['Name', 'Country', 'Email', 'Contact', 'State'];
-  displayColumns: string[] = ['name', 'email', 'state', 'country', 'contact'];
+  dropdownColumns: string[] = ['Name', 'Email', 'State', 'Country', 'Contact'];
+  displayColumns: string[] = ['name', 'email', 'state', 'country', 'contact', 'actions'];
   searchKey: string;
   searchByValue: string = "Search By"
   val: number = -1;
 
-  candidateRecordsCallSub: Subscription;
+  // candidateRecordsCallSub: Subscription;
   tableData: MatTableDataSource<any>;
   sponsorRecordsAvailable: boolean = false;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   noData: boolean = false;
 
-  constructor(private globalService: GlobalService, private sponsorService: SponsorService) { 
+  constructor(private globalService: GlobalService, public sponsorService: SponsorService) { 
     this.globalService.updateCardTitle("Sponsor Entry Portal");
     console.log(this.globalService.cardTitle);
   }
@@ -44,6 +44,9 @@ export class SponsorsComponent implements OnInit {
           this.putCandidateRecords();
         })
       )
+    }
+    else{
+      this.putCandidateRecords();
     }
   }
 

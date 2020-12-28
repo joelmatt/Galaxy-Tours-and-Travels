@@ -68,11 +68,8 @@
             <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>  
             <mat-cell *matCellDef="let element">
                     <button mat-button class="editAndDelete" [ngStyle]="{'background-color': '#216BFE', 'outline': 'none', 'padding-bottom':'3px'}">
-                        <i [ngStyle]="{'color': 'var(--text-primary)', 'font-size': '25px'}" class="material-icons">edit</i>
-                        </button>
-                        <button mat-button class="editAndDelete"[ngStyle]="{'background-color': '#C82333', 'margin-left':'8px', 'outline': 'none', 'padding-bottom':'3px'}">
-                        <i [ngStyle]="{'color': 'var(--text-primary)', 'font-size': '25px'}" class="material-icons">delete</i>
-                        </button>
+                        <i [ngStyle]="{'color': 'var(--text-primary)', 'font-size': '27px'}" class="material-icons">edit</i>
+                    </button>
             </mat-cell>
         </ng-container>
 
@@ -88,12 +85,12 @@
             <mat-footer-cell *matFooterCellDef colspan=6>No Candidate Info Entered Yet</mat-footer-cell>
         </ng-container>
 
-        <!-- <mat-footer-row *matFooterRowDef="['loading']" [ngStyle]="{'display': (this.candidateService.candidateRecords!=null) ? 'none':'block'}"></mat-footer-row> -->
-        <!-- <mat-footer-row *matFooterRowDef="['noData']" [ngStyle]="{'display': (this.noData) ? 'block':'none'}"></mat-footer-row> -->
+        <mat-footer-row *matFooterRowDef="['loading']" [ngStyle]="{'display': (this.sponsorService.sponsorRecords!=null) ? 'none':'block'}"></mat-footer-row>
+        <mat-footer-row *matFooterRowDef="['noData']" [ngStyle]="{'display': (this.noData) ? 'block':'none'}"></mat-footer-row>
     </mat-table>
 </div>  
 
-<button mat-raised-button id="newCandidateButton" class="addCandidateButton" (click)="addSponsor()">
+<button mat-raised-button id="newSponsorButton" class="addCandidateButton" (click)="addSponsor()">
     <mat-icon>add</mat-icon>
     Add Sponsor
 </button>

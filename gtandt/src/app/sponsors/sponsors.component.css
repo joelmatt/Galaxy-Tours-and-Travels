@@ -92,7 +92,7 @@
 
 
 /* CSS FOR THE ADD SPONSOR BUTTON */
-#newCandidateButton {
+#newSponsorButton {
     position: fixed;
     bottom: 50px;
     right: 80px; 
@@ -122,8 +122,8 @@
 .mat-column-name {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 17% !important;
-    width: 17% !important;
+    flex: 0 0 18% !important;
+    width: 18% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
   
@@ -140,8 +140,8 @@
   .mat-column-state {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 10% !important;
-    width: 10% !important;
+    flex: 0 0 15% !important;
+    width: 15% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
   
@@ -157,8 +157,8 @@
   .mat-column-email {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 17% !important;
-    width: 17% !important;
+    flex: 0 0 18% !important;
+    width: 18% !important;
     overflow-wrap: break-word;
     word-wrap: break-word;
   
@@ -173,6 +173,42 @@
   }
   
   .mat-column-contact {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 18% !important;
+    width: 18% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    justify-content: center;
+  
+  }
+  
+  .mat-column-actions {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 23% !important;
+    width: 23% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    justify-content: center;
+  
+  }
+  
+  .mat-column-country {
     word-wrap: break-word !important;
     white-space: unset !important;
     flex: 0 0 15% !important;
@@ -190,52 +226,16 @@
   
   }
   
-  .mat-column-actions {
-    word-wrap: break-word !important;
-    white-space: unset !important;
-    flex: 0 0 17% !important;
-    width: 17% !important;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  
-    word-break: break-word;
-  
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-    justify-content: center;
-  
-  }
-  
-  .mat-column-country {
-    word-wrap: break-word !important;
-    white-space: unset !important;
-    flex: 0 0 10% !important;
-    width: 10% !important;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  
-    word-break: break-word;
-  
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-    justify-content: center;
-  
-  }
-  
-  .mat-table {
+.mat-table {
   width: 100%;
   table-layout: fixed;
-  }
-  
-  .mat-footer-row .mat-footer-cell{
-    justify-content: center;
-    font-style: italic;
-    color: #C82333; 
-    font-size: large;
-    margin-top: 20px;
-    font-family: 'Montserrat';
-  }
+}
+
+.mat-footer-row .mat-footer-cell{
+  justify-content: center;
+  font-style: italic;
+  color: #C82333; 
+  font-size: large;
+  margin-top: 20px;
+  font-family: 'Montserrat';
+}
