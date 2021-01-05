@@ -18,7 +18,7 @@ import { CandidateFormComponent } from './candidates/candidate-form/candidate-fo
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { OnSubmitPopupComponent } from './candidates/on-submit-popup/on-submit-popup.component';
+import { OnSubmitPopupComponent } from '../on-submit-popup/on-submit-popup.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthInterceptorService } from './shared/auth-interceptor.service';
 import { CandidateResumeComponent } from './candidates/candidate-form/candidate-resume/candidate-resume.component';
@@ -27,6 +27,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { CandidatePassportInfoComponent } from './candidates/candidate-form/candidate-passport-info/candidate-passport-info.component';
 import { MainComponent } from './main/main.component';
 import { SponsorFormComponent } from './sponsors/sponsor-form/sponsor-form.component';
+import { SponsorListComponent } from './sponsors/sponsor-list/sponsor-list.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { SponsorFormComponent } from './sponsors/sponsor-form/sponsor-form.compo
     DropzoneDirective,
     CandidatePassportInfoComponent,
     MainComponent,
-    SponsorFormComponent
+    SponsorFormComponent,
+    SponsorListComponent
   ],
   imports: [
     BrowserModule,

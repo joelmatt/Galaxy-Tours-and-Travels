@@ -6,6 +6,8 @@ import { CandidateFormComponent } from './candidates/candidate-form/candidate-fo
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './auth/auth-guard';
 import { SponsorsComponent } from './sponsors/sponsors.component';
+import { SponsorFormComponent } from './sponsors/sponsor-form/sponsor-form.component';
+import { SponsorListComponent} from './sponsors/sponsor-list/sponsor-list.component';
 import { MainComponent } from './main/main.component';
 
 // Remember that heirarchy matters over here.
@@ -19,7 +21,10 @@ const appRoutes: Routes = [
             {path: 'newCandidate', component: CandidateFormComponent}
             
         ]},
-        { path: 'sponsors', component: SponsorsComponent},
+        { path: 'sponsors', component: SponsorsComponent, children: [
+            {path: '', component: SponsorListComponent},
+            {path: 'newSponsor', component: SponsorFormComponent}
+        ]},
     ]}
 ];
 @NgModule({
