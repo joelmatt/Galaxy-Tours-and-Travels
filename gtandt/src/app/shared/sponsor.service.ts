@@ -27,4 +27,32 @@ export class SponsorService {
       )
     ).toPromise();
   } 
+
+  addSponsor(parameters){
+    let queryParams = new HttpParams();
+    queryParams = queryParams.set('funcName', 'addNewSponsor')
+    .set('name', parameters.name)
+      .set('contact_no', parameters.contact_no).set('address', parameters.address)
+      .set('state', parameters.state).set('country', parameters.country)
+      .set('email', parameters.email);
+    return this.http.put(AppConstants._API_END_URL, {}, {params: queryParams})
+    .pipe(
+      retryAfterDelay(this.delayDuration),
+      catchError(errorResponse => {
+        return throwError(errorResponse);
+      })
+    ).toPromise();
+  }
+
+  addToSponsorRecord(params: any, sponsor_id: string){
+    this.sponsorRecords['records'].push({
+      sponsor_id: sponsor_id,
+      name: params.name,
+      email: params.email,
+      contact: params.contact_no,
+      state: params.state,
+      country: params.country,
+      address: params.address
+    });
+  }
 }

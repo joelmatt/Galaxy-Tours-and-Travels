@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { retryAfterDelay } from './custom.delay';
 import { MatDialog } from '@angular/material/dialog';
-import { OnSubmitPopupComponent } from '../candidates/on-submit-popup/on-submit-popup.component';
+import { OnSubmitPopupComponent } from '../../on-submit-popup/on-submit-popup.component';
 import { AppConstants } from '../shared/imp-data';
 
 @Injectable({
