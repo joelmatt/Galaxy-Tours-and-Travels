@@ -85,4 +85,8 @@ export class SponsorListComponent implements OnInit {
     console.log(this.route);
     this.router.navigate(['newSponsor'], {relativeTo: this.route});
   }
+
+  edit(id: any){//id is any because not sure to put number or string
+    this.router.navigate([id, 'editSponsor'], {relativeTo: this.route}); 
+  } 
 }

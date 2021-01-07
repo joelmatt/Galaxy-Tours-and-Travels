@@ -23,7 +23,8 @@ const appRoutes: Routes = [
         ]},
         { path: 'sponsors', component: SponsorsComponent, children: [
             {path: '', component: SponsorListComponent},
-            {path: 'newSponsor', component: SponsorFormComponent}
+            {path: ':id/editSponsor', component: SponsorFormComponent},
+            {path: 'newSponsor', component: SponsorFormComponent},
         ]},
     ]}
 ];

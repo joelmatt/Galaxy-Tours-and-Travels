@@ -104,7 +104,7 @@ export class CandidateListComponent implements OnInit, OnDestroy {
   editOrDelete(eOrD: number, id: any){  //id=1 => Edit; id=0 => Delete
     console.log(id);
     if (eOrD){//edit
-      this.router.navigate([id, 'editCandidate'], {relativeTo: this.route})      
+      this.router.navigate([id, 'editCandidate'], {relativeTo: this.route});    
     }
     else{//delete
       console.log("Delete Candidate" + id);

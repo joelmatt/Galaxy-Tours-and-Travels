@@ -55,4 +55,25 @@ export class SponsorService {
       address: params.address
     });
   }
+
+  updateSponsorInfo(parameters, sponsorId: string){
+    let queryParams = new HttpParams();
+    queryParams = queryParams.set('funcName', 'updateSponsor')
+    .set('name', parameters.name)
+    .set('contact_no', parameters.contact_no).set('address', parameters.address)
+    .set('state', parameters.state).set('country', parameters.country)
+    .set('email', parameters.email)
+    .set('sponsorId', sponsorId);
+    return this.http.delete(AppConstants._API_END_URL, {params: queryParams})
+    .pipe(
+      retryAfterDelay(this.delayDuration),
+      catchError(errorResponse => {
+        return throwError(errorResponse);
+      })
+    ).toPromise();
+  }
+
+  deleteFromSponsorRecord(id){
+    this.sponsorRecords['records'].splice(id, 1);
+  }
 }

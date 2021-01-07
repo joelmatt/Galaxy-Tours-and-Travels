@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { SponsorService } from './../../shared/sponsor.service';
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './sponsor-form.component.html',
   styleUrls: ['./sponsor-form.component.css']
 })
-export class SponsorFormComponent implements OnInit {
+export class SponsorFormComponent implements OnInit, OnDestroy{
 
   //values to enter in the form
   name: string = '';
@@ -24,12 +24,16 @@ export class SponsorFormComponent implements OnInit {
   routeSubscription: Subscription;
   editMode: boolean = false;
   id: string;  
+  sponsorId: string;
   submitButtonText: string;
   sponsorInfoForm: FormGroup;
   submitClicked: boolean = false;
 
   constructor(private globalService: GlobalService, public sponsorService: SponsorService, private router: Router, private route: ActivatedRoute) { }
 
+  ngOnDestroy(): void{
+    this.routeSubscription.unsubscribe();
+  }
   ngOnInit(): void {
     this.routeSubscription = this.route.params.subscribe( (params: Params)=>{
       this.id = params['id'];
@@ -38,7 +42,14 @@ export class SponsorFormComponent implements OnInit {
     });
 
     if (this.editMode){
-
+      this.submitButtonText = "UPDATE";
+      this.sponsorId = this.sponsorService.sponsorRecords['records'][this.id]['sponsor_id'];
+      this.name = this.sponsorService.sponsorRecords['records'][this.id]['name'];
+      this.address = this.sponsorService.sponsorRecords['records'][this.id]['address'];
+      this.contact_no = this.sponsorService.sponsorRecords['records'][this.id]['contact'];
+      this.country = this.sponsorService.sponsorRecords['records'][this.id]['country'];
+      this.email = this.sponsorService.sponsorRecords['records'][this.id]['email'];
+      this.state = this.sponsorService.sponsorRecords['records'][this.id]['state'];
     }
     else{
       this.submitButtonText = "SUBMIT";
@@ -54,9 +65,36 @@ export class SponsorFormComponent implements OnInit {
     });
   }
 
-  async onSponsorDetailsSubmit(){
+  async onSponsorDetailsSubmit(){ // should have had made contact_no as contact.. But now i cant stop and do it.
     if(this.editMode){
-
+      this.globalService.openSubmitDialog("Please Wait While Sponsor Detail is Updated", "edit");
+      let inputFields: string[] = ['name','contact_no', 'address', 'email', 'country', 'state'];
+      let change: boolean = false;
+      for(let i=0; i<inputFields.length; i++){
+        let val1;
+        let val2 = this.sponsorInfoForm.value[inputFields[i]];
+        if(inputFields[i] === 'contact_no')
+          val1 = this.sponsorService.sponsorRecords['records'][this.id]['contact'];
+        else
+          val1 = this.sponsorService.sponsorRecords['records'][this.id][inputFields[i]];
+        if (val1 != val2){
+          change = true;
+          break;
+        }
+      }
+      if(change){
+        await this.sponsorService.updateSponsorInfo(this.sponsorInfoForm.value , this.sponsorId).then(
+          (recordData) => {
+            console.log("Sponsor Info Updated");
+          }, 
+          (error) => {
+            console.log(error);
+          }
+        );
+      }
+      this.sponsorService.deleteFromSponsorRecord(this.id);
+      this.sponsorService.addToSponsorRecord(this.sponsorInfoForm.value, this.sponsorId);
+      this.globalService.closeSubmitDialog();
     }
     else{
       //wait code insert here
