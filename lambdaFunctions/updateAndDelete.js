@@ -21,6 +21,8 @@ exports.handler = async (event) => {
         var result = await updateCandidatePassportInfo(event['queryStringParameters']);
     if (funcName === "deleteCandidatePassportCopy")
         var result = await deleteCandidatePassportCopy(event['queryStringParameters'])
+    if (funcName === "updateSponsor")
+        var result = await updateSponsor(event['queryStringParameters']);
         
      var response = {
         statusCode: 200,
@@ -147,4 +149,18 @@ async function deleteCandidatePassportCopy(parameters){
     );
     console.log(response);
     return response;
+}
+
+function updateSponsor(parameters){
+    console.log("Update sponsor Info");
+    const data = require('data-api-client')({
+        secretArn: process.env.AWS_SECRET_ARN,
+        resourceArn: process.env.AWS_RESOURCE_ARN,
+        database: 'galaxytnt',
+    });
+    return new Promise((resolve, reject)=>{
+        resolve(data.query(`UPDATE sponsor_info SET name = :name, contact = :contact_no, address = :address, email = :email, country = :country, state = :state WHERE sponsor_id = :id`
+        , {name: parameters['name'], contact_no: parameters['contact_no'], address: parameters['address'], email: parameters['email'], country: parameters['country'], state: parameters['state'], id: parameters['sponsorId']}));
+        }
+    );
 }

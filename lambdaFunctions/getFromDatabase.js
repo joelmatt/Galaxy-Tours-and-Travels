@@ -20,6 +20,8 @@ exports.handler = async (event) => {
         var result = await getSignedUrl(event['queryStringParameters']);
     if (funcName === 'getCandidatePassportInfo')
         var result = await getCandidatePassportInfo(event['queryStringParameters']['candidateId']);
+    if (funcName === 'selectAllSponsors')
+        var result = await selectAllSponsors();
         
      var response = {
         statusCode: 200,
@@ -42,6 +44,17 @@ function selectAllCandidates() {
     });
     return new Promise((resolve, reject)=>{
         resolve(data.query(`SELECT * FROM candidate_info`));
+    });
+}
+
+function selectAllSponsors(){
+    const data = require('data-api-client')({
+        secretArn: process.env.AWS_SECRET_ARN,
+        resourceArn: process.env.AWS_RESOURCE_ARN,
+        database: 'galaxytnt',
+    });
+    return new Promise((resolve, reject)=>{
+        resolve(data.query(`SELECT * FROM sponsor_info`));
     });
 }
 
