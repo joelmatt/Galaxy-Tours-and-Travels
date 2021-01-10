@@ -111,6 +111,12 @@ export class CandidateFormComponent implements OnInit, OnDestroy {
       await this.gatherAllSpecializations();
       console.log("imma gather specs");
     }
+    else{
+      for(let i=0; i<this.candidateService.specRecords.length; i++){
+        this.specList.push(this.candidateService.specRecords[i]['specialization']);
+       }
+      console.log(this.specList);
+    }
   }
 
   ngOnDestroy(): void{
@@ -157,6 +163,7 @@ export class CandidateFormComponent implements OnInit, OnDestroy {
       (recordData: []) => {  
         console.log(recordData);
         this.specList = recordData;
+        console.log(this.candidateService.specRecords);
       }, 
       (error) => {
         console.error(error);
@@ -347,5 +354,4 @@ export class CandidateFormComponent implements OnInit, OnDestroy {
   }
   
 }
-
 
