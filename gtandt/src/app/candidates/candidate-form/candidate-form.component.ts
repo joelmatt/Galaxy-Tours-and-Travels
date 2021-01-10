@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { CandidateService } from '../../shared/candidate.service';
+import { GlobalService } from '../../shared/global.service';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -42,7 +43,7 @@ export class CandidateFormComponent implements OnInit, OnDestroy {
   status: string = 'Available';
 
 
-  constructor(public candidateService: CandidateService, private router: Router, private route: ActivatedRoute) { }
+  constructor(public candidateService: CandidateService, private router: Router, private route: ActivatedRoute, private globalService: GlobalService) { }
 
    async ngOnInit() {
     // lets check to see if the route is for candidate edit or new
@@ -182,7 +183,7 @@ export class CandidateFormComponent implements OnInit, OnDestroy {
     let candidateSpecExperience = []; // stores experience of each specialization
     
     if(this.editMode){
-      this.candidateService.openSubmitDialog("Please Wait While Info is Updated", "edit");
+      this.globalService.openSubmitDialog("Please Wait While Info is Updated", "edit");
       // two major acctions to perform in edit. The first is to check if there is any change in the candidate info
       // second is to check if there is any change in the specialization records. New Specialization can be added, Specialization can be removed, Existing Specialization can be added.
       let inputFields: string[] = ['first_name', 'last_name','contact_no', 'DOB', 'address', 'email', 'country', 'state', 'pincode', 'gender', 'origin', 'status'];
@@ -254,10 +255,10 @@ export class CandidateFormComponent implements OnInit, OnDestroy {
       //instead of recalling this huge ass array, lets just edit the existing array.
       this.candidateService.deleteFromCandidateRecord(this.id);
       this.candidateService.addToCandidateRecord(this.candidateInfoForm.value, this.candidateId);
-      this.candidateService.closeSubmitDialog();
+      this.globalService.closeSubmitDialog();
     }
     else{
-      this.candidateService.openSubmitDialog("Please Wait While Candidate is Added", "edit");
+      this.globalService.openSubmitDialog("Please Wait While Candidate is Added", "edit");
       //Adding the candidateInfo into the database table now along with the candidate specialization and experience
       let newCandidateId: string; // stores the candidateId of the newest entered candidate
       await this.candidateService.addCandidate(this.candidateInfoForm.value).then(
@@ -291,7 +292,7 @@ export class CandidateFormComponent implements OnInit, OnDestroy {
       //instead of recalling this huge array, lets just edit the existing array.
       this.candidateService.addToCandidateRecord(this.candidateInfoForm.value, newCandidateId);
 
-      this.candidateService.closeSubmitDialog();
+      this.globalService.closeSubmitDialog();
     } 
     this.router.navigate(['main']);
   }

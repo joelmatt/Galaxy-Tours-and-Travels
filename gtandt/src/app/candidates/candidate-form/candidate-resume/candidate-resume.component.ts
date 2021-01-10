@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CandidateService } from './../../../shared/candidate.service';
+import { GlobalService} from './../../../shared/global.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { saveAs } from 'file-saver/dist/FileSaver';
 import { error } from '@angular/compiler/src/util';
@@ -11,7 +12,7 @@ import { PDFDocumentProxy } from 'ng2-pdf-viewer';
 })
 export class CandidateResumeComponent implements OnInit, OnDestroy {
 
-  constructor(private candidateService: CandidateService){}
+  constructor(private candidateService: CandidateService, private globalService: GlobalService){}
 
   file: File = null;
   candidateBiodataUrl: string = null;
@@ -117,10 +118,10 @@ export class CandidateResumeComponent implements OnInit, OnDestroy {
   }
 
   onDeleteResume() {
-    this.candidateService.openDeleteDialog("Are you sure to delete the Resume ?", "delete").afterClosed().subscribe(
+    this.globalService.openDeleteDialog("Are you sure to delete the Resume ?", "delete").afterClosed().subscribe(
       async res => {
         if(res){
-          this.candidateService.openSubmitDialog("Please wait while Resume is deleted", "edit");
+          this.globalService.openSubmitDialog("Please wait while Resume is deleted", "edit");
           let candidateId = this.candidateService.candidateRecords['records'][this.candidateService.indexOfCandidate]['candidate_id'];
           await this.candidateService.deleteCandidateResume(candidateId ,this.candidateBiodataUrl).then(
             (response: []) => {
@@ -133,7 +134,7 @@ export class CandidateResumeComponent implements OnInit, OnDestroy {
               console.error(error);
             }
           );
-          this.candidateService.closeSubmitDialog();
+          this.globalService.closeSubmitDialog();
           // this.putCandidateRecords(); not performing this action since the candidate list component is destroyed and will be rebuilt later.
           this.reloadComponentState();
         }

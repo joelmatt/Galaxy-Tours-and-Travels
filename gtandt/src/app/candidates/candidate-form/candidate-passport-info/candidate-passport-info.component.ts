@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CandidateService } from 'src/app/shared/candidate.service';
+import { GlobalService } from 'src/app/shared/global.service';
 import { PDFDocumentProxy } from 'ng2-pdf-viewer';
 import { HttpErrorResponse } from '@angular/common/http';
 import { saveAs } from 'file-saver/dist/FileSaver';
@@ -40,7 +41,7 @@ export class CandidatePassportInfoComponent implements OnInit {
   passportCopyUrl: string = '';
   submitButtonText: string = "SUBMIT";
 
-  constructor(private candidateService: CandidateService) { }
+  constructor(private candidateService: CandidateService, private globalService: GlobalService) { }
 
   async ngOnInit() {
     this.candidateId = this.candidateService.candidateRecords['records'][this.candidateService.indexOfCandidate]['candidate_id'];
@@ -77,24 +78,24 @@ export class CandidatePassportInfoComponent implements OnInit {
   async onCandidatePassportInfoSubmit(){
     let formValues = this.candidatePassportInfoForm.value;
     if(!this.editMode){ // For new passport info
-      this.candidateService.openSubmitDialog('Please Wait while Passport Info is Added', 'edit');
+      this.globalService.openSubmitDialog('Please Wait while Passport Info is Added', 'edit');
       await this.candidateService.addCandidatePassportInfo(this.candidateId, formValues.passport_no, formValues.place_of_issue, formValues.DOI, formValues.DOE)
       .then(
         (async (response) => {
           console.log(response);
           await this.fileHandling();
-          this.candidateService.closeSubmitDialog();
+          this.globalService.closeSubmitDialog();
         }),
         (error =>{
           console.log("Some Error Boi");
-          this.candidateService.closeSubmitDialog();
+          this.globalService.closeSubmitDialog();
         })
       ) 
     }
     else{
       
       let passportDetailUploaded: boolean = false; // variable used because only when updated details are stored in the can we the move to add the file to the db and s3
-      this.candidateService.openSubmitDialog('Please Wait while Info is Updated', 'edit');
+      this.globalService.openSubmitDialog('Please Wait while Info is Updated', 'edit');
       if(formValues.passport_no !== this.passport_no || formValues.place_of_issue !== this.placeOfIssue || formValues.DOI !== this.DOI || formValues.DOE !== this.DOE){
         // If form is updated
         await this.candidateService.updateCandidatePassportInfo(this.candidateId, formValues.passport_no, formValues.place_of_issue, formValues.DOI, formValues.DOE)
@@ -103,7 +104,7 @@ export class CandidatePassportInfoComponent implements OnInit {
             passportDetailUploaded = true;
           })
         )
-        this.candidateService.closeSubmitDialog();  
+        this.globalService.closeSubmitDialog();  
       }
       else{
         // If the form details is not updated
@@ -126,7 +127,7 @@ export class CandidatePassportInfoComponent implements OnInit {
       }
 
     }
-    this.candidateService.closeSubmitDialog();
+    this.globalService.closeSubmitDialog();
   }
 
   uploadFile( event: any) {

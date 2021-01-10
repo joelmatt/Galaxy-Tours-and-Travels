@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CandidateService} from '../../shared/candidate.service';
+import { GlobalService } from '../../shared/global.service';
 import { MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -29,7 +30,7 @@ export class CandidateListComponent implements OnInit, OnDestroy {
 
   /* order of both the above two arrays MUST BE the same */
 
-  constructor(public candidateService: CandidateService, private router: Router, private route: ActivatedRoute) { }
+  constructor(public candidateService: CandidateService, private router: Router, private route: ActivatedRoute, private globalService: GlobalService) { }
 
 
   ngOnInit() {
@@ -108,12 +109,12 @@ export class CandidateListComponent implements OnInit, OnDestroy {
     }
     else{//delete
       console.log("Delete Candidate" + id);
-      this.candidateService.openDeleteDialog("Are you sure to delete this record ?", "delete").afterClosed().subscribe(
+      this.globalService.openDeleteDialog("Are you sure to delete this record ?", "delete").afterClosed().subscribe(
         async res => {
           console.log(res);
           if(res){
             let candidateId = this.candidateService.candidateRecords['records'][id]['candidate_id'];
-            this.candidateService.openSubmitDialog("Please wait while Candidate is deleted", "edit");
+            this.globalService.openSubmitDialog("Please wait while Candidate is deleted", "edit");
             await this.candidateService.deleteCandidate(candidateId).then(
               (recordData) => {
                 console.log(recordData);
@@ -123,7 +124,7 @@ export class CandidateListComponent implements OnInit, OnDestroy {
               }
             );
             this.candidateService.deleteFromCandidateRecord(id);
-            this.candidateService.closeSubmitDialog();
+            this.globalService.closeSubmitDialog();
             this.putCandidateRecords();
           }
         }
