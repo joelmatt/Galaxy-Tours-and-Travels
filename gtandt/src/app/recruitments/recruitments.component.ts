@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { GlobalService } from './../shared/global.service';
 @Component({
   selector: 'app-recruitments',
   templateUrl: './recruitments.component.html',
@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecruitmentsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private globalService: GlobalService) {
+    this.globalService.updateCardTitle("Recruitment Portal");
+   }
 
   ngOnInit(): void {
   }

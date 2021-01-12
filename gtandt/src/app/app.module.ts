@@ -28,6 +28,8 @@ import { CandidatePassportInfoComponent } from './candidates/candidate-form/cand
 import { MainComponent } from './main/main.component';
 import { SponsorFormComponent } from './sponsors/sponsor-form/sponsor-form.component';
 import { SponsorListComponent } from './sponsors/sponsor-list/sponsor-list.component';
+import { RecruitmentListComponent } from './recruitments/recruitment-list/recruitment-list.component';
+import { NewRecruitmentFormComponent } from './recruitments/new-recruitment-form/new-recruitment-form.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { SponsorListComponent } from './sponsors/sponsor-list/sponsor-list.compo
     CandidatePassportInfoComponent,
     MainComponent,
     SponsorFormComponent,
-    SponsorListComponent
+    SponsorListComponent,
+    RecruitmentListComponent,
+    NewRecruitmentFormComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,8 @@ import { AuthGuard } from './auth/auth-guard';
 import { SponsorsComponent } from './sponsors/sponsors.component';
 import { SponsorFormComponent } from './sponsors/sponsor-form/sponsor-form.component';
 import { SponsorListComponent} from './sponsors/sponsor-list/sponsor-list.component';
+import { RecruitmentsComponent } from './recruitments/recruitments.component';
+import { RecruitmentListComponent } from './recruitments/recruitment-list/recruitment-list.component';
 import { MainComponent } from './main/main.component';
 
 // Remember that heirarchy matters over here.
@@ -26,6 +28,9 @@ const appRoutes: Routes = [
             {path: ':id/editSponsor', component: SponsorFormComponent},
             {path: 'newSponsor', component: SponsorFormComponent},
         ]},
+        { path: 'recruitments', component: RecruitmentsComponent, children: [
+            {path: '', component: RecruitmentListComponent},
+        ]}
     ]}
 ];
 @NgModule({

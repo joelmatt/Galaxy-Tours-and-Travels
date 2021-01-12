@@ -1,0 +1,21 @@
+#newRecruitmentButton {
+    font-family: Montserrat;
+    font-weight: bold;
+}
+.mat-raised-button{
+    background-color: var(--text-secondary);
+    padding:0.4em 3em;
+    /* border-radius: 50px; */
+    border-color: var(--text-secondary) !important;
+    color:var(--text-primary);
+    font-size:1.2em;
+    border:0;
+    cursor:pointer;
+    outline: none;
+}
+.mat-icon{
+    font-size: 30px;
+    font-weight: bolder;
+    margin-bottom: 8px;
+    margin-right: 3px;
+}
