@@ -1,1 +1,75 @@
-<p>new-recruitment-form works!</p>
+<div class="mat-elevation-z0 container-fluid">
+    <div class="container">
+        <form action="" [formGroup]="recruitmentInfoForm" >
+            <div class="row justify-content-center mb-3">
+                <div class="col-8">
+                    <div class="form-group inputWithIcon">
+                        <label name="first_name" >Recruitment Name</label>
+                        <i class="material-icons matIcon">privacy_tip</i>
+                        <input type="text" name="first_name" class="form-control" formControlName="name">
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group inputWithIcon">
+                        <label name="email">Sponsor Name</label>
+                        <i class="material-icons matIcon">mail</i>
+                        <input type="text" name="email" class="form-control" formControlName="sponsor">
+                    </div>
+                </div>
+            </div>
+            
+            
+            <mat-divider class="candFormDivider"></mat-divider>
+
+            <div formArrayName="specializations" >
+                <div class="spec-container" style="margin-top: 50px" >
+                    <div class="row justify-content-center mb-3"
+                    *ngFor = "let specCtrl of controls; let i = index"
+                    [formGroupName]="i">
+                        <div class="col-5">
+                            <div class="form-group inputWithIcon">
+                                <label name="specialization">Specialization</label>
+                                <i class="material-icons matIcon">construction</i>
+                                <input type="text" list="spec" class="form-control" name="specialization" formControlName="specialization">
+                                <datalist id="spec">
+                                    <option *ngFor="let cat of catList">{{ cat }}</option>
+                                </datalist>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="form-group inputWithIcon ">
+                                <div class="form-group inputWithIcon">
+                                    <label name="total">Total</label>
+                                    <input type="number" class="form-control " name="total" formControlName = "total">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-1">
+                            <div class="inputWithIcon">
+                                <div class="form-group" style="margin-top: 30px">   
+                                    <button mat-mini-fab class="mat-elevation-z0" 
+                                        style="outline: none; background-color: #C82333; border-radius: 5px;"
+                                        (click)="removeSpecialization(i)">
+                                        <i class="material-icons md-light" style="font-weight: bolder; font-size: 23px">close</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mb-5" >
+                        <button mat-button class="addSpecButton" (click)="addSpecialization()" type="button">Add Specialization</button>
+                    </div>
+                </div>
+            </div> 
+            <mat-divider class="candFormDivider"></mat-divider>
+                    
+            <div class="row justify-content-center">
+                <button mat-raised-button id="submitButton" class="submitButton mt-5"  type="submit">
+                    <i class="material-icons md-36">done_all</i>
+                    {{submitButtonText}}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

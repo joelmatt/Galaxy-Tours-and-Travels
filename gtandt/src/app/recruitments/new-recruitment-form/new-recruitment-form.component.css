@@ -1,0 +1,98 @@
+.uploader-status ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: var(--text-secondary);
+}
+
+input[type="text"], .selectBox, input[type="number"], input[type="date"] {
+    width: 100%;
+    border-radius: 6px;
+    margin: 8px 0;
+    padding: 8px;
+    border: none;
+    background-color : #F1F2F5; 
+    font-family: 'Montserrat';   
+}
+  
+input[type="text"]:focus, .selectBox:focus, input[type="number"]:focus, input[type="date"]{
+  border: 5px;
+  border-color: #031a47;
+  box-shadow: 0 0 8px 0 #246DFE;
+}
+
+.inputWithIcon input[type="text"] {
+  padding-left: 40px;
+}
+
+input[type="number"], input[type="date"]{
+  text-align: center;
+}
+
+.inputWithIcon .selectBox {
+  padding-left: 40px;
+}
+
+.inputWithIcon {
+  position: relative;
+}
+
+.inputWithIcon .matIcon{
+  position: absolute;
+  left: 0;
+  top: 30px;
+  padding: 9px 10px;
+  color: #246DFE;
+  transition: 0.3s;
+}
+
+
+label{
+  font-family: 'Montserrat';
+  font-weight: bold;
+  margin-bottom: -15px;
+}
+  
+
+.candFormDivider{
+  border-width: 3px;
+}
+
+/* Css for the submit button */
+.submitButton {
+    font-family: Montserrat;
+    font-weight: bold;    
+  }
+.submitButton{
+    background-color: var(--text-secondary);
+    padding: 0.6em 5em;
+    /* border-radius: 50px; */
+    border-color: var(--text-secondary) !important;
+    color: var(--text-primary);
+    font-size: 1.2em;
+    border: 0;
+    cursor: pointer;
+    outline: none !important;
+    letter-spacing: 5px;
+}
+  
+.submitButton .mat-icon{
+    font-size: 30px;
+    font-weight: bolder;
+    margin-right: 5px;
+    margin-bottom: 8px;
+}
+  
+  
+input.ng-invalid.ng-touched, select.ng-invalid.ng-touched{
+    border: 2px solid red;
+}
+  
+.addSpecButton{
+  background-color: #246DFE;
+  color: #ffffff;
+  font-family: 'Montserrat';
+  font-weight: bold;
+  padding: 5px 25px;
+  border-radius: 6px;
+  font-size: medium;
+  border: none;
+  outline: none !important;
+}

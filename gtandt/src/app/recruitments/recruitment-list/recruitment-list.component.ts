@@ -17,8 +17,9 @@ export class RecruitmentListComponent implements OnInit {
   addNewRecruitment(){
     return this.dialog.open(NewRecruitmentFormComponent, {
       disableClose: false,
-      panelClass: 'confirm-dialog-container',
-      data:  {damn: "daniel"}
+      data:  {damn: "daniel"},
+      height: '500px',
+      width: '1000px'
     });  
   }
 }
