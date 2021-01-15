@@ -1,5 +1,12 @@
 .uploader-status ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
-    stroke: var(--text-secondary);
+    stroke: #246DFE;
+}
+
+.vertical-center {
+  min-height: 90%;  /* Fallback for browsers do NOT support vh unit */
+  justify-content: center;
+  display: flex;
+  align-items: center;
 }
 
 input[type="text"], .selectBox, input[type="number"], input[type="date"] {
@@ -95,4 +102,20 @@ input.ng-invalid.ng-touched, select.ng-invalid.ng-touched{
   font-size: medium;
   border: none;
   outline: none !important;
+}
+
+/* remove the original arrow */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  /* no standardized syntax available, no ie-friendly solution available */
+}
+
+/* remove the original arrow */
+select.input-lg {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  /* no standardized syntax available, no ie-friendly solution available */
 }

@@ -1,23 +1,26 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef  } from '@angular/material/dialog';
 import { SponsorService } from './../../shared/sponsor.service';
+import { CandidateService } from './../../shared/candidate.service';
 import { GlobalService } from './../../shared/global.service';
 import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
-
-
 
 @Component({
   selector: 'app-new-recruitment-form',
   templateUrl: './new-recruitment-form.component.html',
   styleUrls: ['./new-recruitment-form.component.css']
 })
+
 export class NewRecruitmentFormComponent implements OnInit {
 
   recruitmentInfoForm: FormGroup;
   categorySpec = new FormArray([]);
   isLoading: boolean = false;
+  editMode: boolean = false;
   submitButtonText: string = "SUBMIT";
   catList: string[] = [];
+  specList: string[] = [];
+  sponsorList: string[] = [];
 
   name: string = '';
   sponsor: string = '';
@@ -26,11 +29,31 @@ export class NewRecruitmentFormComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data, 
     public dialogRef: MatDialogRef<NewRecruitmentFormComponent>,
     private globalService: GlobalService, 
-    public sponsorService: SponsorService
+    public sponsorService: SponsorService,
+    public candidateService: CandidateService
   ) { }
 
-  ngOnInit(): void {
-    console.log(this.sponsorService.sponsorRecords);
+  async ngOnInit() {
+    this.isLoading = true;
+    if(!this.sponsorService.sponsorRecords){
+      await this.fetchAllSponsors();
+    }
+    this.extractSponsorNames();
+    if (!this.candidateService.specRecords){
+      await this.gatherAllSpecializations();
+      console.log(this.candidateService.specRecords);
+    }
+    else{
+      for(let i=0;i<this.candidateService.specRecords.length;i++){
+        this.specList.push(this.candidateService.specRecords[i]['specialization']);
+      }
+    }
+    if(this.editMode){
+
+    }
+    else{
+      this.isLoading = false;
+    }
     this.recruitmentInfoForm = new FormGroup({
       'name': new FormControl(this.name, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
       'sponsor': new FormControl(this.sponsor, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
@@ -57,4 +80,36 @@ export class NewRecruitmentFormComponent implements OnInit {
   removeSpecialization(index: number){
     (<FormArray>this.recruitmentInfoForm.get('specializations')).removeAt(index);
   }
+
+  async fetchAllSponsors(){
+    if(this.sponsorService.sponsorRecords == null){
+      await this.sponsorService.fetchAllSponsors().then(
+        ((response:[]) => {
+          console.log(response);
+          this.sponsorService.sponsorRecords = response;
+        })
+      )
+    }
+  }
+  async gatherAllSpecializations(){
+    console.log("Gathering all specialization");
+    await this.candidateService.fetchAllSpec().then(
+      (recordData: []) => {  
+        console.log(recordData);
+        this.specList = recordData;
+        console.log(this.candidateService.specRecords);
+      }, 
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  extractSponsorNames(){
+    for (let i=0; i<this.sponsorService.sponsorRecords['records'].length; i++){
+      this.sponsorList.push(this.sponsorService.sponsorRecords['records'][i]['name']);
+    }
+    console.log(this.sponsorList);
+  }
+  
 }

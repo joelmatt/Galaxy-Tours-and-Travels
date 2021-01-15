@@ -15,7 +15,7 @@ export class SponsorService {
   
   constructor(private http:HttpClient) {}
 
-  fetchAllCandidates(){
+  fetchAllSponsors(){
     let queryParams = new HttpParams();
     queryParams = queryParams.set('funcName', 'selectAllSponsors');
     return this.http.get(AppConstants._API_END_URL, {params: queryParams})

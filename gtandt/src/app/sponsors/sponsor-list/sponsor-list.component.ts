@@ -36,7 +36,7 @@ export class SponsorListComponent implements OnInit {
 
   async fetchAllSponsors(){
     if(this.sponsorService.sponsorRecords == null){
-      this.sponsorService.fetchAllCandidates().then(
+      this.sponsorService.fetchAllSponsors().then(
         ((response:[]) => {
           console.log(response);
           this.sponsorService.sponsorRecords = response;
