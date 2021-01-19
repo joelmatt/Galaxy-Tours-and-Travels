@@ -35,7 +35,7 @@
                                 <i class="material-icons matIcon">construction</i>
                                 <input type="text" list="spec" class="form-control" name="specialization" formControlName="specialization">
                                 <datalist id="spec">
-                                    <option *ngFor="let cat of catList">{{ cat }}</option>
+                                    <option *ngFor="let cat of specList">{{ cat }}</option>
                                 </datalist>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
             <mat-divider class="candFormDivider"></mat-divider>
                     
             <div class="row justify-content-center">
-                <button mat-raised-button id="submitButton" class="submitButton mt-5"  type="submit">
+                <button mat-raised-button id="submitButton" class="submitButton mt-5" [disabled]="(!recruitmentInfoForm.valid || !(recruitmentSpecLength>0))"  type="submit">
                     <i class="material-icons md-36">done_all</i>
                     {{submitButtonText}}
                 </button>

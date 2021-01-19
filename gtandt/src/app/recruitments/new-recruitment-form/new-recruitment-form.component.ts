@@ -18,9 +18,9 @@ export class NewRecruitmentFormComponent implements OnInit {
   isLoading: boolean = false;
   editMode: boolean = false;
   submitButtonText: string = "SUBMIT";
-  catList: string[] = [];
   specList: string[] = [];
   sponsorList: string[] = [];
+  recruitmentSpecLength: number = 0; // Remember to change this while editing
 
   name: string = '';
   sponsor: string = '';
@@ -28,7 +28,6 @@ export class NewRecruitmentFormComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data, 
     public dialogRef: MatDialogRef<NewRecruitmentFormComponent>,
-    private globalService: GlobalService, 
     public sponsorService: SponsorService,
     public candidateService: CandidateService
   ) { }
@@ -56,9 +55,14 @@ export class NewRecruitmentFormComponent implements OnInit {
     }
     this.recruitmentInfoForm = new FormGroup({
       'name': new FormControl(this.name, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
-      'sponsor': new FormControl(this.sponsor, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
+      'sponsor': new FormControl(this.sponsor, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]),
       'specializations': this.categorySpec
     });
+
+    if(!this.editMode){
+      //reminding the user that recruitment needs atleast one category.
+      this.addSpecialization();
+    }
   }
 
   closeDialog() {
@@ -70,6 +74,7 @@ export class NewRecruitmentFormComponent implements OnInit {
   }
 
   addSpecialization(){
+    this.recruitmentSpecLength++;
     (<FormArray>this.recruitmentInfoForm.get('specializations')).push(
       new FormGroup({
         'specialization': new FormControl(null, [Validators.required, Validators.maxLength(50), Validators.minLength(2)]),
@@ -77,7 +82,9 @@ export class NewRecruitmentFormComponent implements OnInit {
       }
     ));
   }
+
   removeSpecialization(index: number){
+    this.recruitmentSpecLength--;
     (<FormArray>this.recruitmentInfoForm.get('specializations')).removeAt(index);
   }
 
