@@ -1,6 +1,6 @@
 <div class="mat-elevation-z0 container-fluid" *ngIf="!isLoading">
     <div class="container">
-        <form action="" [formGroup]="recruitmentInfoForm" >
+        <form action="" [formGroup]="recruitmentInfoForm" (ngSubmit)="onSubmit()">
             <div class="row justify-content-center mb-3">
                 <div class="col-8">
                     <div class="form-group inputWithIcon">
@@ -68,7 +68,7 @@
             <mat-divider class="candFormDivider"></mat-divider>
                     
             <div class="row justify-content-center">
-                <button mat-raised-button id="submitButton" class="submitButton mt-5" [disabled]="(!recruitmentInfoForm.valid || !(recruitmentSpecLength>0))"  type="submit">
+                <button mat-raised-button id="submitButton" class="submitButton mt-4" [disabled]="(!recruitmentInfoForm.valid || !(recruitmentSpecLength>0))"  type="submit">
                     <i class="material-icons md-36">done_all</i>
                     {{submitButtonText}}
                 </button>
@@ -77,10 +77,10 @@
     </div>
 </div>
 
-    <div class="row vertical-center" *ngIf="isLoading">
-        <div class="uploader-status" >
-            <mat-spinner strokeWidth="25" [diameter]="180" title="Server Starting" ></mat-spinner>
-        </div>
+<div class="row vertical-center" *ngIf="isLoading">
+    <div class="uploader-status" >
+        <mat-spinner strokeWidth="25" [diameter]="180" title="Server Starting" ></mat-spinner>
     </div>
+</div>
 
 

@@ -131,3 +131,6 @@ alter table candidate_info add column DOB Date not null default '2009-01-01'; --
 -- Turns out biodata needed more that 20 characters. oops!
 ALTER TABLE candidate_info MODIFY COLUMN biodata VARCHAR(100);
 -- Exclude the above query if you have used the latest database creation query after 10 Dec 2020
+
+-- id is needed for adding specialization to the junction
+ALTER TABLE recruitment_list ADD ID INT AUTO_INCREMENT UNIQUE KEY;

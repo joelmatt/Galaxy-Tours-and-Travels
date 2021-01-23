@@ -22,6 +22,12 @@ exports.handler = async (event) => {
         
     if (funcName === 'addCandidatePassportCopy')
         var result = await addCandidatePassportCopy(event['queryStringParameters']);
+    
+    if (funcName === 'addNewRecruitment')
+        var result = await addNewRecruitment(event['queryStringParameters']);
+    
+    if (funcName === 'addRecruitmentSpecialization')
+        var result = await addRecruitmentSpecialization(event['queryStringParameters']);
         
     var response = {
         statusCode: 200,
@@ -31,6 +37,43 @@ exports.handler = async (event) => {
         body: JSON.stringify(result)
     };
     return response;
+}
+
+function addNewRecruitment(parameters){
+    console.log("Add New Recruitment");
+    const data = require('data-api-client')({
+        secretArn: process.env.AWS_SECRET_ARN,
+        resourceArn: process.env.AWS_RESOURCE_ARN,
+        database: 'galaxytnt',
+    });
+    return new Promise((resolve, reject)=>{
+        resolve( data.transaction()
+            .query(`INSERT INTO recruitment_list(recruitment_id, sponsor_id, total_cat, DOC, recruitment_name, status) VALUES 
+                (uuid(), :sponsor_id, :total_cat, curdate(), :name, :status)`, 
+                {sponsor_id: parameters['sponsor_id'], name: parameters['name'], total_cat: parameters['total_cat'], status: parameters['status']})
+                .query((r) => ['SELECT recruitment_id FROM recruitment_list WHERE id = :id', {id: r.insertId} ])
+            .rollback((e,status) => { /* do something with the error */ }) // optional
+            .commit())
+    });
+}
+
+function addRecruitmentSpecialization(parameters){
+    console.log("Add Recruitment Specialization");
+    const data = require('data-api-client')({
+        secretArn: process.env.AWS_SECRET_ARN,
+        resourceArn: process.env.AWS_RESOURCE_ARN,
+        database: 'galaxytnt',
+    });
+    let specList = parameters['specIds'].split(', ');
+    let totalList = parameters['total'].split(', ');
+    let listOfSpecsAndExp = [];
+    for (let i=0; i<specList.length; i++){
+        listOfSpecsAndExp.push([{spec_id: specList[i], total: totalList[i], recruitment_id: parameters['recruitmentId']}]);
+    }
+    return new Promise((resolve, reject)=>{
+        resolve(data.query(`INSERT INTO recruit_req_junc VALUES (:recruitment_id, :spec_id, :total)`, listOfSpecsAndExp));
+        }
+    );
 }
 
 function addNewCandidate(parameters) {
