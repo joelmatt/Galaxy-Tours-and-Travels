@@ -6,4 +6,80 @@
             New Recruitment Drive
         </button>    
     </div>
+    <div *ngIf="!isLoading">
+        <div class="row strike mt-5" id="active">
+            <span style="color: #00CA80" class="active">ACTIVE</span>
+        </div>     
+        <div class="container-fluid" *ngFor="let column of recruitmentRecords">
+            <div class="row justify-content-center mb-3" *ngIf="column.status=='Active'">
+                <div class="col-3" style="padding-right: 0; margin-right:0;">
+                    <mat-card class="mainCard mt-2 mat-elevation-z0 p-2 rounded-0">
+                        <span class="rec_span">{{column.recruitment_name}}</span>
+                    </mat-card> 
+                </div>
+                <div class="col-3" style="padding-right: 0; margin-right:0; padding-left: 0;margin-left: 0; text-align: center">
+                    <mat-card class="mainCard mt-2 mat-elevation-z0 p-2 rounded-0">
+                        <span class="rec_span">{{column.name}}</span>
+                    </mat-card>
+                </div>
+                <div class="col-2" style="padding-right: 0; margin-right:0; padding-left: 0;margin-left: 0; text-align: center">
+                    <mat-card class="mainCard mt-2 mat-elevation-z0 p-2 rounded-0">
+                        <span class="rec_span">{{column.contact}}</span>
+                    </mat-card>
+                </div>
+                <div class="col-2" style="padding-right: 0; margin-right:0; padding-left: 0; margin-left: 0; text-align: center">
+                    <mat-card class="mainCard mt-2 mat-elevation-z0 p-2 rounded-0">
+                        <span class="rec_span">{{column.total_cat}}</span>
+                    </mat-card>
+                </div>
+                <div class="col-2" style="padding-left: 0; margin-left: 0">
+                    <button mat-button class="editAndDelete rounded-0" [ngStyle]="{'background-color': '#00C17A', 'outline': 'none', 'padding-bottom':'3px', 'margin-top': '9px'}">
+                        <i [ngStyle]="{'color': 'var(--text-primary)', 'font-size': '25px'}" class="material-icons">edit</i>
+                    </button>
+                    <button mat-button class="editAndDelete rounded-0" [ngStyle]="{'background-color': '#C82333', 'outline': 'none', 'padding-bottom':'3px', 'margin-top': '9px', 'margin-left': '0'}">
+                        <i [ngStyle]="{'color': 'var(--text-primary)', 'font-size': '25px'}" class="material-icons">cancel</i>
+                    </button>
+                </div>
+            </div>  
+        </div>   
+      
+        <div class="row strike mt-4" >
+            <span style="color:#C82333" class="inactive">INACTIVE</span>
+        </div> 
+        <div class="container-fluid" *ngFor="let column of recruitmentRecords">
+            <div class="row justify-content-center mb-3" *ngIf="column.status=='Active'">
+                <div class="col-3" style="padding-right: 0; margin-right:0;">
+                    <mat-card class="mainCard mt-2 mat-elevation-z0 p-2 rounded-0">
+                        <span class="rec_span">{{column.recruitment_name}}</span>
+                    </mat-card> 
+                </div>
+                <div class="col-3" style="padding-right: 0; margin-right:0; padding-left: 0;margin-left: 0; text-align: center">
+                    <mat-card class="mainCard mt-2 mat-elevation-z0 p-2 rounded-0">
+                        <span class="rec_span">{{column.name}}</span>
+                    </mat-card>
+                </div>
+                <div class="col-2" style="padding-right: 0; margin-right:0; padding-left: 0;margin-left: 0; text-align: center">
+                    <mat-card class="mainCard mt-2 mat-elevation-z0 p-2 rounded-0">
+                        <span class="rec_span">{{column.contact}}</span>
+                    </mat-card>
+                </div>
+                <div class="col-2" style="padding-right: 0; margin-right:0; padding-left: 0; margin-left: 0; text-align: center">
+                    <mat-card class="mainCard mt-2 mat-elevation-z0 p-2 rounded-0">
+                        <span class="rec_span">{{column.total_cat}}</span>
+                    </mat-card>
+                </div>
+                <div class="col-2" style="padding-left: 0; margin-left: 0">
+                    <button mat-button class="editAndDelete rounded-0" [ngStyle]="{'background-color': '#00C17A', 'outline': 'none', 'padding-bottom':'3px', 'margin-top': '9px', 'margin-left': '0'}">
+                        <i [ngStyle]="{'color': 'var(--text-primary)', 'font-size': '25px'}" class="material-icons">drive_folder_upload</i>
+                    </button>
+                </div>
+            </div>  
+        </div>  
+    </div>
+    <div class="row vertical-center justify-content-center mt-5" *ngIf="isLoading">
+        <div class="uploader-status" >
+            <mat-spinner strokeWidth="25" [diameter]="180" title="Server Starting" ></mat-spinner>
+        </div>
+    </div>
+    
 </div>                                                                            

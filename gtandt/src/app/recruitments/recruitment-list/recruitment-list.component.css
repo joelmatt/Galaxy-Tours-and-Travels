@@ -1,12 +1,16 @@
+.uploader-status ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #0C4BCC;
+}
+
 #newRecruitmentButton {
     font-family: Montserrat;
     font-weight: bold;
 }
 .mat-raised-button{
-    background-color: var(--text-secondary);
+    background-color: #0069D9;
     padding:0.4em 3em;
     /* border-radius: 50px; */
-    border-color: var(--text-secondary) !important;
+    border-color: #0069D9 !important;
     color:var(--text-primary);
     font-size:1.2em;
     border:0;
@@ -19,3 +23,66 @@
     margin-bottom: 8px;
     margin-right: 3px;
 }
+
+.strike {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap; 
+}
+
+.strike > span {
+    position: relative;
+    display: inline-block;
+    font-family: Montserrat;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.strike > .active:before,
+.strike > .active:after {
+    background: #00CA80;
+}
+
+.strike > .inactive:before,
+.strike > .inactive:after {
+    background: #C82333;
+}
+
+.strike > span:before,
+.strike > span:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 400px;
+    height: 5px;
+    -webkit-box-shadow: inset -4px -8px 89px -66px rgba(0,0,0,0.34);
+    -moz-box-shadow: inset -4px -8px 89px -66px rgba(0,0,0,0.34);
+    box-shadow: inset -4px -8px 89px -66px rgba(0,0,0,0.34);
+}
+
+.strike > span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.strike > span:after {
+    left: 100%;
+    margin-left: 15px;
+}
+
+.mainCard {
+    background-color: #F7F8FC;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-box-shadow: inset -4px -8px 89px -66px rgba(0,0,0,0.34);
+    -moz-box-shadow: inset -4px -8px 89px -66px rgba(0,0,0,0.34);
+    box-shadow: inset -4px -8px 89px -66px rgba(0,0,0,0.34);
+}
+.rec_span {
+    line-height: 15px;
+    font-family: Montserrat;
+    font-weight: bold;
+    font-size: 17px;
+    padding: 0;
+  }

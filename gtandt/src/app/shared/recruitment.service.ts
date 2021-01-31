@@ -15,6 +15,8 @@ export class RecruitmentService {
 
   delayDuration: number = 20000; 
 
+  recruitmentRecords: any[] = null; 
+
   addNewRecruitment(sponsorId: string, totalCat: number, name: string, status: string){
     let queryParams = new HttpParams();
     queryParams = queryParams.set('funcName', 'addNewRecruitment')
@@ -39,6 +41,19 @@ export class RecruitmentService {
       catchError(errorResponse => {
         return throwError(errorResponse);
       })
+    ).toPromise();
+  }
+
+  fetchAllRecruitments(){
+    let queryParams = new HttpParams();
+    queryParams = queryParams.set('funcName', 'selectAllRecruitments');
+    return this.http.get(AppConstants._API_END_URL, {params: queryParams})
+      .pipe(
+        retryAfterDelay(this.delayDuration),
+        catchError(errorResponse => {
+          return throwError(errorResponse);
+        }
+      )
     ).toPromise();
   }
 }
