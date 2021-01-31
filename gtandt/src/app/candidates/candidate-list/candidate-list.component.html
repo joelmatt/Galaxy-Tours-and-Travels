@@ -80,10 +80,10 @@
             <mat-cell *matCellDef="let element">
                     <button mat-button class="editAndDelete" [ngStyle]="{'background-color': '#216BFE', 'outline': 'none', 'padding-bottom':'3px'}" (click)="editOrDelete(1, this.candidateService.candidateRecords['records'].indexOf(element))">
                         <i [ngStyle]="{'color': 'var(--text-primary)', 'font-size': '25px'}" class="material-icons">edit</i>
-                        </button>
-                        <button mat-button class="editAndDelete"[ngStyle]="{'background-color': '#C82333', 'margin-left':'8px', 'outline': 'none', 'padding-bottom':'3px'}" (click)="editOrDelete(0, this.candidateService.candidateRecords['records'].indexOf(element))">
+                    </button>
+                    <button mat-button class="editAndDelete"[ngStyle]="{'background-color': '#C82333', 'margin-left':'8px', 'outline': 'none', 'padding-bottom':'3px'}" (click)="editOrDelete(0, this.candidateService.candidateRecords['records'].indexOf(element))">
                         <i [ngStyle]="{'color': 'var(--text-primary)', 'font-size': '25px'}" class="material-icons">delete</i>
-                        </button>
+                    </button>
             </mat-cell>
         </ng-container>
 
