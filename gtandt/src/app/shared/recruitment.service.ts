@@ -56,4 +56,20 @@ export class RecruitmentService {
       )
     ).toPromise();
   }
+
+  addRecruitmentRecord(recruitParam: any, sponsorParam: any,recruitmentId: string){
+    console.log(this.recruitmentRecords);
+    this.recruitmentRecords.push(
+      {
+        contact: sponsorParam['contact'],
+        email: sponsorParam['email'],
+        name: sponsorParam['name'],
+        recruitment_id: recruitmentId,
+        recruitment_name: recruitParam.get("name").value,
+        sponsor_id: sponsorParam['sponsor_id'],
+        status: "Active",
+        total_cat: recruitParam.get('specializations').value.length
+      }
+    )
+  }
 }

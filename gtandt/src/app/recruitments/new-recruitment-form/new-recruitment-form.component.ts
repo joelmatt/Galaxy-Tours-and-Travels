@@ -89,7 +89,7 @@ export class NewRecruitmentFormComponent implements OnInit {
     (<FormArray>this.recruitmentInfoForm.get('specializations')).push(
       new FormGroup({
         'specialization': new FormControl(null, [Validators.required, Validators.maxLength(50), Validators.minLength(2)]),
-        'total': new FormControl(null, [Validators.required, Validators.pattern(/^[1-9]+([,.][0-9]+)?$/), Validators.minLength(1), Validators.maxLength(3)])
+        'total': new FormControl(null, [Validators.required, Validators.pattern(/^[0-9]+([,.][0-9]+)?$/), Validators.minLength(1), Validators.maxLength(3)])
       }
     ));
   }
@@ -133,7 +133,7 @@ export class NewRecruitmentFormComponent implements OnInit {
     //firstly lets check for new specializations added to the Form.
     await this.addAndGetSpecs();
     await this.recruitmentService.addNewRecruitment(
-      this.getSponsorId(this.recruitmentInfoForm.get('sponsor').value), 
+      this.getSponsorDetails(this.recruitmentInfoForm.get('sponsor').value).sponsor_id, 
       this.recruitmentInfoForm.get('specializations').value.length, 
       this.recruitmentInfoForm.get('name').value,
       'Active',
@@ -144,6 +144,8 @@ export class NewRecruitmentFormComponent implements OnInit {
           (recordData) => {
             this.isLoading = false;
             this.closeDialog();
+            console.log("val added");
+            this.recruitmentService.addRecruitmentRecord(this.recruitmentInfoForm, this.getSponsorDetails(this.recruitmentInfoForm.get('sponsor').value), newRecruitmentId);
           }, 
           (error) => {
             this.closeDialog();
@@ -184,10 +186,10 @@ export class NewRecruitmentFormComponent implements OnInit {
   }
 
  
-  getSponsorId(sponsorName: string){
+  getSponsorDetails(sponsorName: string){
     for(let i = 0; i<this.sponsorList.length;i++){
       if(this.sponsorService.sponsorRecords['records'][i]['name'] == sponsorName){
-        return this.sponsorService.sponsorRecords['records'][i]['sponsor_id'];
+        return this.sponsorService.sponsorRecords['records'][i];
       }
     }
   }
